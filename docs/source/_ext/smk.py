@@ -1,8 +1,10 @@
 from collections import defaultdict
-from typing import Any, Dict
+from typing import Any, Dict, Mapping
 
+import snakemake
 from docutils import nodes
 from docutils.parsers.rst import directives
+from docutils.statemachine import ViewList
 from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
@@ -11,6 +13,8 @@ from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
 from sphinx.util.nodes import make_refnode, nested_parse_with_titles
+
+# TODO: Subclass GroupedField to read the conda file and put that in
 
 
 class RuleDirective(ObjectDescription):
@@ -27,7 +31,7 @@ class RuleDirective(ObjectDescription):
         GroupedField(
             "param", label="Params", names=("param", "parameter"), can_collapse=True
         ),
-        Field("conda", label="Conda", names=("conda",), has_arg=False),
+        GroupedField("conda", label="Conda", names=("conda",), can_collapse=False),
         Field("log", label="Log", names=("log",), has_arg=False),
         Field("resources", label="resources", names=("resources",), has_arg=False),
     ]
@@ -38,10 +42,12 @@ class RuleDirective(ObjectDescription):
 
     def add_target_and_index(self, name_cls, sig, signode):
         signode["ids"].append("rule" + "-" + sig)
-        breakpoint()
         signode.attributes["source"] = self.options.get("source", None)
         smk = self.env.get_domain("smk")
         smk.add_rule(sig)
+
+    def transform_content(self, contentnode):
+        print(contentnode)
 
 
 class RuleIndex(Index):
@@ -74,12 +80,66 @@ class RuleIndex(Index):
         return content, True
 
 
+class AutoDocDirective(SphinxDirective):
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    _docstring_types = None
+
+    def _extract_rules(self):
+        workflow = snakemake.Workflow(self.arguments[0])
+        workflow.include(self.arguments[0], overwrite_default_target=True)
+        workflow.check()
+        return workflow.rules.mapping
+
+    def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
+        for rule in rules.values():
+            lines = []
+            lines.append(f".. smk:rule:: {rule.name}")
+            lines.append(f"   :source: {rule.snakefile}:{rule.lineno}")
+
+            for prop_name in ("conda", "log"):
+                props = rule.__getattribute__(prop_name)
+                if len(props) > 0:
+                    lines.append(f"   :{prop_name}: {props}")
+
+            if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1:
+                resources = ",".join(
+                    (
+                        f"{k.lstrip('_')}={v}"
+                        for k, v in rule.resources.items()
+                        if k != "tmpdir"
+                    )
+                )
+                lines.append(f"   :resources: {resources}")
+
+            if rule.docstring is not None:
+                lines.append("", rule.docstring)
+
+            for line in lines:
+                print(line)
+                viewlist.append(line, rule.snakefile, rule.lineno)
+
+    def run(self):
+        result = ViewList()
+
+        rules = self._extract_rules()
+        AutoDocDirective._gen_docs(result, rules)
+
+        # Parse the extracted reST
+        with switch_source_input(self.state, result):
+            node = nodes.section()
+            nested_parse_with_titles(self.state, result, node)
+
+        return node.children
+
+
 class SmkDomain(Domain):
 
     name = "smk"
     label = "Snakemake"
     roles = {"ref": XRefRole()}
-    directives = {"rule": RuleDirective}
+    directives = {"rule": RuleDirective, "autodoc": AutoDocDirective}
     indices = {
         RuleIndex,
     }

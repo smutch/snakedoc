@@ -1,3 +1,7 @@
+rule all:
+    input:
+        "output4.txt"
+
 rule basic:
     """
     Here is some documentation.
@@ -11,6 +15,42 @@ rule basic:
     input:
         "input.txt"
     output:
+        report("output.txt")
+    conda:
+        "envs/basic.yml"
+    params:
+        a=1
+    shell:
+        "cat {input} > {output} && echo {params.a} >> {output}"
+
+rule follows_basic:
+    """
+    Docs rhymes with socks...
+    """
+
+    input:
         "output.txt"
+    output:
+        "output2.txt"
+    shell:
+        "echo 'output.txt content = ' > {output} && cat {input} >> {output}"
+
+rule also_follows_basic:
+    """
+    Docs rhymes with clocks...
+    """
+
+    input:
+        "output.txt"
+    output:
+        "output3.txt"
+    shell:
+        "touch {output}"
+
+rule the_end:
+    input:
+        "output2.txt", "output3.txt"
+    output:
+        "output4.txt"
     shell:
         "cat {input} > {output}"
