@@ -1,0 +1,16 @@
+rule basic:
+    """
+    Here is some documentation.
+
+    :input: A file
+    :output: Another file
+    :param a: Sets the value of ``a``
+    :param b: Sets the value of ``b``
+    """
+
+    input:
+        "input.txt"
+    output:
+        "output.txt"
+    shell:
+        "cat {input} > {output}"

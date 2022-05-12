@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "snakedoc"
+version = "0.1.0"
+description = "A Sphinx extension for Snakemake"
+authors = ["Simon Mutch <smutch@unimelb.edu.au>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+snakemake = "^7.6.2"
+Sphinx = "^4.5.0"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+black = "^22.3.0"
+pre-commit = "^2.19.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
