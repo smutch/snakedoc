@@ -15,12 +15,14 @@ Hello world!
 
 .. smk:rule:: basic
 
+   This is a basic rule docstring.
+
    :input: a.txt
    :output: b.txt
    :param c: set ``c``
    :param d: set ``d``
+   :conda: envs/test.yml
 
-   Hello world!
 
 
 Indices and tables

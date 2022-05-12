@@ -6,6 +6,7 @@ from sphinx import addnodes
 from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index
 from sphinx.roles import XRefRole
+from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
 from sphinx.util.nodes import make_refnode, nested_parse_with_titles
 
@@ -16,16 +17,17 @@ class RuleDirective(ObjectDescription):
     has_content = True
     required_arguments = 1
     priority = 0
-    option_spec = {
-        "input": directives.unchanged,
-        "output": directives.unchanged,
-        "params": directives.unchanged,
-        "log": directives.unchanged,
-        "resources": directives.unchanged,
-        "shell": directives.unchanged,
-        "script": directives.unchanged,
-        "run": directives.unchanged,
-    }
+
+    doc_field_types = [
+        GroupedField("input", label="Inputs", names=("input",), can_collapse=True),
+        GroupedField("output", label="Outputs", names=("output",), can_collapse=True),
+        GroupedField(
+            "param", label="Params", names=("param", "parameter"), can_collapse=True
+        ),
+        Field("conda", label="Conda", names=("conda",), has_arg=False),
+        Field("log", label="Log", names=("log",), has_arg=False),
+        Field("resources", label="resources", names=("resources",), has_arg=False),
+    ]
 
     def handle_signature(self, sig, signode):
         signode += addnodes.desc_name(text=sig)
