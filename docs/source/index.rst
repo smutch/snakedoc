@@ -14,6 +14,7 @@ Welcome to Snakedoc's documentation!
 Hello world!
 
 .. smk:rule:: basic
+   :source: abc
 
    This is a basic rule docstring.
 

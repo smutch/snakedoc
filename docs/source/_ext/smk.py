@@ -1,8 +1,10 @@
 from collections import defaultdict
+from typing import Any, Dict
 
 from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx import addnodes
+from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index
 from sphinx.roles import XRefRole
@@ -17,6 +19,7 @@ class RuleDirective(ObjectDescription):
     has_content = True
     required_arguments = 1
     priority = 0
+    option_spec = {"source": directives.unchanged}
 
     doc_field_types = [
         GroupedField("input", label="Inputs", names=("input",), can_collapse=True),
@@ -30,11 +33,13 @@ class RuleDirective(ObjectDescription):
     ]
 
     def handle_signature(self, sig, signode):
-        signode += addnodes.desc_name(text=sig)
+        signode += addnodes.desc_name(text=sig, source=self.options.get("source", ""))
         return sig
 
     def add_target_and_index(self, name_cls, sig, signode):
         signode["ids"].append("rule" + "-" + sig)
+        breakpoint()
+        signode.attributes["source"] = self.options.get("source", None)
         smk = self.env.get_domain("smk")
         smk.add_rule(sig)
 
@@ -116,7 +121,7 @@ class SmkDomain(Domain):
         self.data["rules"].append((name, dispname, "Rule", self.env.docname, anchor, 0))
 
 
-def setup(app) -> None:
+def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx.ext.autodoc")
     app.add_domain(SmkDomain)
 
