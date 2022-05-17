@@ -2,16 +2,19 @@ import logging
 from collections import defaultdict
 from pathlib import Path
 from textwrap import dedent, indent
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, Mapping, Set
 
 import snakemake
 from docutils import nodes
+from docutils.nodes import Node
 from docutils.parsers.rst import directives
 from docutils.statemachine import ViewList
 from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index
+from sphinx.errors import SphinxError
+from sphinx.locale import _
 from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
@@ -199,9 +202,63 @@ class SmkDomain(Domain):
         self.data["rules"].append((name, dispname, "Rule", self.env.docname, anchor, 0))
 
 
+class SmkLinkcodeError(SphinxError):
+    category = "linkcode error"
+
+
+def doctree_read(app: Sphinx, doctree: Node) -> None:
+    env = app.builder.env
+
+    resolve_target = getattr(env.config, "smk_linkcode_resolve", None)
+    if not callable(env.config.smk_linkcode_resolve):
+        raise SmkLinkcodeError(
+            "Function `smk_linkcode_resolve` is not given in conf.py"
+        )
+
+    domain_keys = {
+        "smk": ["source"],
+    }
+
+    for objnode in list(doctree.findall(addnodes.desc)):
+        domain = objnode.get("domain")
+        uris: Set[str] = set()
+        for signode in objnode:
+            if not isinstance(signode, addnodes.desc_signature):
+                continue
+
+            # Convert signode to a specified format
+            info = {}
+            for key in domain_keys.get(domain, []):
+                value = signode.get(key)
+                if not value:
+                    value = ""
+                info[key] = value
+            if not info:
+                continue
+
+            # Call user code to resolve the link
+            uri = resolve_target(domain, info)
+            if not uri:
+                # no source
+                continue
+
+            if uri in uris or not uri:
+                # only one link per name, please
+                continue
+            uris.add(uri)
+
+            inline = nodes.inline("", _("[source]"), classes=["viewcode-link"])
+            onlynode = addnodes.only(expr="html")
+            onlynode += nodes.reference("", "", inline, internal=False, refuri=uri)
+            signode += onlynode
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx.ext.autodoc")
     app.add_domain(SmkDomain)
+
+    app.add_config_value("smk_linkcode_resolve", None, "")
+    app.connect("doctree-read", doctree_read)
 
     return {
         "version": "0.1",
