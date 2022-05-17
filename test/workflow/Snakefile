@@ -17,7 +17,7 @@ rule basic:
     output:
         report("output.txt")
     conda:
-        "envs/basic.yml"
+        "envs/test1.yaml"
     params:
         a=1
     shell:

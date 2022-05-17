@@ -22,7 +22,18 @@ Hello world!
    :output: b.txt
    :param c: set ``c``
    :param d: set ``d``
-   :conda: envs/test.yml
+   :conda:
+     .. code-block:: yaml
+
+         channels:
+           - conda-forge
+         dependencies:
+           - pip:
+             - test1
+             - test2
+
+
+.. smk:autodoc:: ../test/workflow/Snakefile
 
 
 

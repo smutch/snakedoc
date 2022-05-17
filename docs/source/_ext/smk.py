@@ -1,4 +1,5 @@
 from collections import defaultdict
+from textwrap import dedent, indent
 from typing import Any, Dict, Mapping
 
 import snakemake
@@ -29,10 +30,10 @@ class RuleDirective(ObjectDescription):
         GroupedField("input", label="Inputs", names=("input",), can_collapse=True),
         GroupedField("output", label="Outputs", names=("output",), can_collapse=True),
         GroupedField(
-            "param", label="Params", names=("param", "parameter"), can_collapse=True
+            "param", label="params", names=("param", "parameter"), can_collapse=True
         ),
-        GroupedField("conda", label="Conda", names=("conda",), can_collapse=False),
-        Field("log", label="Log", names=("log",), has_arg=False),
+        Field("conda", label="conda", names=("conda",)),
+        Field("log", label="log", names=("log",), has_arg=False),
         Field("resources", label="resources", names=("resources",), has_arg=False),
     ]
 
@@ -46,8 +47,8 @@ class RuleDirective(ObjectDescription):
         smk = self.env.get_domain("smk")
         smk.add_rule(sig)
 
-    def transform_content(self, contentnode):
-        print(contentnode)
+    # def transform_content(self, contentnode):
+    #     print(contentnode)
 
 
 class RuleIndex(Index):
@@ -98,10 +99,18 @@ class AutoDocDirective(SphinxDirective):
             lines.append(f".. smk:rule:: {rule.name}")
             lines.append(f"   :source: {rule.snakefile}:{rule.lineno}")
 
-            for prop_name in ("conda", "log"):
-                props = rule.__getattribute__(prop_name)
-                if len(props) > 0:
-                    lines.append(f"   :{prop_name}: {props}")
+            if rule.docstring is not None:
+                docstring = indent(dedent(rule.docstring), "   ")
+                lines.extend(docstring.splitlines())
+
+            if rule.conda_env:
+                lines.append(f"   :conda:")
+                lines.append(f"     .. code-block:: yaml")
+                lines.append("")
+                with open(rule.conda_env.file, "r") as fp:
+                    env = indent(fp.read(), "         ")
+                lines.extend(env.splitlines(keepends=False))
+                lines.append("")
 
             if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1:
                 resources = ",".join(
@@ -113,11 +122,11 @@ class AutoDocDirective(SphinxDirective):
                 )
                 lines.append(f"   :resources: {resources}")
 
-            if rule.docstring is not None:
-                lines.append("", rule.docstring)
+            lines.append("\n")
+
+            print("\n".join(lines))
 
             for line in lines:
-                print(line)
                 viewlist.append(line, rule.snakefile, rule.lineno)
 
     def run(self):
