@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 
-sys.path.append(os.path.abspath("./_ext"))
+# sys.path.append(os.path.abspath("../../snakedoc"))
 
 
 # -- Project information -----------------------------------------------------
@@ -32,7 +32,7 @@ release = "0.1.0"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["smk"]
+extensions = ["snakedoc"]
 
 
 def smk_linkcode_resolve(domain, info):

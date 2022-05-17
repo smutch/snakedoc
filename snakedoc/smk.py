@@ -20,6 +20,8 @@ from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
 from sphinx.util.nodes import make_refnode, nested_parse_with_titles
 
+from . import linkcode
+
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -35,9 +37,7 @@ class RuleDirective(ObjectDescription):
     doc_field_types = [
         GroupedField("input", label="input", names=("input",), can_collapse=True),
         GroupedField("output", label="output", names=("output",), can_collapse=True),
-        GroupedField(
-            "param", label="params", names=("param", "parameter"), can_collapse=True
-        ),
+        GroupedField("param", label="params", names=("param", "parameter"), can_collapse=True),
         Field("conda", label="conda", names=("conda",)),
         Field("log", label="log", names=("log",), has_arg=False),
         Field("resources", label="resources", names=("resources",), has_arg=False),
@@ -74,9 +74,7 @@ class RuleIndex(Index):
         #
         # name, subtype, docname, anchor, extra, qualifier, description
         for _name, dispname, typ, docname, anchor, _priority in rules:
-            content[dispname[0].lower()].append(
-                (dispname, 0, docname, anchor, docname, "", typ)
-            )
+            content[dispname[0].lower()].append((dispname, 0, docname, anchor, docname, "", typ))
 
         # convert the dict to the sorted list of tuples expected
         content = sorted(content.items())
@@ -124,13 +122,7 @@ class AutoDocDirective(SphinxDirective):
                 lines.append("")
 
             if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1:
-                resources = ",".join(
-                    (
-                        f"{k.lstrip('_')}={v}"
-                        for k, v in rule.resources.items()
-                        if k != "tmpdir"
-                    )
-                )
+                resources = ",".join((f"{k.lstrip('_')}={v}" for k, v in rule.resources.items() if k != "tmpdir"))
                 lines.append(f"   :resources: {resources}")
 
             lines.extend(["", "|", ""])
@@ -176,11 +168,7 @@ class SmkDomain(Domain):
             yield (obj)
 
     def resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
-        match = [
-            (docname, anchor)
-            for name, sig, typ, docname, anchor, prio in self.get_objects()
-            if sig == target
-        ]
+        match = [(docname, anchor) for name, sig, typ, docname, anchor, prio in self.get_objects() if sig == target]
 
         if len(match) > 0:
             todocname = match[0][0]
@@ -191,9 +179,7 @@ class SmkDomain(Domain):
             print("Awww, found nothing")
             return None
 
-    def add_rule(
-        self, dispname
-    ):  # , input, output, params, log, resources, shell, script):
+    def add_rule(self, dispname):  # , input, output, params, log, resources, shell, script):
         """Add a new rule to the domain."""
         name = "{}.{}".format("rule", dispname)
         anchor = "rule-{}".format(name)
@@ -202,63 +188,12 @@ class SmkDomain(Domain):
         self.data["rules"].append((name, dispname, "Rule", self.env.docname, anchor, 0))
 
 
-class SmkLinkcodeError(SphinxError):
-    category = "linkcode error"
-
-
-def doctree_read(app: Sphinx, doctree: Node) -> None:
-    env = app.builder.env
-
-    resolve_target = getattr(env.config, "smk_linkcode_resolve", None)
-    if not callable(env.config.smk_linkcode_resolve):
-        raise SmkLinkcodeError(
-            "Function `smk_linkcode_resolve` is not given in conf.py"
-        )
-
-    domain_keys = {
-        "smk": ["source"],
-    }
-
-    for objnode in list(doctree.findall(addnodes.desc)):
-        domain = objnode.get("domain")
-        uris: Set[str] = set()
-        for signode in objnode:
-            if not isinstance(signode, addnodes.desc_signature):
-                continue
-
-            # Convert signode to a specified format
-            info = {}
-            for key in domain_keys.get(domain, []):
-                value = signode.get(key)
-                if not value:
-                    value = ""
-                info[key] = value
-            if not info:
-                continue
-
-            # Call user code to resolve the link
-            uri = resolve_target(domain, info)
-            if not uri:
-                # no source
-                continue
-
-            if uri in uris or not uri:
-                # only one link per name, please
-                continue
-            uris.add(uri)
-
-            inline = nodes.inline("", _("[source]"), classes=["viewcode-link"])
-            onlynode = addnodes.only(expr="html")
-            onlynode += nodes.reference("", "", inline, internal=False, refuri=uri)
-            signode += onlynode
-
-
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx.ext.autodoc")
     app.add_domain(SmkDomain)
 
     app.add_config_value("smk_linkcode_resolve", None, "")
-    app.connect("doctree-read", doctree_read)
+    app.connect("doctree-read", linkcode.doctree_read)
 
     return {
         "version": "0.1",

@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "A Sphinx extension for Snakemake"
 authors = ["Simon Mutch <smutch@unimelb.edu.au>"]
 license = "MIT"
+readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,3 +20,16 @@ Flask = "^2.1.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+skip_string_normalization = true
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "120"
