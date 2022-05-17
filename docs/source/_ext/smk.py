@@ -1,4 +1,6 @@
+import logging
 from collections import defaultdict
+from pathlib import Path
 from textwrap import dedent, indent
 from typing import Any, Dict, Mapping
 
@@ -15,7 +17,8 @@ from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
 from sphinx.util.nodes import make_refnode, nested_parse_with_titles
 
-# TODO: Subclass GroupedField to read the conda file and put that in
+logger = logging.getLogger(__name__)
+logger.setLevel("DEBUG")
 
 
 class RuleDirective(ObjectDescription):
@@ -27,8 +30,8 @@ class RuleDirective(ObjectDescription):
     option_spec = {"source": directives.unchanged}
 
     doc_field_types = [
-        GroupedField("input", label="Inputs", names=("input",), can_collapse=True),
-        GroupedField("output", label="Outputs", names=("output",), can_collapse=True),
+        GroupedField("input", label="input", names=("input",), can_collapse=True),
+        GroupedField("output", label="output", names=("output",), can_collapse=True),
         GroupedField(
             "param", label="params", names=("param", "parameter"), can_collapse=True
         ),
@@ -47,9 +50,6 @@ class RuleDirective(ObjectDescription):
         smk = self.env.get_domain("smk")
         smk.add_rule(sig)
 
-    # def transform_content(self, contentnode):
-    #     print(contentnode)
-
 
 class RuleIndex(Index):
     """A custom index that creates an rule index."""
@@ -61,10 +61,10 @@ class RuleIndex(Index):
     def generate(self, docnames=None):
         content = defaultdict(list)
 
-        # sort the list of recipes in alphabetical order
-        # TODO: Have this in logical order
         rules = self.domain.get_objects()
-        rules = sorted(rules, key=lambda rule: rule[0])
+
+        # sort the list of recipes in alphabetical order
+        # rules = sorted(rules, key=lambda rule: rule[0])
 
         # generate the expected output, shown below, from the above using the
         # first letter of the recipe as a key to group thing
@@ -96,17 +96,25 @@ class AutoDocDirective(SphinxDirective):
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
         for rule in rules.values():
             lines = []
-            lines.append(f".. smk:rule:: {rule.name}")
-            lines.append(f"   :source: {rule.snakefile}:{rule.lineno}")
+            lines.extend(
+                [
+                    f".. smk:rule:: {rule.name}",
+                    f"   :source: {Path(rule.snakefile).resolve()}:{rule.lineno}",
+                ]
+            )
 
             if rule.docstring is not None:
                 docstring = indent(dedent(rule.docstring), "   ")
                 lines.extend(docstring.splitlines())
 
             if rule.conda_env:
-                lines.append(f"   :conda:")
-                lines.append(f"     .. code-block:: yaml")
-                lines.append("")
+                lines.extend(
+                    [
+                        "   :conda:",
+                        "     .. code-block:: yaml",
+                        "",
+                    ]
+                )
                 with open(rule.conda_env.file, "r") as fp:
                     env = indent(fp.read(), "         ")
                 lines.extend(env.splitlines(keepends=False))
@@ -122,9 +130,10 @@ class AutoDocDirective(SphinxDirective):
                 )
                 lines.append(f"   :resources: {resources}")
 
-            lines.append("\n")
+            lines.extend(["", "|", ""])
 
-            print("\n".join(lines))
+            logger.debug(f"smk::autodoc generated this for rule {rule.name}:")
+            logger.debug("\n".join(lines))
 
             for line in lines:
                 viewlist.append(line, rule.snakefile, rule.lineno)

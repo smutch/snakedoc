@@ -12,6 +12,7 @@
 #
 import os
 import sys
+from pathlib import Path
 
 sys.path.append(os.path.abspath("./_ext"))
 
@@ -35,11 +36,10 @@ extensions = ["smk", "linkcode"]
 
 
 def linkcode_resolve(domain, info):
-    print(domain)
-    print(info)
-    return "test"
-    # filename = info['rule'].replace('.', '/')
-    # return "https://somesite/sourcerepo/%s.py" % filename
+    filename = info["source"].replace(":", "#L")
+    return filename.replace(
+        str(Path.cwd().parent), "https://github.com/snakedoc/blob/master"
+    )
 
 
 # Add any paths that contain templates here, relative to this directory.
