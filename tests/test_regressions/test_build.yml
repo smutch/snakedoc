@@ -32,13 +32,13 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   <section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"#autodoc\" title=\"\
   Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig\
   \ sig-object smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"><span class=\"\
-  pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/snakedoc/blob/mastersnakedoc/tests/workflow/Snakefile#L1\"\
+  pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-all\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
   \ /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
   rule-basic\">\n<span class=\"sig-name descname\"><span class=\"pre\">basic</span></span><a\
-  \ class=\"reference external\" href=\"https://github.com/snakedoc/blob/mastersnakedoc/tests/workflow/Snakefile#L11\"\
+  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L11\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Here is some documentation.</p>\n<dl class=\"field-list\">\n\
@@ -60,21 +60,21 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\"\
   >\n<dt class=\"sig sig-object smk\" id=\"rule-follows_basic\">\n<span class=\"sig-name\
   \ descname\"><span class=\"pre\">follows_basic</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/snakedoc/blob/mastersnakedoc/tests/workflow/Snakefile#L48\"\
+  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L48\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
   >\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"\
   sig sig-object smk\" id=\"rule-also_follows_basic\">\n<span class=\"sig-name descname\"\
   ><span class=\"pre\">also_follows_basic</span></span><a class=\"reference external\"\
-  \ href=\"https://github.com/snakedoc/blob/mastersnakedoc/tests/workflow/Snakefile#L72\"\
+  \ href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L72\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-also_follows_basic\" title=\"Permalink to this\
   \ definition\">¶</a></dt>\n<dd><p>Docs rhymes with clocks…</p>\n</dd></dl>\n\n<div\
   \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"\
   smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-the_end\">\n<span class=\"\
   sig-name descname\"><span class=\"pre\">the_end</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/snakedoc/blob/mastersnakedoc/tests/workflow/Snakefile#L96\"\
+  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L96\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-the_end\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\

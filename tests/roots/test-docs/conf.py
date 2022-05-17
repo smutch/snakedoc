@@ -51,7 +51,7 @@ def smk_linkcode_resolve(domain, info):
             f"Rule lists {filename} as it's source, but this is not relative to {Path.cwd().parent}"
         ) from err
 
-    return f"https://github.com/snakedoc/blob/master{filename}{'#L'+lineno if lineno else ''}"
+    return f"https://github.com/smutch/snakedoc/blob/master/{filename}{'#L'+lineno if lineno else ''}"
 
 
 # Add any paths that contain templates here, relative to this directory.
