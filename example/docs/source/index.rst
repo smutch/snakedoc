@@ -18,6 +18,8 @@ The following rule is manually documented in the docs source.
    :output: A swanky plot
    :param γ: The gradient of the line
 
+|
+
 
 Indices and tables
 ==================
