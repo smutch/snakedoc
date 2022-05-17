@@ -1,0 +1,43 @@
+rule all:
+    input:
+        "output2.txt"
+
+rule basic:
+    """
+    This is a basic Snakemake rule.
+
+    .. note::
+       Note that we are using the documentation here to provide extra context
+       to the rule properties (input, output, etc.). We are not simply
+       reproducing the rule. To see the code we can just use the ``source``
+       link on the right.
+
+    :input: A text file. Could be empty for this dummy rule.
+    :output: Will contain a copy of the input. Also included in the Snakemake report.
+    :param a: Sets the the expansion factor of the Universe.
+    :param b: A luminous blue star.
+    """
+
+    input:
+        "input.txt"
+    output:
+        report("output.txt")
+    conda:
+        "envs/test1.yaml"
+    params:
+        a=1.0,
+        b=20
+    shell:
+        "cat {input} > {output} && echo {params.a} >> {output}"
+
+rule follows_basic:
+    """
+    This rule is super simple. Maybe one day it will not be so...
+    """
+
+    input:
+        "output.txt"
+    output:
+        "output2.txt"
+    shell:
+        "echo 'output.txt content = ' > {output} && cat {input} >> {output}"
