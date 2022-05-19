@@ -89,7 +89,7 @@ class AutoDocDirective(SphinxDirective):
         workflow = snakemake.Workflow(self.arguments[0])
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
-        return workflow.rules.mapping
+        return workflow._rules
 
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
         for rule in rules.values():
