@@ -5,6 +5,12 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
 
 **WIP!**
 
+|tests badge|
+
+.. |tests badge| image:: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml/badge.svg
+   :target: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml
+
+
 Take it for a spin
 ------------------
 
