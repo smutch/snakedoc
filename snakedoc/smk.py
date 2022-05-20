@@ -35,9 +35,22 @@ class RuleDirective(ObjectDescription):
         GroupedField("input", label="input", names=("input",), can_collapse=True),
         GroupedField("output", label="output", names=("output",), can_collapse=True),
         GroupedField("param", label="params", names=("param", "parameter"), can_collapse=True),
+        GroupedField("resources", label="resources", names=("resources",), can_collapse=True),
         Field("conda", label="conda", names=("conda",)),
         Field("log", label="log", names=("log",), has_arg=False),
-        Field("resources", label="resources", names=("resources",), has_arg=False),
+        Field("notebook", label="notebook", names=("notebook"), has_arg=False),
+        Field("shell", label="shell", names=("shell"), has_arg=False),
+        Field(
+            "script", label="script", names=("script"), has_arg=False
+        ),  # TODO: link to script on github automatically?
+        Field("run", label="run", names=("run"), has_arg=False),
+        Field("wildcard_constraints", label="wildcard_constraints", names=("wildcard_constraints"), has_arg=False),
+        Field("threads", label="threads", names=("threads"), has_arg=False),
+        Field("priority", label="priority", names=("priority"), has_arg=False),
+        Field("retires", label="retires", names=("retires"), has_arg=False),
+        Field("benchmark", label="benchmark", names=("benchmark"), has_arg=False),
+        Field("group", label="group", names=("group"), has_arg=False),
+        Field("default_target", label="default_target", names=("default_target"), has_arg=False),
     ]
 
     def handle_signature(self, sig, signode):
