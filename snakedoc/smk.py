@@ -107,10 +107,11 @@ class AutoDocDirective(SphinxDirective):
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
         for rule in rules.values():
             lines = []
+            lineno = rule.workflow.linemaps[rule.snakefile][rule.lineno]
             lines.extend(
                 [
                     f".. smk:rule:: {rule.name}",
-                    f"   :source: {Path(rule.snakefile).resolve()}:{rule.lineno}",
+                    f"   :source: {Path(rule.snakefile).resolve()}:{lineno}",
                 ]
             )
 
@@ -141,7 +142,7 @@ class AutoDocDirective(SphinxDirective):
             logger.debug("\n".join(lines))
 
             for line in lines:
-                viewlist.append(line, rule.snakefile, rule.lineno)
+                viewlist.append(line, rule.snakefile, lineno)
 
     def run(self):
         result = ViewList()
