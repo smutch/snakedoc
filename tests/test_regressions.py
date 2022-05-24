@@ -7,7 +7,7 @@ body_pattern = re.compile(r"<body>.*</body>", re.DOTALL)
 
 
 @pytest.mark.sphinx('html', testroot='docs')
-def test_build(data_regression, app: Sphinx, status, warning):
+def test_build(data_regression, app: Sphinx):
     app.builder.build_all()
     assert (app.outdir / "index.html").exists()
 
