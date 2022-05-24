@@ -204,6 +204,8 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_domain(SmkDomain)
 
     app.add_config_value("smk_linkcode_resolve", None, "")
+    app.add_config_value("smk_linkcode_baseurl", "", "")
+    app.add_config_value("smk_linkcode_linesep", "#L", "")
     app.connect("doctree-read", linkcode.doctree_read)
 
     return {

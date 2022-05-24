@@ -33,25 +33,7 @@ release = '0.1'
 # ones.
 extensions = ["snakedoc"]
 
-
-def smk_linkcode_resolve(domain, info):
-    if len(info["source"]) == 0:
-        return ""
-
-    parts = info["source"].split(":")
-    if len(parts) == 2:
-        filename, lineno = parts
-    elif len(parts) == 1:
-        filename = parts[0]
-        lineno = None
-    try:
-        filename = str(Path(filename).relative_to(Path.cwd().parent))
-    except ValueError as err:
-        raise ValueError(
-            f"Rule lists {filename} as it's source, but this is not relative to {Path.cwd().parent}"
-        ) from err
-
-    return f"https://github.com/smutch/snakedoc/blob/master/{filename}{'#L'+lineno if lineno else ''}"
+smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/"
 
 
 # Add any paths that contain templates here, relative to this directory.
