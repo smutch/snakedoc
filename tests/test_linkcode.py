@@ -1,15 +1,12 @@
-import re
-
 import pytest
 from bs4 import BeautifulSoup
 from sphinx.application import Sphinx
 
-# TODO: make building the docs testroot a fixture
 # TODO: don't hardcode url in tests
 
 
 @pytest.mark.sphinx('html', testroot='docs')
-def test_source_links(app: Sphinx, status, warning):
+def test_source_links(app: Sphinx):
     app.builder.build_all()
     index = app.outdir / "index.html"
     assert index.exists()
