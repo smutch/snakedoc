@@ -1,26 +1,24 @@
-# Based on https://github.com/actions/starter-workflows/blob/main/ci/python-package.yml
-name: pipeline
+name: coverage
 
 on: [push]
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    python: '3.10'
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ python }}
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ python }}
-    - name: Install tox and any other packages
+        python-version: '3.10'
+    - name: Install poetry and deps
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        pip install tox
+        poetry install -v
     - name: Generate coverage statistic
       run: |
-        tox -e coverage
+        poetry run tox -e coverage
         echo "COVERAGE=$(poetry run coverage report --precision 2 | grep TOTAL | tr -s ' ' | cut -f 4 -d " ")" >> $GITHUB_ENV
     - name: Create Badge
       uses: schneegans/dynamic-badges-action@v1.1.0 # instructions here: https://github.com/Schneegans/dynamic-badges-action

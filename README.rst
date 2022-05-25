@@ -5,7 +5,8 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
 
 **WIP!**
 
-|tests badge| |pre-commit badge|
+|tests badge| |coverage badge| |pre-commit badge|
+
 |git3moji badge|
 
 .. |tests badge| image:: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml/badge.svg
