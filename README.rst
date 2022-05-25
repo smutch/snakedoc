@@ -12,6 +12,10 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
    :target: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml
    :alt: tests status
 
+.. |coverage badge| image:: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/smutch/bbe05fc2211ebcc2ce35d446223426e0/raw/coverage-badge.json
+   :target: https://github.com/smutch/snakedoc/actions/workflows/coverage.yaml
+   :alt: coverage statistic
+
 .. |pre-commit badge| image:: https://results.pre-commit.ci/badge/github/smutch/snakedoc/main.svg
    :target: https://results.pre-commit.ci/latest/github/smutch/snakedoc/main
    :alt: pre-commit.ci status
