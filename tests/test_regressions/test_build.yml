@@ -28,11 +28,12 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   > </span><span class=\"l l-Scalar l-Scalar-Plain\">test1</span><span class=\"w\"\
   ></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span\
   \ class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span><span\
-  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n</dl>\n</dd></dl>\n\n</section>\n\
-  <section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"#autodoc\" title=\"\
-  Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig\
-  \ sig-object smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"><span class=\"\
-  pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
+  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n<dt class=\"field-odd\">resources</dt>\n\
+  <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n</dl>\n</dd></dl>\n\
+  \n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"\
+  #autodoc\" title=\"Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\"\
+  >\n<dt class=\"sig sig-object smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"\
+  ><span class=\"pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-all\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
@@ -63,18 +64,19 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L26\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
-  >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
-  >\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"\
-  sig sig-object smk\" id=\"rule-also_follows_basic\">\n<span class=\"sig-name descname\"\
-  ><span class=\"pre\">also_follows_basic</span></span><a class=\"reference external\"\
-  \ href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L38\"\
+  >¶</a></dt>\n<dd><p>Docs rhymes with socks…\n:resource cores: 1\n:resource nodes:\
+  \ 1\n:resource mem_mb: 2</p>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"\
+  line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object\
+  \ smk\" id=\"rule-also_follows_basic\">\n<span class=\"sig-name descname\"><span\
+  \ class=\"pre\">also_follows_basic</span></span><a class=\"reference external\"\
+  \ href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L40\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-also_follows_basic\" title=\"Permalink to this\
   \ definition\">¶</a></dt>\n<dd><p>Docs rhymes with clocks…</p>\n</dd></dl>\n\n<div\
   \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"\
   smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-the_end\">\n<span class=\"\
   sig-name descname\"><span class=\"pre\">the_end</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L50\"\
+  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L52\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-the_end\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
