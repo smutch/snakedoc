@@ -31,6 +31,7 @@ Handwritten docs
            - pip:
              - test1
              - test2
+   :resource mem_mb: 2
 
 
 Autodoc

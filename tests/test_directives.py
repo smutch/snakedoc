@@ -19,8 +19,15 @@ def test_rule_directive(app: Sphinx):
     rule = _get_rule("handwritten", soup)
     strings = list(rule.stripped_strings)
 
+    print(strings)
     assert ['Input', 'a.txt'] <= strings
     assert ['Ouput', 'b.txt'] <= strings
+
     assert ['Params', 'c', '– set', 'c'] <= strings
     assert ['d', '– set', 'd'] <= strings
+
     assert ['Conda', 'channels', ':', '-', 'conda-forge'] <= strings
+
+    assert ['resources', 'cores', '- 1']
+    assert ['nodes', '- 1']
+    assert ['mem_mb', '- 2']
