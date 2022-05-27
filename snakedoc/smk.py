@@ -35,7 +35,7 @@ class RuleDirective(ObjectDescription):
         GroupedField("input", label="input", names=("input",), can_collapse=True),
         GroupedField("output", label="output", names=("output",), can_collapse=True),
         GroupedField("param", label="params", names=("param", "parameter"), can_collapse=True),
-        GroupedField("resources", label="resources", names=("resources",), can_collapse=True),
+        GroupedField("resource", label="resources", names=("resource",), can_collapse=True),
         Field("conda", label="conda", names=("conda",)),
         Field("log", label="log", names=("log",), has_arg=False),
         Field("notebook", label="notebook", names=("notebook"), has_arg=False),
@@ -108,12 +108,7 @@ class AutoDocDirective(SphinxDirective):
         for rule in rules.values():
             lines = []
             lineno = rule.workflow.linemaps[rule.snakefile][rule.lineno]
-            lines.extend(
-                [
-                    f".. smk:rule:: {rule.name}",
-                    f"   :source: {Path(rule.snakefile).resolve()}:{lineno}",
-                ]
-            )
+            lines.extend([f".. smk:rule:: {rule.name}", f"   :source: {Path(rule.snakefile).resolve()}:{lineno}", ""])
 
             if rule.docstring is not None:
                 docstring = indent(dedent(rule.docstring), "   ")
@@ -132,14 +127,16 @@ class AutoDocDirective(SphinxDirective):
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
 
-            if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1:
-                resources = ",".join((f"{k.lstrip('_')}={v}" for k, v in rule.resources.items() if k != "tmpdir"))
-                lines.append(f"   :resources: {resources}")
+            if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1 or len(rule.resources) > 3:
+                lines.extend([f"   :resource {k.strip('_')}: {v}" for k, v in rule.resources.items() if k != "tmpdir"])
+                lines.append("")
 
             lines.extend(["", "|", ""])
 
             logger.debug(f"smk::autodoc generated this for rule {rule.name}:")
             logger.debug("\n".join(lines))
+
+            print("\n".join(lines))
 
             for line in lines:
                 viewlist.append(line, rule.snakefile, lineno)
