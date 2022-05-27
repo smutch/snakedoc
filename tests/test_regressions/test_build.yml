@@ -64,12 +64,14 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L26\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
-  >¶</a></dt>\n<dd><p>Docs rhymes with socks…\n:resource cores: 1\n:resource nodes:\
-  \ 1\n:resource mem_mb: 2</p>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"\
-  line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object\
-  \ smk\" id=\"rule-also_follows_basic\">\n<span class=\"sig-name descname\"><span\
-  \ class=\"pre\">also_follows_basic</span></span><a class=\"reference external\"\
-  \ href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L40\"\
+  >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n<dl class=\"field-list simple\"\
+  >\n<dt class=\"field-odd\">resources</dt>\n<dd class=\"field-odd\"><ul class=\"\
+  simple\">\n<li><p><strong>cores</strong> – 1</p></li>\n<li><p><strong>nodes</strong>\
+  \ – 1</p></li>\n<li><p><strong>mem_mb</strong> – 2</p></li>\n</ul>\n</dd>\n</dl>\n\
+  </dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n\
+  <dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-also_follows_basic\"\
+  >\n<span class=\"sig-name descname\"><span class=\"pre\">also_follows_basic</span></span><a\
+  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L40\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-also_follows_basic\" title=\"Permalink to this\
   \ definition\">¶</a></dt>\n<dd><p>Docs rhymes with clocks…</p>\n</dd></dl>\n\n<div\
