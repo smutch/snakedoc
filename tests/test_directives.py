@@ -17,17 +17,17 @@ def test_rule_directive(app: Sphinx):
         soup = BeautifulSoup(fp, "html.parser")
 
     rule = _get_rule("handwritten", soup)
-    strings = list(rule.stripped_strings)
+    strings = " ".join(list(rule.stripped_strings))
 
-    assert ['Input', 'a.txt'] <= strings
-    assert ['Ouput', 'b.txt'] <= strings
+    assert "Input a.txt" in strings
+    assert "Output b.txt" in strings
 
-    assert ['Params', 'c', '– set', 'c'] <= strings
-    assert ['d', '– set', 'd'] <= strings
+    assert "params c – set c" in strings
+    assert "d – set d" in strings
 
-    assert ['Conda', 'channels', ':', '-', 'conda-forge'] <= strings
+    assert "Conda channels : - conda-forge" in strings
 
-    assert ["Resources", 'mem_mb', '– 2'] <= strings
+    assert "resources mem_mb – 2" in strings
 
 
 @pytest.mark.sphinx('html', testroot='docs')
@@ -40,11 +40,8 @@ def test_autodoc_directive(app: Sphinx):
         soup = BeautifulSoup(fp, "html.parser")
 
     rule = _get_rule("follows_basic", soup)
-    strings = list(rule.stripped_strings)
+    strings = " ".join(rule.stripped_strings)
 
-    assert ['Input', 'output.txt'] <= strings
-    assert ['Ouput', 'output2.txt'] <= strings
-
-    assert ['Resources', 'cores', '- 1'] <= strings
-    assert ['Nodes', '– 1'] <= strings
-    assert ['Mem_mb', '– 2'] <= strings
+    assert "resources cores – 1" in strings
+    assert "nodes – 1" in strings
+    assert "mem_mb – 2" in strings
