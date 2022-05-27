@@ -19,8 +19,8 @@ jobs:
       - name: Install tox and any other packages
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          pip install tox
+          pip install nox
 
-      - name: Run tox
-        # Run tox using the version of Python in `PATH`
-        run: tox -e py
+      - name: Run nox
+        # Run nox using the version of Python in `PATH`
+        run: nox --force-python python
