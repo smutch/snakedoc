@@ -113,6 +113,7 @@ class AutoDocDirective(SphinxDirective):
             if rule.docstring is not None:
                 docstring = indent(dedent(rule.docstring), "   ")
                 lines.extend(docstring.splitlines())
+                lines.append("")
 
             if rule.conda_env:
                 lines.extend(
