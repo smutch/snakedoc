@@ -33,7 +33,7 @@ release = '0.1'
 # ones.
 extensions = ["snakedoc"]
 
-smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/"
+smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/example"
 
 
 # Add any paths that contain templates here, relative to this directory.
