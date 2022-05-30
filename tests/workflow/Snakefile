@@ -32,6 +32,8 @@ rule follows_basic:
         "output.txt"
     output:
         "output2.txt"
+    resources:
+        mem_mb=2
     shell:
         "echo 'output.txt content = ' > {output} && cat {input} >> {output}"
 

@@ -31,6 +31,8 @@ Handwritten docs
            - pip:
              - test1
              - test2
+   :resource mem_mb: 2
+   :config handwritten.a: A dummy config parameter used in this rule
 
 
 Autodoc

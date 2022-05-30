@@ -27,6 +27,8 @@ rule basic:
     params:
         a=1.0,
         b=20
+    resources:
+        mem_mb=2
     shell:
         "cat {input} > {output} && echo {params.a} >> {output}"
 

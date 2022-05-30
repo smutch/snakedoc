@@ -40,6 +40,8 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
     if env.config.smk_linkcode_resolve is None:
         resolve_target = smk_linkcode_resolve
     baseurl_target = getattr(env.config, "smk_linkcode_baseurl", "")
+    if len(baseurl_target) > 0 and baseurl_target[-1] != "/":
+        baseurl_target = f"{baseurl_target}/"
     linesep_target = getattr(env.config, "smk_linkcode_linesep", "#L")
 
     domain_keys = {

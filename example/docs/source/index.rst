@@ -17,6 +17,7 @@ The following rule is manually documented in the docs source.
    :input: A super-dooper result file
    :output: A swanky plot
    :param γ: The gradient of the line
+   :config handwritten.length: A phony config parameter
 
 |
 
