@@ -29,7 +29,7 @@ jobs:
         id: cached-poetry-dependencies
         with:
           path: .nox
-          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-nox-${{ hashFiles('**/poetry.lock') }}
+          key: nox-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Run nox
         # Run nox using the version of Python in `PATH`

@@ -16,10 +16,12 @@ def style(session):
 
 @nox.session
 def docs(session):
+    session.run("poetry", "install", "-v", external=True)
     session.run("poetry", "run", "sphinx-build", "docs/source", "docs/build/html", external=True)
 
 
 @nox.session
 def coverage(session):
+    session.run("poetry", "install", "-v", external=True)
     session.run("poetry", "run", "pytest", "--cov=snakedoc", external=True)
     session.run("poetry", "run", "coverage", "html", external=True)
