@@ -36,6 +36,7 @@ class RuleDirective(ObjectDescription):
         GroupedField("output", label="output", names=("output",), can_collapse=True),
         GroupedField("param", label="params", names=("param", "parameter"), can_collapse=True),
         GroupedField("resource", label="resources", names=("resource",), can_collapse=True),
+        GroupedField("config", label="config", names=("config",), can_collapse=True),
         Field("conda", label="conda", names=("conda",)),
         Field("log", label="log", names=("log",), has_arg=False),
         Field("notebook", label="notebook", names=("notebook"), has_arg=False),

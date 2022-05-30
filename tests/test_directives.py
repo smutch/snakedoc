@@ -28,6 +28,8 @@ def test_rule_directive(app: Sphinx):
     assert "Conda channels : - conda-forge" in strings
 
     assert "resources mem_mb – 2" in strings
+    print(strings)
+    assert "config handwritten.a – A dummy config parameter used in this rule" in strings
 
 
 @pytest.mark.sphinx('html', testroot='docs')

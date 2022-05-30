@@ -29,8 +29,10 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   ></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span\
   \ class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span><span\
   \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n<dt class=\"field-odd\">resources</dt>\n\
-  <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n</dl>\n</dd></dl>\n\
-  \n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"\
+  <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n<dt class=\"\
+  field-even\">config</dt>\n<dd class=\"field-even\"><p><strong>handwritten.a</strong>\
+  \ – A dummy config parameter used in this rule</p>\n</dd>\n</dl>\n</dd></dl>\n\n\
+  </section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"\
   #autodoc\" title=\"Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\"\
   >\n<dt class=\"sig sig-object smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"\
   ><span class=\"pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
