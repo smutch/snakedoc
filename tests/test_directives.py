@@ -28,8 +28,23 @@ def test_rule_directive(app: Sphinx):
     assert "Conda channels : - conda-forge" in strings
 
     assert "resources mem_mb – 2" in strings
-    print(strings)
     assert "config handwritten.a – A dummy config parameter used in this rule" in strings
+
+
+@pytest.mark.sphinx('html', testroot='docs')
+def test_checkpoint(app: Sphinx):
+    app.builder.build_all()
+    index = app.outdir / "index.html"
+    assert index.exists()
+
+    with open(index, "r") as fp:
+        soup = BeautifulSoup(fp, "html.parser")
+
+    rule = _get_rule("hw_checkpoint", soup)
+    strings = " ".join(list(rule.stripped_strings))
+
+    assert "Input a.txt" in strings
+    assert "Output b.txt" in strings
 
 
 @pytest.mark.sphinx('html', testroot='docs')

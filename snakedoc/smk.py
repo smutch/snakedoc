@@ -162,7 +162,7 @@ class SmkDomain(Domain):
     name = "smk"
     label = "Snakemake"
     roles = {"ref": XRefRole()}
-    directives = {"rule": RuleDirective, "autodoc": AutoDocDirective}
+    directives = {"rule": RuleDirective, "checkpoint": RuleDirective, "autodoc": AutoDocDirective}
     indices = {
         RuleIndex,
     }

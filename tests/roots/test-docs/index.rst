@@ -35,6 +35,14 @@ Handwritten docs
    :config handwritten.a: A dummy config parameter used in this rule
 
 
+.. smk:checkpoint:: hw_checkpoint
+
+   This is a handwritten docstring for a *checkpoint*.
+
+   :input: a.txt
+   :output: b.txt
+
+
 Autodoc
 -------
 

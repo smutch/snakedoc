@@ -32,10 +32,17 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n<dt class=\"\
   field-even\">config</dt>\n<dd class=\"field-even\"><p><strong>handwritten.a</strong>\
   \ – A dummy config parameter used in this rule</p>\n</dd>\n</dl>\n</dd></dl>\n\n\
-  </section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"\
-  #autodoc\" title=\"Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\"\
-  >\n<dt class=\"sig sig-object smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"\
-  ><span class=\"pre\">all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
+  <dl class=\"smk checkpoint\">\n<dt class=\"sig sig-object smk\" id=\"rule-hw_checkpoint\"\
+  >\n<span class=\"sig-name descname\"><span class=\"pre\">hw_checkpoint</span></span><a\
+  \ class=\"headerlink\" href=\"#rule-hw_checkpoint\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>This is a handwritten docstring for a <em>checkpoint</em>.</p>\n\
+  <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input</dt>\n<dd class=\"\
+  field-odd\"><p>a.txt</p>\n</dd>\n<dt class=\"field-even\">Output</dt>\n<dd class=\"\
+  field-even\"><p>b.txt</p>\n</dd>\n</dl>\n</dd></dl>\n\n</section>\n<section id=\"\
+  autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"#autodoc\" title=\"Permalink\
+  \ to this headline\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object\
+  \ smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"><span class=\"pre\"\
+  >all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-all\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
@@ -132,8 +139,10 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \     <tr class=\"cap\" id=\"cap-h\"><td></td><td>\n       <strong>h</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.handwritten\"\
   ><code class=\"xref\">handwritten</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
-  \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
-  cap\" id=\"cap-t\"><td></td><td>\n       <strong>t</strong></td><td></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.hw_checkpoint\"\
+  ><code class=\"xref\">hw_checkpoint</code></a> <em>(index)</em></td><td>\n     \
+  \  <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
+  \     <tr class=\"cap\" id=\"cap-t\"><td></td><td>\n       <strong>t</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.the_end\"\
   ><code class=\"xref\">the_end</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \   </table>\n\n\n          </div>\n          \n        </div>\n      </div>\n \
