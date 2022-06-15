@@ -36,6 +36,7 @@ class RuleDirective(ObjectDescription):
     required_arguments = 1
     priority = 0
     option_spec = {"source": directives.unchanged}
+    rule_type = RuleType.RULE
 
     doc_field_types = [
         GroupedField("input", label="input", names=("input",), can_collapse=True),
@@ -61,24 +62,19 @@ class RuleDirective(ObjectDescription):
     ]
 
     def handle_signature(self, sig, signode):
+        signode.insert(1, addnodes.desc_type(text=f"{self.rule_type.value.capitalize()} "))
         signode += addnodes.desc_name(text=sig, source=self.options.get("source", ""))
         return sig
 
-    def _update_signode(self, sig, signode):
+    def add_target_and_index(self, name_cls, sig, signode):
         signode["ids"].append("rule" + "-" + sig)
         signode.attributes["source"] = self.options.get("source", None)
-
-    def add_target_and_index(self, name_cls, sig, signode):
-        self._update_signode(sig, signode)
         smk = self.env.get_domain("smk")
-        smk.add_rule(sig, RuleType.RULE)
+        smk.add_rule(sig, self.rule_type)
 
 
 class CheckpointDirective(RuleDirective):
-    def add_target_and_index(self, name_cls, sig, signode):
-        self._update_signode(sig, signode)
-        smk = self.env.get_domain("smk")
-        smk.add_rule(sig, RuleType.CHECKPOINT)
+    rule_type = RuleType.CHECKPOINT
 
 
 class RuleIndex(Index):
@@ -212,9 +208,7 @@ class SmkDomain(Domain):
         anchor = "rule-{}".format(dispname)
 
         # name, dispname, type, docname, anchor, priority
-        self.data["rules"].append(
-            (name, dispname, "Rule" if rule_type == RuleType.RULE else "Checkpoint", self.env.docname, anchor, 0)
-        )
+        self.data["rules"].append((name, dispname, rule_type.value.capitalize(), self.env.docname, anchor, 0))
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
