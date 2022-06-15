@@ -21,6 +21,14 @@ The following rule is manually documented in the docs source.
 
 |
 
+.. smk:checkpoint:: handwritten_checkpoint
+
+   Checkpoints are supported too.
+
+   :input: Some data
+   :output: A directory with an undetermined number of files
+
+|
 
 Indices and tables
 ==================

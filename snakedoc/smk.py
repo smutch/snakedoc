@@ -1,5 +1,6 @@
 import logging
 from collections import defaultdict
+from enum import Enum
 from pathlib import Path
 from textwrap import dedent, indent
 from typing import Any, Dict, Mapping
@@ -21,6 +22,11 @@ from . import linkcode
 
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
+
+
+class RuleType(Enum):
+    RULE = "rule"
+    CHECKPOINT = "checkpoint"
 
 
 class RuleDirective(ObjectDescription):
@@ -58,11 +64,21 @@ class RuleDirective(ObjectDescription):
         signode += addnodes.desc_name(text=sig, source=self.options.get("source", ""))
         return sig
 
-    def add_target_and_index(self, name_cls, sig, signode):
+    def _update_signode(self, sig, signode):
         signode["ids"].append("rule" + "-" + sig)
         signode.attributes["source"] = self.options.get("source", None)
+
+    def add_target_and_index(self, name_cls, sig, signode):
+        self._update_signode(sig, signode)
         smk = self.env.get_domain("smk")
-        smk.add_rule(sig)
+        smk.add_rule(sig, RuleType.RULE)
+
+
+class CheckpointDirective(RuleDirective):
+    def add_target_and_index(self, name_cls, sig, signode):
+        self._update_signode(sig, signode)
+        smk = self.env.get_domain("smk")
+        smk.add_rule(sig, RuleType.CHECKPOINT)
 
 
 class RuleIndex(Index):
@@ -141,8 +157,6 @@ class AutoDocDirective(SphinxDirective):
             logger.debug(f"smk::autodoc generated this for rule {rule.name}:")
             logger.debug("\n".join(lines))
 
-            print("\n".join(lines))
-
             for line in lines:
                 viewlist.append(line, rule.snakefile, lineno)
 
@@ -165,7 +179,7 @@ class SmkDomain(Domain):
     name = "smk"
     label = "Snakemake"
     roles = {"ref": XRefRole()}
-    directives = {"rule": RuleDirective, "checkpoint": RuleDirective, "autodoc": AutoDocDirective}
+    directives = {"rule": RuleDirective, "checkpoint": CheckpointDirective, "autodoc": AutoDocDirective}
     indices = {
         RuleIndex,
     }
@@ -192,13 +206,15 @@ class SmkDomain(Domain):
             print("Awww, found nothing")
             return None
 
-    def add_rule(self, dispname):  # , input, output, params, log, resources, shell, script):
+    def add_rule(self, dispname, rule_type: RuleType):  # , input, output, params, log, resources, shell, script):
         """Add a new rule to the domain."""
         name = "{}.{}".format("rule", dispname)
-        anchor = "rule-{}".format(name)
+        anchor = "rule-{}".format(dispname)
 
         # name, dispname, type, docname, anchor, priority
-        self.data["rules"].append((name, dispname, "Rule", self.env.docname, anchor, 0))
+        self.data["rules"].append(
+            (name, dispname, "Rule" if rule_type == RuleType.RULE else "Checkpoint", self.env.docname, anchor, 0)
+        )
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:

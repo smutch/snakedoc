@@ -130,31 +130,31 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \ | \n   <a href=\"#cap-t\"><strong>t</strong></a>\n   </div>\n\n   <table class=\"\
   indextable modindextable\">\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
   \     <tr class=\"cap\" id=\"cap-a\"><td></td><td>\n       <strong>a</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.all\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-all\"\
   ><code class=\"xref\">all</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.also_follows_basic\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-also_follows_basic\"\
   ><code class=\"xref\">also_follows_basic</code></a> <em>(index)</em></td><td>\n\
   \       <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
   \     <tr class=\"cap\" id=\"cap-b\"><td></td><td>\n       <strong>b</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.basic\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-basic\"\
   ><code class=\"xref\">basic</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
   cap\" id=\"cap-f\"><td></td><td>\n       <strong>f</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.follows_basic\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-follows_basic\"\
   ><code class=\"xref\">follows_basic</code></a> <em>(index)</em></td><td>\n     \
   \  <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
   \     <tr class=\"cap\" id=\"cap-g\"><td></td><td>\n       <strong>g</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.gen_random\"\
-  ><code class=\"xref\">gen_random</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-gen_random\"\
+  ><code class=\"xref\">gen_random</code></a> <em>(index)</em></td><td>\n       <em>Checkpoint</em></td></tr>\n\
   \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
   cap\" id=\"cap-h\"><td></td><td>\n       <strong>h</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.handwritten\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-handwritten\"\
   ><code class=\"xref\">handwritten</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.hw_checkpoint\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-hw_checkpoint\"\
   ><code class=\"xref\">hw_checkpoint</code></a> <em>(index)</em></td><td>\n     \
-  \  <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
+  \  <em>Checkpoint</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
   \     <tr class=\"cap\" id=\"cap-t\"><td></td><td>\n       <strong>t</strong></td><td></td></tr>\n\
-  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.the_end\"\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-the_end\"\
   ><code class=\"xref\">the_end</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \   </table>\n\n\n          </div>\n          \n        </div>\n      </div>\n \
   \     <div class=\"sphinxsidebar\" role=\"navigation\" aria-label=\"main navigation\"\
