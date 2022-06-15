@@ -62,7 +62,8 @@ checkpoint gen_random:
         directory("random")
     shell:
         """
-        for ii in {1..$(( $RANDOM % 3 + 1 ))}; do
+        mkdir {output}
+        for ii in $(seq 1 $(( $RANDOM % 3 + 1 ))); do
             touch {output}/$ii.tmp
         done
         """
@@ -77,4 +78,4 @@ rule the_end:
     output:
         "output4.txt"
     shell:
-        "cat {input} > {output}"
+        "echo {input} > {output}"
