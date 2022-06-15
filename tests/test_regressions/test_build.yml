@@ -42,13 +42,13 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   autodoc\">\n<h2>Autodoc<a class=\"headerlink\" href=\"#autodoc\" title=\"Permalink\
   \ to this headline\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object\
   \ smk\" id=\"rule-all\">\n<span class=\"sig-name descname\"><span class=\"pre\"\
-  >all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L1\"\
+  >all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L3\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-all\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
   \ /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
   rule-basic\">\n<span class=\"sig-name descname\"><span class=\"pre\">basic</span></span><a\
-  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L5\"\
+  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L7\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Here is some documentation.</p>\n<dl class=\"field-list\">\n\
@@ -70,7 +70,7 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\"\
   >\n<dt class=\"sig sig-object smk\" id=\"rule-follows_basic\">\n<span class=\"sig-name\
   \ descname\"><span class=\"pre\">follows_basic</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L26\"\
+  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L28\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n<dl class=\"field-list simple\"\
@@ -80,14 +80,21 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   </dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n\
   <dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-also_follows_basic\"\
   >\n<span class=\"sig-name descname\"><span class=\"pre\">also_follows_basic</span></span><a\
-  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L40\"\
+  \ class=\"reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L42\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-also_follows_basic\" title=\"Permalink to this\
   \ definition\">¶</a></dt>\n<dd><p>Docs rhymes with clocks…</p>\n</dd></dl>\n\n<div\
   \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"\
-  smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-the_end\">\n<span class=\"\
-  sig-name descname\"><span class=\"pre\">the_end</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L52\"\
+  smk checkpoint\">\n<dt class=\"sig sig-object smk\" id=\"rule-gen_random\">\n<span\
+  \ class=\"sig-name descname\"><span class=\"pre\">gen_random</span></span><a class=\"\
+  reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L54\"\
+  ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
+  \ class=\"headerlink\" href=\"#rule-gen_random\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>Generates a random number (between 1 and 3) of empty files.</p>\n\
+  </dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n\
+  <dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-the_end\">\n\
+  <span class=\"sig-name descname\"><span class=\"pre\">the_end</span></span><a class=\"\
+  reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile#L75\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-the_end\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd></dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
@@ -119,16 +126,16 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \ role=\"main\">\n            \n\n   <h1>Snakemake Rules</h1>\n\n   <div class=\"\
   modindex-jumpbox\">\n   <a href=\"#cap-a\"><strong>a</strong></a> | \n   <a href=\"\
   #cap-b\"><strong>b</strong></a> | \n   <a href=\"#cap-f\"><strong>f</strong></a>\
-  \ | \n   <a href=\"#cap-h\"><strong>h</strong></a> | \n   <a href=\"#cap-t\"><strong>t</strong></a>\n\
-  \   </div>\n\n   <table class=\"indextable modindextable\">\n     <tr class=\"pcap\"\
-  ><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"cap\" id=\"cap-a\"><td></td><td>\n\
-  \       <strong>a</strong></td><td></td></tr>\n     <tr>\n       <td></td>\n   \
-  \    <td>\n       <a href=\"index.html#rule-rule.all\"><code class=\"xref\">all</code></a>\
-  \ <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n     <tr>\n       <td></td>\n\
-  \       <td>\n       <a href=\"index.html#rule-rule.also_follows_basic\"><code class=\"\
-  xref\">also_follows_basic</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
-  \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
-  cap\" id=\"cap-b\"><td></td><td>\n       <strong>b</strong></td><td></td></tr>\n\
+  \ | \n   <a href=\"#cap-g\"><strong>g</strong></a> | \n   <a href=\"#cap-h\"><strong>h</strong></a>\
+  \ | \n   <a href=\"#cap-t\"><strong>t</strong></a>\n   </div>\n\n   <table class=\"\
+  indextable modindextable\">\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
+  \     <tr class=\"cap\" id=\"cap-a\"><td></td><td>\n       <strong>a</strong></td><td></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.all\"\
+  ><code class=\"xref\">all</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.also_follows_basic\"\
+  ><code class=\"xref\">also_follows_basic</code></a> <em>(index)</em></td><td>\n\
+  \       <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
+  \     <tr class=\"cap\" id=\"cap-b\"><td></td><td>\n       <strong>b</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.basic\"\
   ><code class=\"xref\">basic</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
@@ -136,7 +143,11 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.follows_basic\"\
   ><code class=\"xref\">follows_basic</code></a> <em>(index)</em></td><td>\n     \
   \  <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
-  \     <tr class=\"cap\" id=\"cap-h\"><td></td><td>\n       <strong>h</strong></td><td></td></tr>\n\
+  \     <tr class=\"cap\" id=\"cap-g\"><td></td><td>\n       <strong>g</strong></td><td></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.gen_random\"\
+  ><code class=\"xref\">gen_random</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
+  \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
+  cap\" id=\"cap-h\"><td></td><td>\n       <strong>h</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.handwritten\"\
   ><code class=\"xref\">handwritten</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-rule.hw_checkpoint\"\
