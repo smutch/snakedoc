@@ -109,7 +109,10 @@ class AutoDocDirective(SphinxDirective):
         for rule in rules.values():
             lines = []
             lineno = rule.workflow.linemaps[rule.snakefile][rule.lineno]
-            lines.extend([f".. smk:rule:: {rule.name}", f"   :source: {Path(rule.snakefile).resolve()}:{lineno}", ""])
+            rule_type = "rule" if not rule.is_checkpoint else "checkpoint"
+            lines.extend(
+                [f".. smk:{rule_type}:: {rule.name}", f"   :source: {Path(rule.snakefile).resolve()}:{lineno}", ""]
+            )
 
             if rule.docstring is not None:
                 docstring = indent(dedent(rule.docstring), "   ")
@@ -162,7 +165,7 @@ class SmkDomain(Domain):
     name = "smk"
     label = "Snakemake"
     roles = {"ref": XRefRole()}
-    directives = {"rule": RuleDirective, "autodoc": AutoDocDirective}
+    directives = {"rule": RuleDirective, "checkpoint": RuleDirective, "autodoc": AutoDocDirective}
     indices = {
         RuleIndex,
     }
