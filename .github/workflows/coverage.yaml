@@ -25,12 +25,12 @@ jobs:
       id: cached-poetry-dependencies
       with:
         path: .nox
-        key: nox-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+        key: nox-v2-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
 
     - name: Generate coverage statistic
       run: |
-        nox -r -e coverage
-        echo "COVERAGE=$(poetry run coverage report --precision 2 | grep TOTAL | tr -s ' ' | cut -f 4 -d " ")" >> $GITHUB_ENV
+        nox -r -e coverage | tee output.log
+        echo "COVERAGE=$(grep TOTAL output.log | tr -s ' ' | cut -f 4 -d ' ')" >> $GITHUB_ENV
     - name: Create Badge
       uses: schneegans/dynamic-badges-action@v1.1.0 # instructions here: https://github.com/Schneegans/dynamic-badges-action
       with:
