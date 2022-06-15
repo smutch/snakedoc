@@ -11,6 +11,11 @@ def test(session):
 
 
 @nox.session
+def regen_expected(session):
+    session.run("poetry", "run", "pytest", "--force-regen", external=True)
+
+
+@nox.session
 def style(session):
     session.run("pre-commit", "run", "--all-files", "--show-diff-on-failure", external=True)
 
