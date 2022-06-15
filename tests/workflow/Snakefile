@@ -1,3 +1,5 @@
+from pathlib import Path
+
 rule all:
     input:
         "output4.txt"
@@ -49,9 +51,29 @@ rule also_follows_basic:
     shell:
         "touch {output}"
 
+checkpoint gen_random:
+    """
+    Generates a random number (between 1 and 3) of empty files.
+    """
+
+    input:
+        rules.also_follows_basic.output
+    output:
+        directory("random")
+    shell:
+        """
+        for ii in {1..$(( $RANDOM % 3 + 1 ))}; do
+            touch {output}/$ii.tmp
+        done
+        """
+
+def random_files(wildcards):
+    checkpoints.gen_random.get()
+    return list(Path("random").glob("*.tmp"))
+
 rule the_end:
     input:
-        "output2.txt", "output3.txt"
+        random_files
     output:
         "output4.txt"
     shell:
