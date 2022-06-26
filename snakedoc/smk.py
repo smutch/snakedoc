@@ -112,7 +112,7 @@ class AutoDocDirective(SphinxDirective):
     _docstring_types = None
 
     def _extract_rules(self):
-        workflow = snakemake.Workflow(self.arguments[0])
+        workflow = snakemake.Workflow(self.arguments[0], rerun_triggers=snakemake.RERUN_TRIGGERS)
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
         return workflow._rules

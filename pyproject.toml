@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -34,9 +34,16 @@ Issues = "https://github.com/smutch/snakedoc/issues"
 Source = "https://github.com/smutch/snakedoc"
 
 [tool.hatch.version]
-path = "snakedoc/__about__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "snakedoc/_version.py"
 
 [tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
 [tool.hatch.build.targets.wheel]
 
 [tool.hatch.envs.default]
@@ -47,7 +54,7 @@ dependencies = [
   "beautifulsoup4>=4.11.1",
   "pre-commit>=2.19.0"
 ]
-scripts.cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=snakedoc --cov=tests"
+scripts.cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=snakedoc"
 scripts.no-cov = "cov --no-cov"
 scripts.regen-expected = "pytest --force-regen"
 scripts.docs = "sphinx-build docs/source docs/build/html"
@@ -64,7 +71,7 @@ dependencies = [
   "flake8-bugbear>=22.3.23",
   "flake8-quotes>=3.3.1",
 ]
-scripts.lint = [
+scripts.style = [
     "flake8 {args:.}",
     "isort --check-only --diff {args:.}",
     "black --check --diff {args:.}",
