@@ -67,10 +67,8 @@ detached = true  # we can't be detached as pylint needs to import snakedoc
 dependencies = [
   "isort>=5.10.1",
   "black>=22.3.0",
-  "pylint>=2.14.3",
 ]
 scripts.style = [
-    "pylint snakedoc tests --ignore _version.py --ignore-paths tests/roots",
     "isort --check-only --diff {args:.}",
     "black --check --diff {args:.}",
 ]
@@ -98,9 +96,3 @@ skip_string_normalization = true
 
 [tool.isort]
 profile = "black"
-
-[tool.pylint]
-format.max-line-length = "120"
-ignore = ["_version.py"]
-ignore-paths = ["tests\\\\roots|tests/roots"]
-disable = ["raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored", "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead", "import-error"]
