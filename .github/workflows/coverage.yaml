@@ -33,7 +33,7 @@ jobs:
     - name: Generate coverage statistic
       run: |
         hatch --data-dir .hatch-data run cov | tee output.log
-        echo "COVERAGE=$(grep TOTAL output.log | tr -s ' ' | cut -f 4 -d ' ')" >> $GITHUB_ENV
+        echo "COVERAGE=$(grep TOTAL output.log | tr -s ' ' | cut -f 6 -d ' ')" >> $GITHUB_ENV
 
     - name: Create badge
       uses: schneegans/dynamic-badges-action@v1.1.0 # instructions here: https://github.com/Schneegans/dynamic-badges-action
