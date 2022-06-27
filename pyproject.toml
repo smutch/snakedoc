@@ -63,23 +63,21 @@ scripts.docs = "sphinx-build docs/source docs/build/html"
 python = ["37", "38", "39", "310"]
 
 [tool.hatch.envs.lint]
-detached = true
+detached = true  # we can't be detached as pylint needs to import snakedoc
 dependencies = [
   "isort>=5.10.1",
   "black>=22.3.0",
-  "flake8>=4.0.1",
-  "flake8-bugbear>=22.3.23",
-  "flake8-quotes>=3.3.1",
+  "pylint>=2.14.3",
 ]
 scripts.style = [
-    "flake8 {args:.}",
+    "pylint snakedoc tests --ignore _version.py --ignore-paths tests/roots",
     "isort --check-only --diff {args:.}",
     "black --check --diff {args:.}",
 ]
 scripts.fmt = [
   "isort {args:.}",
   "black {args:.}",
-  "lint"
+  "style"
 ]
 
 [tool.coverage]
@@ -103,3 +101,6 @@ profile = "black"
 
 [tool.pylint]
 format.max-line-length = "120"
+ignore = ["_version.py"]
+ignore-paths = ["tests\\\\roots|tests/roots"]
+disable = ["raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored", "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead", "import-error"]
