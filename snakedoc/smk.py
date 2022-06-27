@@ -108,13 +108,16 @@ class RuleIndex(Index):
 class AutoDocDirective(SphinxDirective):
     has_content = False
     required_arguments = 1
-    optional_arguments = 0
+    optional_arguments = 1
     _docstring_types = None
 
     def _extract_rules(self):
         workflow = snakemake.Workflow(self.arguments[0], rerun_triggers=snakemake.RERUN_TRIGGERS)
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
+        if len(self.arguments) > 1:
+            rule = self.arguments[1]
+            workflow._rules = {rule: workflow._rules[rule]}
         return workflow._rules
 
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):

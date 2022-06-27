@@ -3,63 +3,70 @@ from bs4 import BeautifulSoup, element
 from sphinx.application import Sphinx
 
 
-def _get_rule(rule_name: str, soup: BeautifulSoup) -> element.Tag:
-    return filter(lambda dl: dl.find("dt", id=f"rule-{rule_name}"), soup.find_all("dl")).__next__()
+def _build_and_blend(app: Sphinx) -> str:
+    app.builder.build_all()
+    index = app.outdir / "index.html"
+    assert index.exists()
+    with open(index, "r") as fp:
+        soup = BeautifulSoup(fp, "html.parser")
+    return soup
+
+
+def _get_rule(rule_name: str, soup: BeautifulSoup) -> str:
+    return " ".join(
+        list(filter(lambda dl: dl.find("dt", id=f"rule-{rule_name}"), soup.find_all("dl")).__next__().stripped_strings)
+    )
 
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_rule_directive(app: Sphinx):
-    app.builder.build_all()
-    index = app.outdir / "index.html"
-    assert index.exists()
-
-    with open(index, "r") as fp:
-        soup = BeautifulSoup(fp, "html.parser")
-
+    soup = _build_and_blend(app)
     rule = _get_rule("handwritten", soup)
-    strings = " ".join(list(rule.stripped_strings))
 
-    assert "Input : a.txt" in strings
-    assert "Output : b.txt" in strings
+    assert "Input : a.txt" in rule
+    assert "Output : b.txt" in rule
 
-    assert "params : c – set c" in strings
-    assert "d – set d" in strings
+    assert "params : c – set c" in rule
+    assert "d – set d" in rule
 
-    print(strings)
-    assert "Conda : channels : - conda-forge" in strings
+    assert "Conda : channels : - conda-forge" in rule
 
-    assert "resources : mem_mb – 2" in strings
-    assert "config : handwritten.a – A dummy config parameter used in this rule" in strings
+    assert "resources : mem_mb – 2" in rule
+    assert "config : handwritten.a – A dummy config parameter used in this rule" in rule
 
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_checkpoint(app: Sphinx):
-    app.builder.build_all()
-    index = app.outdir / "index.html"
-    assert index.exists()
-
-    with open(index, "r") as fp:
-        soup = BeautifulSoup(fp, "html.parser")
-
+    soup = _build_and_blend(app)
     rule = _get_rule("hw_checkpoint", soup)
-    strings = " ".join(list(rule.stripped_strings))
 
-    assert "Input : a.txt" in strings
-    assert "Output : b.txt" in strings
+    assert "Input : a.txt" in rule
+    assert "Output : b.txt" in rule
 
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_autodoc_directive(app: Sphinx):
-    app.builder.build_all()
-    index = app.outdir / "index.html"
-    assert index.exists()
-
-    with open(index, "r") as fp:
-        soup = BeautifulSoup(fp, "html.parser")
-
+    soup = _build_and_blend(app)
     rule = _get_rule("follows_basic", soup)
-    strings = " ".join(rule.stripped_strings)
 
-    assert "resources : cores – 1" in strings
-    assert "nodes – 1" in strings
-    assert "mem_mb – 2" in strings
+    assert "resources : cores – 1" in rule
+    assert "nodes – 1" in rule
+    assert "mem_mb – 2" in rule
+
+
+@pytest.mark.sphinx('html', testroot='docs')
+def test_autodoc_single_file(app: Sphinx):
+    soup = _build_and_blend(app)
+    rule = _get_rule("other", soup)
+
+    assert "Input : an input file" in rule
+    assert "Output : an output file" in rule
+
+
+@pytest.mark.sphinx('html', testroot='docs')
+def test_autodoc_single_rule(app: Sphinx):
+    soup = _build_and_blend(app)
+    rule = _get_rule("other", soup)
+
+    assert "Input : an input file" in rule
+    assert "Output : an output file" in rule
