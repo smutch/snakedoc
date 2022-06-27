@@ -7,7 +7,7 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
 
 |tests badge| |coverage badge| |pre-commit badge|
 
-|git3moji badge|
+|git3moji badge| |black badge| |isort badge|
 
 .. |tests badge| image:: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml/badge.svg
    :target: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml
@@ -25,6 +25,13 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
    :target: https://robinpokorny.github.io/git3moji/
    :alt: git3moji
 
+.. |black badge| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Formatted with black
+
+.. |isort badge| image:: https://img.shields.io/badge/imports-isort-ef8336.svg
+   :target: https://github.com/pycqa/isort
+   :alt: Imports formatted with isort
 
 Take it for a spin
 ------------------
@@ -33,8 +40,7 @@ Take it for a spin
 
    git clone git@github.com:smutch/snakedoc.git
    cd snakedoc
-   poetry install
-   poetry shell
+   hatch shell
    cd example/docs
    make html
    open build/html/index.html
