@@ -19,16 +19,17 @@ def test_rule_directive(app: Sphinx):
     rule = _get_rule("handwritten", soup)
     strings = " ".join(list(rule.stripped_strings))
 
-    assert "Input a.txt" in strings
-    assert "Output b.txt" in strings
+    assert "Input : a.txt" in strings
+    assert "Output : b.txt" in strings
 
-    assert "params c – set c" in strings
+    assert "params : c – set c" in strings
     assert "d – set d" in strings
 
-    assert "Conda channels : - conda-forge" in strings
+    print(strings)
+    assert "Conda : channels : - conda-forge" in strings
 
-    assert "resources mem_mb – 2" in strings
-    assert "config handwritten.a – A dummy config parameter used in this rule" in strings
+    assert "resources : mem_mb – 2" in strings
+    assert "config : handwritten.a – A dummy config parameter used in this rule" in strings
 
 
 @pytest.mark.sphinx('html', testroot='docs')
@@ -43,8 +44,8 @@ def test_checkpoint(app: Sphinx):
     rule = _get_rule("hw_checkpoint", soup)
     strings = " ".join(list(rule.stripped_strings))
 
-    assert "Input a.txt" in strings
-    assert "Output b.txt" in strings
+    assert "Input : a.txt" in strings
+    assert "Output : b.txt" in strings
 
 
 @pytest.mark.sphinx('html', testroot='docs')
@@ -59,6 +60,6 @@ def test_autodoc_directive(app: Sphinx):
     rule = _get_rule("follows_basic", soup)
     strings = " ".join(rule.stripped_strings)
 
-    assert "resources cores – 1" in strings
+    assert "resources : cores – 1" in strings
     assert "nodes – 1" in strings
     assert "mem_mb – 2" in strings

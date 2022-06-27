@@ -1,36 +1,52 @@
-name: tests
+name: test
 
-on: [push]
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+concurrency:
+  group: test-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: "1"
+  FORCE_COLOR: "1"
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  run:
+    name: Python ${{ matrix.python-version }} on ${{ startsWith(matrix.os, 'macos-') && 'macOS' || startsWith(matrix.os, 'windows-') && 'Windows' || 'Linux' }}
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10"]
+        os: [ubuntu-latest]  #, windows-latest, macos-latest]
+        python-version: ['3.7', '3.8', '3.9', '3.10']
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python }}
-      - name: Install and configure Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.1.13
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - name: Install nox
-        run: pip install nox
-      - name: Set up cache
-        uses: actions/cache@v2
-        id: cached-poetry-dependencies
-        with:
-          path: .nox
-          key: nox-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+    - uses: actions/checkout@v3
 
-      - name: Run nox
-        # Run nox using the version of Python in `PATH`
-        run: nox  -r --force-python python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Hatch
+      run: pip install --upgrade --pre hatch
+
+    - name: Set up cache
+      uses: actions/cache@v2
+      id: cached-hatch-datadir
+      with:
+        path: .hatch-data
+        key: hatch-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/pyproject.toml') }}
+
+    - if: matrix.python-version == '3.10' && runner.os == 'Linux'
+      name: Lint
+      run: hatch --data-dir .hatch-data run lint:style
+
+    - name: Run tests
+      run: hatch --data-dir .hatch-data run no-cov
