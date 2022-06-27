@@ -48,6 +48,12 @@ Autodoc
 
 .. smk:autodoc:: tests/workflow/Snakefile
 
+:ref:`We can also autodoc single files. <single-file>`
+
+... And single rules
+
+.. smk:autodoc:: tests/workflow/rules/others.smk other
+
 
 Indices and tables
 ==================
