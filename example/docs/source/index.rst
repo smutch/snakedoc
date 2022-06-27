@@ -3,11 +3,13 @@ Welcome to the Snakedocs example!
 
 .. smk:autodoc:: ../workflow/Snakefile
 
+.. smk:autodoc:: ../workflow/rules/others.smk separate_file
 
-Manually documented rule
-------------------------
 
-The following rule is manually documented in the docs source.
+Manually documented rules
+-------------------------
+
+The following rules are manually documented in the docs source.
 
 
 .. smk:rule:: handwritten
