@@ -37,9 +37,9 @@ jobs:
     - name: Install Hatch
       run: pip install --upgrade --pre hatch
 
-    - if: matrix.python-version == '3.9' && runner.os == 'Linux'
+    - if: matrix.python-version == '3.10' && runner.os == 'Linux'
       name: Lint
       run: hatch run lint:style
 
-    - name: Run tests and track code coverage
-      run: hatch run cov
+    - name: Run tests
+      run: hatch run no-cov
