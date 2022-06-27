@@ -1,4 +1,6 @@
 snakedoc/_version.py
+.hatch-data
+.nox
 
 # pyenv
 .python-version

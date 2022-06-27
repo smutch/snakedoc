@@ -96,3 +96,4 @@ skip_string_normalization = true
 
 [tool.isort]
 profile = "black"
+skip = [".hatch-data"]  # this is where we put the hatch data directory in the CI
