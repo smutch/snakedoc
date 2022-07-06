@@ -52,7 +52,8 @@ dependencies = [
   "pytest-cov>=3.0.0",
   "pytest-regressions>=2.3.1",
   "beautifulsoup4>=4.11.1",
-  "pre-commit>=2.19.0"
+  "pre-commit>=2.19.0",
+  "sphinx-immaterial>=0.8.0",
 ]
 scripts.cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=snakedoc"
 scripts.no-cov = "cov --no-cov"
