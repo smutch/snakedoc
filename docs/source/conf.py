@@ -12,7 +12,6 @@
 #
 import os
 import sys
-from pathlib import Path
 
 sys.path.append(os.path.abspath("../../snakedoc"))
 import snakedoc  # noqa: E402
@@ -55,3 +54,12 @@ html_theme = "sphinx_immaterial"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+html_theme_options = {
+    "site_url": "https://smutch.github.io/snakedoc/",
+    "repo_url": "https://github.com/smutch/snakedoc",
+    "repo_name": "snakedoc",
+    "repo_type": "github",
+    "toc_title_is_page_title": True,
+    "features": ["content.code.annotate", "navigation.instant", "toc.follow"],
+}
