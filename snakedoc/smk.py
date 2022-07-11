@@ -170,18 +170,18 @@ class AutoDocDirective(SphinxDirective):
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
 
-            # NOTE: Making a copy of rule.resources here to not break things later
-            resources = {}
-            resources.update(rule.resources)
-            resources.pop("tmpdir")
-            if (
-                any(callable(v) for v in resources.values())
-                or resources["_cores"] > 1
-                or resources["_nodes"] > 1
-                or len(resources) > 2
-            ):
-                lines.extend([f"   :resource {k.strip('_')}: {v}" for k, v in resources.items()])
-            lines.append("")
+            # # NOTE: Making a copy of rule.resources here to not break things later
+            # resources = {}
+            # resources.update(rule.resources)
+            # resources.pop("tmpdir")
+            # if (
+            #     any(callable(v) for v in resources.values())
+            #     or resources["_cores"] > 1
+            #     or resources["_nodes"] > 1
+            #     or len(resources) > 2
+            # ):
+            #     lines.extend([f"   :resource {k.strip('_')}: {v}" for k, v in resources.items()])
+            # lines.append("")
 
             lines.extend(["", "|", ""])
 
@@ -239,8 +239,8 @@ class SmkDomain(Domain):
 
     def add_rule(self, dispname, rule_type: RuleType):  # , input, output, params, log, resources, shell, script):
         """Add a new rule to the domain."""
-        name = "{}.{}".format("rule", dispname)
-        anchor = "rule-{}".format(dispname)
+        name = f"rule.{dispname}"
+        anchor = f"rule-{dispname}"
 
         # name, dispname, type, docname, anchor, priority
         self.data["rules"].append((name, dispname, rule_type.value.capitalize(), self.env.docname, anchor, 0))
