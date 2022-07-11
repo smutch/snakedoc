@@ -47,6 +47,8 @@ Autodoc
 -------
 
 .. smk:autodoc:: tests/workflow/Snakefile
+   :config: this=is
+            a=test
 
 :ref:`We can also autodoc single files. <single-file>`
 

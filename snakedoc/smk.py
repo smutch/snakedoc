@@ -110,14 +110,36 @@ class AutoDocDirective(SphinxDirective):
     required_arguments = 1
     optional_arguments = 1
     _docstring_types = None
+    option_spec = {
+        'configfile': directives.path,
+        'config': directives.unchanged,
+    }
 
     def _extract_rules(self):
-        workflow = snakemake.Workflow(self.arguments[0], rerun_triggers=snakemake.RERUN_TRIGGERS)
+        configfile = self.options.get("configfile", None)
+        config_args = None
+        if "config" in self.options:
+            config_args = {}
+            for line in self.options["config"].splitlines():
+                try:
+                    k, v = map(str.strip, line.split("=", 1))
+                    config_args[k] = v
+                except ValueError as err:
+                    raise Exception("The smk:autodoc config option must be made up of key=value entries") from err
+
+        workflow = snakemake.Workflow(
+            self.arguments[0],
+            overwrite_configfiles=configfile,
+            config_args=config_args,
+            rerun_triggers=snakemake.RERUN_TRIGGERS,
+        )
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
+
         if len(self.arguments) > 1:
             rule = self.arguments[1]
             workflow._rules = {rule: workflow._rules[rule]}
+
         return workflow._rules
 
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):

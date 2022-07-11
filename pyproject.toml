@@ -54,7 +54,9 @@ dependencies = [
   "beautifulsoup4>=4.11.1",
   "pre-commit>=2.19.0",
   "sphinx-immaterial>=0.8.0",
+  "ipdb>=0.13.9"
 ]
+env_vars.PYTHONBREAKPOINT = "ipdb.set_trace"
 scripts.cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=snakedoc"
 scripts.no-cov = "cov --no-cov"
 scripts.regen-expected = "pytest --force-regen"
