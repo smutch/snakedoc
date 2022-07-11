@@ -170,9 +170,18 @@ class AutoDocDirective(SphinxDirective):
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
 
-            if rule.resources["_cores"] > 1 or rule.resources["_nodes"] > 1 or len(rule.resources) > 3:
-                lines.extend([f"   :resource {k.strip('_')}: {v}" for k, v in rule.resources.items() if k != "tmpdir"])
-                lines.append("")
+            # NOTE: Making a copy of rule.resources here to not break things later
+            resources = {}
+            resources.update(rule.resources)
+            resources.pop("tmpdir")
+            if (
+                any(callable(v) for v in resources.values())
+                or resources["_cores"] > 1
+                or resources["_nodes"] > 1
+                or len(resources) > 2
+            ):
+                lines.extend([f"   :resource {k.strip('_')}: {v}" for k, v in resources.items()])
+            lines.append("")
 
             lines.extend(["", "|", ""])
 
