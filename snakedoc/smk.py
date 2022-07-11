@@ -39,26 +39,26 @@ class RuleDirective(ObjectDescription):
     rule_type = RuleType.RULE
 
     doc_field_types = [
-        GroupedField("input", label="input", names=("input",), can_collapse=True),
-        GroupedField("output", label="output", names=("output",), can_collapse=True),
-        GroupedField("param", label="params", names=("param", "parameter"), can_collapse=True),
-        GroupedField("resource", label="resources", names=("resource",), can_collapse=True),
-        GroupedField("config", label="config", names=("config",), can_collapse=True),
-        Field("conda", label="conda", names=("conda",)),
-        Field("log", label="log", names=("log",), has_arg=False),
-        Field("notebook", label="notebook", names=("notebook"), has_arg=False),
-        Field("shell", label="shell", names=("shell"), has_arg=False),
+        GroupedField("input", label="Input", names=("input", "in"), can_collapse=True),
+        GroupedField("output", label="Output", names=("output", "out"), can_collapse=True),
+        GroupedField("param", label="Params", names=("param", "parameter"), can_collapse=True),
+        GroupedField("resource", label="Resources", names=("resource",), can_collapse=True),
+        GroupedField("config", label="Config", names=("config", "conf"), can_collapse=True),
+        Field("conda", label="Conda", names=("conda",)),
+        Field("log", label="Log", names=("log",), has_arg=False),
+        Field("notebook", label="Notebook", names=("notebook"), has_arg=False),
+        Field("shell", label="Shell", names=("shell"), has_arg=False),
         Field(
-            "script", label="script", names=("script"), has_arg=False
+            "script", label="Script", names=("script"), has_arg=False
         ),  # TODO: link to script on github automatically?
-        Field("run", label="run", names=("run"), has_arg=False),
-        Field("wildcard_constraints", label="wildcard_constraints", names=("wildcard_constraints"), has_arg=False),
-        Field("threads", label="threads", names=("threads"), has_arg=False),
-        Field("priority", label="priority", names=("priority"), has_arg=False),
-        Field("retires", label="retires", names=("retires"), has_arg=False),
-        Field("benchmark", label="benchmark", names=("benchmark"), has_arg=False),
-        Field("group", label="group", names=("group"), has_arg=False),
-        Field("default_target", label="default_target", names=("default_target"), has_arg=False),
+        Field("run", label="Run", names=("run"), has_arg=False),
+        Field("wildcard_constraints", label="Wildcard constraints", names=("wildcard_constraints"), has_arg=False),
+        Field("threads", label="Threads", names=("threads"), has_arg=False),
+        Field("priority", label="Priority", names=("priority"), has_arg=False),
+        Field("retires", label="Retires", names=("retires"), has_arg=False),
+        Field("benchmark", label="Benchmark", names=("benchmark", "bench"), has_arg=False),
+        Field("group", label="Group", names=("group", "grp"), has_arg=False),
+        Field("default_target", label="Default target", names=("default_target"), has_arg=False),
     ]
 
     def handle_signature(self, sig, signode):
