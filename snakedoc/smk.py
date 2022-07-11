@@ -133,6 +133,7 @@ class AutoDocDirective(SphinxDirective):
             config_args=config_args,
             rerun_triggers=snakemake.RERUN_TRIGGERS,
         )
+        workflow.config.update(config_args or {})
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
 
