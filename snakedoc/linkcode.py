@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Set
 
+import docutils
 from docutils import nodes
 from docutils.nodes import Node
 from sphinx import addnodes
@@ -47,6 +48,14 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
     domain_keys = {
         "smk": ["source"],
     }
+
+    # TODO: Remove monkeypatch when https://github.com/sphinx-doc/sphinx/pull/10597 is released in Sphinx v5.0.3
+    if docutils.__version_info__ < (0, 18):
+
+        def findall(self, *args, **kwargs):
+            return iter(self.traverse(*args, **kwargs))
+
+        Node.findall = findall
 
     for objnode in list(doctree.findall(addnodes.desc)):
         domain = objnode.get("domain")
