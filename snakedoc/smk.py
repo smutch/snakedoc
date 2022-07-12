@@ -173,7 +173,7 @@ class RuleIndex(Index):
 class AutoDocDirective(SphinxDirective):
     has_content = False
     required_arguments = 1
-    optional_arguments = 1
+    optional_arguments = 20  # NOTE: Totally arbitrary number!
     _docstring_types = None
     option_spec = {
         'configfile': directives.path,
@@ -208,8 +208,7 @@ class AutoDocDirective(SphinxDirective):
         workflow.check()
 
         if len(self.arguments) > 1:
-            rule = self.arguments[1]
-            workflow._rules = {rule: workflow._rules[rule]}
+            workflow._rules = {k: workflow._rules[k] for k in self.arguments[1:]}
 
         self.env._workflow = workflow
 
