@@ -14,7 +14,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-from pathlib import Path
+# from pathlib import Path
 
 # -- Project information -----------------------------------------------------
 
@@ -34,6 +34,8 @@ release = '0.1'
 extensions = ["snakedoc"]
 
 smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/"
+smk_config = {"conf1": "val1", "conf2": "val2", "length": 10}
+smk_configfile = "tests/workflow/config.yaml"
 
 
 # Add any paths that contain templates here, relative to this directory.

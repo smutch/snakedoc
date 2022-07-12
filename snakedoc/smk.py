@@ -181,7 +181,7 @@ class AutoDocDirective(SphinxDirective):
     }
 
     def _extract_rules(self):
-        configfiles = self.options.get("configfile", [])
+        configfiles = self.options.get("configfile", self.env.config["smk_configfile"])
         if isinstance(configfiles, str):
             configfiles = [configfiles]
 
@@ -203,7 +203,7 @@ class AutoDocDirective(SphinxDirective):
 
         for configfile in configfiles:
             workflow.configfile(configfile)
-        workflow.config.update(config_args or {})
+        workflow.config.update(config_args or self.env.config["smk_config"])
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
 
@@ -325,9 +325,12 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx.ext.autodoc")
     app.add_domain(SmkDomain)
 
-    app.add_config_value("smk_linkcode_resolve", None, "")
-    app.add_config_value("smk_linkcode_baseurl", "", "")
-    app.add_config_value("smk_linkcode_linesep", "#L", "")
+    app.add_config_value("smk_linkcode_resolve", None, "env")
+    app.add_config_value("smk_linkcode_baseurl", "", "env")
+    app.add_config_value("smk_linkcode_linesep", "#L", "env")
+    app.add_config_value("smk_config", {}, "env")
+    app.add_config_value("smk_configfile", None, "env")
+
     app.connect("doctree-read", linkcode.doctree_read)
 
     return {
