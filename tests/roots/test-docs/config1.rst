@@ -1,0 +1,4 @@
+.. smk:autodoc:: tests/workflow/Snakefile also_follows_basic
+   :config: length=15
+
+.. smk:autodoc:: tests/workflow/Snakefile gen_random

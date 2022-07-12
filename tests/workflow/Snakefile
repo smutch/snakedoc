@@ -33,6 +33,7 @@ rule follows_basic:
 
     :config omega_m: mass density
     :config galaxy.stellar_mass: the galaxy stellar mass
+    :config length: some random length
     """
 
     input:
@@ -42,25 +43,33 @@ rule follows_basic:
     resources:
         mem_mb=2
     params:
-        stellar_mass=config["galaxy"]["stellar_mass"]
+        stellar_mass=config["galaxy"]["stellar_mass"],
+        length=config["length"]
     shell:
         "echo 'galaxy.stellar_mass = {params.stellar_mass}\n\noutput.txt content = ' > {output} && cat {input} >> {output}"
 
 rule also_follows_basic:
     """
-    Docs rhymes with clocks...
+    Docs rhymes with fox...
+
+    :config omega_m: mass density
+    :config galaxy.stellar_mass: the galaxy stellar mass
     """
 
     input:
         "output.txt"
     output:
         "output3.txt"
+    params:
+        stellar_mass=config["galaxy"]["stellar_mass"]
     shell:
-        "touch {output}"
+        "touch {output} && echo {params.stellar_mass}"
 
 checkpoint gen_random:
     """
     Generates a random number (between 1 and 3) of empty files.
+
+    :config conf1: a config var
     """
 
     input:

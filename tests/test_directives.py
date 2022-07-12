@@ -1,27 +1,13 @@
 import pytest
-from bs4 import BeautifulSoup, element
 from sphinx.application import Sphinx
 
-
-def _build_and_blend(app: Sphinx) -> str:
-    app.builder.build_all()
-    index = app.outdir / "index.html"
-    assert index.exists()
-    with open(index, "r") as fp:
-        soup = BeautifulSoup(fp, "html.parser")
-    return soup
-
-
-def _get_rule(rule_name: str, soup: BeautifulSoup) -> str:
-    return " ".join(
-        list(filter(lambda dl: dl.find("dt", id=f"rule-{rule_name}"), soup.find_all("dl")).__next__().stripped_strings)
-    )
+from .conftest import build_and_blend, get_rule
 
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_rule_directive(app: Sphinx):
-    soup = _build_and_blend(app)
-    rule = _get_rule("handwritten", soup)
+    soup = build_and_blend(app)
+    rule = get_rule("handwritten", soup)
 
     assert "Input a.txt" in rule
     assert "Output b.txt" in rule
@@ -37,8 +23,8 @@ def test_rule_directive(app: Sphinx):
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_checkpoint(app: Sphinx):
-    soup = _build_and_blend(app)
-    rule = _get_rule("hw_checkpoint", soup)
+    soup = build_and_blend(app)
+    rule = get_rule("hw_checkpoint", soup)
 
     assert "Input a.txt" in rule
     assert "Output b.txt" in rule
@@ -46,8 +32,8 @@ def test_checkpoint(app: Sphinx):
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_autodoc_directive(app: Sphinx):
-    soup = _build_and_blend(app)
-    rule = _get_rule("follows_basic", soup)
+    soup = build_and_blend(app)
+    rule = get_rule("follows_basic", soup)
 
     assert "Config omega_m – mass density" in rule
     assert "galaxy.stellar_mass – the galaxy stellar mass" in rule
@@ -55,8 +41,8 @@ def test_autodoc_directive(app: Sphinx):
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_autodoc_single_file(app: Sphinx):
-    soup = _build_and_blend(app)
-    rule = _get_rule("other", soup)
+    soup = build_and_blend(app)
+    rule = get_rule("other", soup)
 
     assert "Input an input file" in rule
     assert "Output an output file" in rule
@@ -64,8 +50,8 @@ def test_autodoc_single_file(app: Sphinx):
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_autodoc_single_rule(app: Sphinx):
-    soup = _build_and_blend(app)
-    rule = _get_rule("other", soup)
+    soup = build_and_blend(app)
+    rule = get_rule("other", soup)
 
     assert "Input an input file" in rule
     assert "Output an output file" in rule
