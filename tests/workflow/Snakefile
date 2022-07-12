@@ -10,7 +10,8 @@ rule basic:
 
     :input: A file
     :output: Another file
-    :param a: Sets the value of ``a``
+    :config length: Used to set params
+    :param a: Set to config ``length`` value
     :param b: Sets the value of ``b``
     """
 
@@ -21,7 +22,8 @@ rule basic:
     conda:
         "envs/test1.yaml"
     params:
-        a=1
+        a=config["length"],
+        b=3
     shell:
         "cat {input} > {output} && echo {params.a} >> {output}"
 

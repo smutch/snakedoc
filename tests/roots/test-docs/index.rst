@@ -34,6 +34,7 @@ Handwritten docs
    :resource mem_mb: 2
    :config handwritten.a: A dummy config parameter used in this rule
 
+|
 
 .. smk:checkpoint:: hw_checkpoint
 
@@ -49,6 +50,7 @@ Autodoc
 .. smk:autodoc:: tests/workflow/Snakefile
    :config: this=is
             a=test
+            length=15
 
 :ref:`We can also autodoc single files. <single-file>`
 
