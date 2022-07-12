@@ -12,10 +12,23 @@ rule basic:
        reproducing the rule. To see the code we can just use the ``source``
        link on the right.
 
-    :input: A text file. Could be empty for this dummy rule.
-    :output: Will contain a copy of the input. Also included in the Snakemake report.
-    :param a: Sets the the expansion factor of the Universe.
-    :param b: A luminous blue star.
+    .. note::
+       In the ``smk:autodoc`` directive, we specified a default config file.
+       Any ``config`` entries in the docstring will now automatically have the
+       default values appended.
+
+    :input:
+        A text file. Could be empty for this dummy rule.
+    :output:
+        Will contain a copy of the input. Also included in the Snakemake report.
+    :config galaxy.mass:
+        The galaxy mass.
+    :param a:
+        Sets the the expansion factor of the Universe.
+    :param b:
+        A luminous blue star.
+    :param mass:
+        The galaxy mass, set by the ``galaxy.mass`` config value
     """
 
     input:
@@ -26,7 +39,8 @@ rule basic:
         "envs/test1.yaml"
     params:
         a=1.0,
-        b=20
+        b=20,
+        mass=config["galaxy"]["mass"]
     resources:
         mem_mb=2
     shell:
