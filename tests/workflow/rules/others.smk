@@ -12,3 +12,27 @@ rule other:
         "output.txt"
     shell:
         "cat {input} > {output} && echo {params.a} >> {output}"
+
+rule other2:
+    """
+    This is other2...
+    """
+
+    input:
+        "input.txt"
+    output:
+        "output.txt"
+    shell:
+        "cat {input} > {output} && echo {params.a} >> {output}"
+
+rule other3:
+    """
+    This is other3...
+    """
+
+    input:
+        "input.txt"
+    output:
+        "output.txt"
+    shell:
+        "cat {input} > {output} && echo {params.a} >> {output}"

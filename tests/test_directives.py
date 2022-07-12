@@ -55,3 +55,13 @@ def test_autodoc_single_rule(app: Sphinx):
 
     assert "Input an input file" in rule
     assert "Output an output file" in rule
+
+
+@pytest.mark.sphinx('html', testroot='docs')
+def test_autodoc_multiple_rules(app: Sphinx):
+    soup = build_and_blend(app)
+    rule = get_rule("other2", soup)
+    assert "other2" in rule
+
+    rule = get_rule("other3", soup)
+    assert "other3" in rule

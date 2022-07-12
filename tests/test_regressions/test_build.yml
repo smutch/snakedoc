@@ -131,17 +131,32 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   \ though!</p>\n<dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input</dt>\n\
   <dd class=\"field-odd\"><p>an input file</p>\n</dd>\n<dt class=\"field-even\">Output</dt>\n\
   <dd class=\"field-even\"><p>an output file</p>\n</dd>\n</dl>\n</dd></dl>\n\n<div\
-  \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n</section>\n\
-  </section>\n<section id=\"indices-and-tables\">\n<h1>Indices and tables<a class=\"\
-  headerlink\" href=\"#indices-and-tables\" title=\"Permalink to this headline\">¶</a></h1>\n\
-  <ul class=\"simple\">\n<li><p><a class=\"reference internal\" href=\"genindex.html\"\
-  ><span class=\"std std-ref\">Index</span></a></p></li>\n<li><p><a class=\"reference\
-  \ internal\" href=\"search.html\"><span class=\"std std-ref\">Search Page</span></a></p></li>\n\
-  </ul>\n</section>\n\n\n          </div>\n          \n        </div>\n      </div>\n\
-  \      <div class=\"sphinxsidebar\" role=\"navigation\" aria-label=\"main navigation\"\
-  >\n        <div class=\"sphinxsidebarwrapper\">\n<h1 class=\"logo\"><a href=\"#\"\
-  >snakedocs test input</a></h1>\n\n\n\n\n\n\n\n\n<h3>Navigation</h3>\n\n<div class=\"\
-  relations\">\n<h3>Related Topics</h3>\n<ul>\n  <li><a href=\"#\">Documentation overview</a><ul>\n\
+  \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<p>… or a list\
+  \ of rules</p>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
+  rule-other2\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"\
+  ><span class=\"pre\">other2</span></span><a class=\"reference external\" href=\"\
+  https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/rules/others.smk#L16\"\
+  ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
+  \ class=\"headerlink\" href=\"#rule-other2\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>This is other2…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
+  >\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"\
+  sig sig-object smk\" id=\"rule-other3\">\n<span class=\"pre\">Rule</span> <span\
+  \ class=\"sig-name descname\"><span class=\"pre\">other3</span></span><a class=\"\
+  reference external\" href=\"https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/rules/others.smk#L28\"\
+  ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
+  \ class=\"headerlink\" href=\"#rule-other3\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>This is other3…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
+  >\n<div class=\"line\"><br /></div>\n</div>\n</section>\n</section>\n<section id=\"\
+  indices-and-tables\">\n<h1>Indices and tables<a class=\"headerlink\" href=\"#indices-and-tables\"\
+  \ title=\"Permalink to this headline\">¶</a></h1>\n<ul class=\"simple\">\n<li><p><a\
+  \ class=\"reference internal\" href=\"genindex.html\"><span class=\"std std-ref\"\
+  >Index</span></a></p></li>\n<li><p><a class=\"reference internal\" href=\"search.html\"\
+  ><span class=\"std std-ref\">Search Page</span></a></p></li>\n</ul>\n</section>\n\
+  \n\n          </div>\n          \n        </div>\n      </div>\n      <div class=\"\
+  sphinxsidebar\" role=\"navigation\" aria-label=\"main navigation\">\n        <div\
+  \ class=\"sphinxsidebarwrapper\">\n<h1 class=\"logo\"><a href=\"#\">snakedocs test\
+  \ input</a></h1>\n\n\n\n\n\n\n\n\n<h3>Navigation</h3>\n\n<div class=\"relations\"\
+  >\n<h3>Related Topics</h3>\n<ul>\n  <li><a href=\"#\">Documentation overview</a><ul>\n\
   \  </ul></li>\n</ul>\n</div>\n<div id=\"searchbox\" style=\"display: none\" role=\"\
   search\">\n  <h3 id=\"searchlabel\">Quick search</h3>\n    <div class=\"searchformwrapper\"\
   >\n    <form class=\"search\" action=\"search.html\" method=\"get\">\n      <input\
@@ -195,10 +210,18 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \     <tr class=\"cap\" id=\"cap-o\"><td></td><td>\n       <strong>o</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-other\"\
   ><code class=\"xref\">other</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-other2\"\
+  ><code class=\"xref\">other2</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-other3\"\
+  ><code class=\"xref\">other3</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"single-file.html#rule-other\"\
   ><code class=\"xref\">other</code></a> <em>(single-file)</em></td><td>\n       <em>Rule</em></td></tr>\n\
-  \     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n     <tr class=\"\
-  cap\" id=\"cap-t\"><td></td><td>\n       <strong>t</strong></td><td></td></tr>\n\
+  \     <tr>\n       <td></td>\n       <td>\n       <a href=\"single-file.html#rule-other2\"\
+  ><code class=\"xref\">other2</code></a> <em>(single-file)</em></td><td>\n      \
+  \ <em>Rule</em></td></tr>\n     <tr>\n       <td></td>\n       <td>\n       <a href=\"\
+  single-file.html#rule-other3\"><code class=\"xref\">other3</code></a> <em>(single-file)</em></td><td>\n\
+  \       <em>Rule</em></td></tr>\n     <tr class=\"pcap\"><td></td><td>&#160;</td><td></td></tr>\n\
+  \     <tr class=\"cap\" id=\"cap-t\"><td></td><td>\n       <strong>t</strong></td><td></td></tr>\n\
   \     <tr>\n       <td></td>\n       <td>\n       <a href=\"index.html#rule-the_end\"\
   ><code class=\"xref\">the_end</code></a> <em>(index)</em></td><td>\n       <em>Rule</em></td></tr>\n\
   \   </table>\n\n\n          </div>\n          \n        </div>\n      </div>\n \

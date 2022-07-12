@@ -59,6 +59,9 @@ Autodoc
 
 .. smk:autodoc:: tests/workflow/rules/others.smk other
 
+... or a list of rules
+
+.. smk:autodoc:: tests/workflow/rules/others.smk other2 other3
 
 Indices and tables
 ==================
