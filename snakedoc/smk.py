@@ -1,18 +1,22 @@
 import logging
 from collections import defaultdict
 from enum import Enum
+from functools import reduce
 from pathlib import Path
 from textwrap import dedent, indent
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, List, Mapping, Tuple, cast
 
 import snakemake
 from docutils import nodes
+from docutils.nodes import Node
 from docutils.parsers.rst import directives
+from docutils.parsers.rst.states import Inliner
 from docutils.statemachine import ViewList
 from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index
+from sphinx.environment import BuildEnvironment
 from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
@@ -27,6 +31,44 @@ logger.setLevel("DEBUG")
 class RuleType(Enum):
     RULE = "rule"
     CHECKPOINT = "checkpoint"
+
+
+class ConfigField(GroupedField):
+    def make_field(
+        self,
+        types: Dict[str, List[Node]],
+        domain: str,
+        items: Tuple,
+        env: BuildEnvironment = None,
+        inliner: Inliner = None,
+        location: Node = None,
+    ) -> nodes.field:
+        fieldname = nodes.field_name('', self.label)
+        listnode = self.list_type()
+        for fieldarg, content in items:
+            par = nodes.paragraph()
+            par.extend(
+                self.make_xrefs(
+                    self.rolename,
+                    domain,
+                    fieldarg,
+                    addnodes.literal_strong,
+                    env=env,
+                    inliner=inliner,
+                    location=location,
+                )
+            )
+            par += nodes.Text(' -- ')
+            par += content
+            listnode += nodes.list_item('', par)
+
+        if len(items) == 1 and self.can_collapse:
+            list_item = cast(nodes.list_item, listnode[0])
+            fieldbody = nodes.field_body('', list_item[0])
+            return nodes.field('', fieldname, fieldbody)
+
+        fieldbody = nodes.field_body('', listnode)
+        return nodes.field('', fieldname, fieldbody)
 
 
 class RuleDirective(ObjectDescription):
@@ -61,6 +103,28 @@ class RuleDirective(ObjectDescription):
         Field("default_target", label="Default target", names=("default_target"), has_arg=False),
     ]
 
+    def transform_content(self, contentnode: addnodes.desc_content) -> None:
+        for node in contentnode.traverse():
+            if node.tagname == 'field' and node[0][0].astext().lower().startswith("conf"):
+                key = node[0][0].split(" ")[1]
+                value = reduce(dict.get, key.split("."), self.env._workflow.config)
+
+                default = nodes.paragraph()
+
+                prefix = nodes.emphasis()
+                prefix += nodes.Text("default: ")
+
+                value_node = nodes.literal()
+                value_node += nodes.Text(f"{value}")
+
+                # suffix = nodes.emphasis()
+                # suffix += nodes.Text(")")
+
+                for new_node in (prefix, value_node):
+                    default += new_node
+
+                node[1][0] += default
+
     def handle_signature(self, sig, signode):
         signode.insert(1, addnodes.desc_type(text=f"{self.rule_type.value.capitalize()} "))
         signode += addnodes.desc_name(text=sig, source=self.options.get("source", ""))
@@ -78,7 +142,7 @@ class CheckpointDirective(RuleDirective):
 
 
 class RuleIndex(Index):
-    """A custom index that creates an rule index."""
+    """A custom Index for rules."""
 
     name = "rule"
     localname = "Snakemake Rules"
@@ -141,6 +205,8 @@ class AutoDocDirective(SphinxDirective):
             rule = self.arguments[1]
             workflow._rules = {rule: workflow._rules[rule]}
 
+        self.env._workflow = workflow
+
         return workflow._rules
 
     def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
@@ -202,6 +268,9 @@ class AutoDocDirective(SphinxDirective):
             node = nodes.section()
             nested_parse_with_titles(self.state, result, node)
 
+        # Sphinx wants to pickle the environment and we can't pickle the workflow object so just remove it
+        del self.env._workflow
+
         return node.children
 
 
@@ -237,7 +306,7 @@ class SmkDomain(Domain):
             print("Awww, found nothing")
             return None
 
-    def add_rule(self, dispname, rule_type: RuleType):  # , input, output, params, log, resources, shell, script):
+    def add_rule(self, dispname: str, rule_type: RuleType):
         """Add a new rule to the domain."""
         name = f"rule.{dispname}"
         anchor = f"rule-{dispname}"
