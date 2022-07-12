@@ -30,6 +30,9 @@ rule basic:
 rule follows_basic:
     """
     Docs rhymes with socks...
+
+    :config omega_m: mass density
+    :config galaxy.stellar_mass: the galaxy stellar mass
     """
 
     input:
@@ -38,8 +41,10 @@ rule follows_basic:
         "output2.txt"
     resources:
         mem_mb=2
+    params:
+        stellar_mass=config["galaxy"]["stellar_mass"]
     shell:
-        "echo 'output.txt content = ' > {output} && cat {input} >> {output}"
+        "echo 'galaxy.stellar_mass = {params.stellar_mass}\n\noutput.txt content = ' > {output} && cat {input} >> {output}"
 
 rule also_follows_basic:
     """

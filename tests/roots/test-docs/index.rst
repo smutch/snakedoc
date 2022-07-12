@@ -48,6 +48,7 @@ Autodoc
 -------
 
 .. smk:autodoc:: tests/workflow/Snakefile
+   :configfile: tests/workflow/config.yaml
    :config: this=is
             a=test
             length=15
