@@ -104,26 +104,27 @@ class RuleDirective(ObjectDescription):
     ]
 
     def transform_content(self, contentnode: addnodes.desc_content) -> None:
-        for node in contentnode.traverse():
-            if node.tagname == 'field' and node[0][0].astext().lower().startswith("conf"):
-                key = node[0][0].split(" ")[1]
-                value = reduce(dict.get, key.split("."), self.env._workflow.config)
+        if hasattr(self.env, "_workflow"):
+            for node in contentnode.traverse():
+                if node.tagname == 'field' and node[0][0].astext().lower().startswith("conf"):
+                    key = node[0][0].split(" ")[1]
+                    value = reduce(dict.get, key.split("."), self.env._workflow.config)
 
-                default = nodes.paragraph()
+                    default = nodes.paragraph()
 
-                prefix = nodes.emphasis()
-                prefix += nodes.Text("default: ")
+                    prefix = nodes.emphasis()
+                    prefix += nodes.Text("default: ")
 
-                value_node = nodes.literal()
-                value_node += nodes.Text(f"{value}")
+                    value_node = nodes.literal()
+                    value_node += nodes.Text(f"{value}")
 
-                # suffix = nodes.emphasis()
-                # suffix += nodes.Text(")")
+                    # suffix = nodes.emphasis()
+                    # suffix += nodes.Text(")")
 
-                for new_node in (prefix, value_node):
-                    default += new_node
+                    for new_node in (prefix, value_node):
+                        default += new_node
 
-                node[1][0] += default
+                    node[1][0] += default
 
     def handle_signature(self, sig, signode):
         signode.insert(1, addnodes.desc_type(text=f"{self.rule_type.value.capitalize()} "))
