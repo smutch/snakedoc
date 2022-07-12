@@ -181,7 +181,10 @@ class AutoDocDirective(SphinxDirective):
     }
 
     def _extract_rules(self):
-        configfile = self.options.get("configfile", None)
+        configfiles = self.options.get("configfile", [])
+        if isinstance(configfiles, str):
+            configfiles = [configfiles]
+
         config_args = None
         if "config" in self.options:
             config_args = {}
@@ -194,10 +197,12 @@ class AutoDocDirective(SphinxDirective):
 
         workflow = snakemake.Workflow(
             self.arguments[0],
-            overwrite_configfiles=configfile,
             config_args=config_args,
             rerun_triggers=snakemake.RERUN_TRIGGERS,
         )
+
+        for configfile in configfiles:
+            workflow.configfile(configfile)
         workflow.config.update(config_args or {})
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()

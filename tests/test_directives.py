@@ -44,14 +44,13 @@ def test_checkpoint(app: Sphinx):
     assert "Output b.txt" in rule
 
 
-# @pytest.mark.sphinx('html', testroot='docs')
-# def test_autodoc_directive(app: Sphinx):
-#     soup = _build_and_blend(app)
-#     rule = _get_rule("follows_basic", soup)
+@pytest.mark.sphinx('html', testroot='docs')
+def test_autodoc_directive(app: Sphinx):
+    soup = _build_and_blend(app)
+    rule = _get_rule("follows_basic", soup)
 
-#     assert "Resources cores – 1" in rule
-#     assert "nodes – 1" in rule
-#     assert "mem_mb – 2" in rule
+    assert "Config omega_m – mass density" in rule
+    assert "galaxy.stellar_mass – the galaxy stellar mass" in rule
 
 
 @pytest.mark.sphinx('html', testroot='docs')
