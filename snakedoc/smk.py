@@ -15,7 +15,7 @@ from docutils.statemachine import ViewList
 from sphinx import addnodes
 from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
-from sphinx.domains import Domain, Index
+from sphinx.domains import Domain, Index, ObjType
 from sphinx.environment import BuildEnvironment
 from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
@@ -285,6 +285,7 @@ class SmkDomain(Domain):
     label = "Snakemake"
     roles = {"ref": XRefRole()}
     directives = {"rule": RuleDirective, "checkpoint": CheckpointDirective, "autodoc": AutoDocDirective}
+    object_types = {"Rule": ObjType("rule", RuleDirective, CheckpointDirective)}
     indices = {
         RuleIndex,
     }
