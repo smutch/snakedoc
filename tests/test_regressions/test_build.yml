@@ -110,7 +110,7 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   >¶</a></dt>\n<dd><p>Generates a random number (between 1 and 3) of empty files.</p>\n\
   <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Config</dt>\n<dd class=\"\
   field-odd\"><p><strong>conf1</strong> – a config var<p><em>default: </em><code class=\"\
-  docutils literal notranslate\"><span class=\"pre\">None</span></code></p>\n</p>\n\
+  docutils literal notranslate\"><span class=\"pre\">val1</span></code></p>\n</p>\n\
   </dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
   \ /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
   rule-the_end\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"\
