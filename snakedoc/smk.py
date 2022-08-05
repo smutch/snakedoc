@@ -197,8 +197,8 @@ class AutoDocDirective(SphinxDirective):
         config = {}
         for configfile in configfiles:
             snakemake.utils.update_config(config, snakemake.load_configfile(configfile))
-        snakemake.utils.update_config(config, config_args)
         snakemake.utils.update_config(config, self.env.config["smk_config"])
+        snakemake.utils.update_config(config, config_args)
 
         workflow = snakemake.Workflow(
             self.arguments[0],
@@ -239,7 +239,8 @@ class AutoDocDirective(SphinxDirective):
                         "",
                     ]
                 )
-                with open(rule.conda_env, "r") as fp:
+                fname = rule.conda_env if isinstance(rule.conda_env, str) else rule.conda_env.file
+                with open(fname, "r") as fp:
                     env = indent(fp.read(), "         ")
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
