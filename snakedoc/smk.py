@@ -185,9 +185,8 @@ class AutoDocDirective(SphinxDirective):
         if isinstance(configfiles, str):
             configfiles = [configfiles]
 
-        config_args = None
+        config_args = {}
         if "config" in self.options:
-            config_args = {}
             for line in self.options["config"].splitlines():
                 try:
                     k, v = map(str.strip, line.split("=", 1))
@@ -195,15 +194,19 @@ class AutoDocDirective(SphinxDirective):
                 except ValueError as err:
                     raise Exception("The smk:autodoc config option must be made up of key=value entries") from err
 
+        config = {}
+        for configfile in configfiles:
+            snakemake.utils.update_config(config, snakemake.load_configfile(configfile))
+        snakemake.utils.update_config(config, config_args)
+        snakemake.utils.update_config(config, self.env.config["smk_config"])
+
         workflow = snakemake.Workflow(
             self.arguments[0],
             config_args=config_args,
+            overwrite_configfiles=configfiles,
+            overwrite_config=config,
             rerun_triggers=snakemake.RERUN_TRIGGERS,
         )
-
-        for configfile in configfiles:
-            workflow.configfile(configfile)
-        workflow.config.update(config_args or self.env.config["smk_config"])
         workflow.include(self.arguments[0], overwrite_default_target=True)
         workflow.check()
 
@@ -236,7 +239,7 @@ class AutoDocDirective(SphinxDirective):
                         "",
                     ]
                 )
-                with open(rule.conda_env.file, "r") as fp:
+                with open(rule.conda_env, "r") as fp:
                     env = indent(fp.read(), "         ")
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
