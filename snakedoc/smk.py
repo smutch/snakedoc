@@ -222,9 +222,8 @@ class AutoDocDirective(SphinxDirective):
             lines = []
             lineno = rule.workflow.linemaps[rule.snakefile][rule.lineno]
             rule_type = "rule" if not rule.is_checkpoint else "checkpoint"
-            lines.extend(
-                [f".. smk:{rule_type}:: {rule.name}", f"   :source: {Path(rule.snakefile).resolve()}:{lineno}", ""]
-            )
+            snakefile = Path(rule.snakefile).resolve()
+            lines.extend([f".. smk:{rule_type}:: {rule.name}", f"   :source: {snakefile}:{lineno}", ""])
 
             if rule.docstring is not None:
                 docstring = indent(dedent(rule.docstring), "   ")
@@ -240,7 +239,7 @@ class AutoDocDirective(SphinxDirective):
                     ]
                 )
                 fname = rule.conda_env if isinstance(rule.conda_env, str) else rule.conda_env.file
-                with open(fname, "r") as fp:
+                with open(snakefile.parent / fname, "r") as fp:
                     env = indent(fp.read(), "         ")
                 lines.extend(env.splitlines(keepends=False))
                 lines.append("")
