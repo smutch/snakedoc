@@ -3,4 +3,4 @@
 Autodoc a single file
 ---------------------
 
-.. smk:autodoc:: tests/workflow/rules/others.smk
+.. smk:autodoc:: workflow/rules/others.smk

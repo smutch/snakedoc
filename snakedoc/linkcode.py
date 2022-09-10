@@ -25,10 +25,10 @@ def smk_linkcode_resolve(domain, info):
         filename = parts[0]
         lineno = None
     try:
-        filename = str(Path(filename).relative_to(Path.cwd().parent))
+        filename = str(Path(filename).relative_to(info['basepath']))
     except ValueError as err:
         raise ValueError(
-            f"Rule lists {filename} as it's source, but this is not relative to {Path.cwd().parent}"
+            f"Rule lists {filename} as it's source, but this is not relative to {info['basepath']}"
         ) from err
 
     return f"{info['baseurl']}{filename}{info['linesep']+lineno if lineno else ''}"
@@ -43,6 +43,7 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
     baseurl_target = getattr(env.config, "smk_linkcode_baseurl", "")
     if len(baseurl_target) > 0 and baseurl_target[-1] != "/":
         baseurl_target = f"{baseurl_target}/"
+    basepath = getattr(env.config, "smk_linkcode_basepath", "")
     linesep_target = getattr(env.config, "smk_linkcode_linesep", "#L")
 
     domain_keys = {
@@ -76,6 +77,7 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
 
             # Call user code to resolve the link
             info["baseurl"] = baseurl_target
+            info["basepath"] = basepath
             info["linesep"] = linesep_target
             uri = resolve_target(domain, info)
             if not uri:
