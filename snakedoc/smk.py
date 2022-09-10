@@ -182,8 +182,13 @@ class AutoDocDirective(SphinxDirective):
 
     def _extract_rules(self):
         configfiles = self.options.get("configfile", self.env.config["smk_configfile"])
-        if isinstance(configfiles, str):
-            configfiles = [configfiles]
+        if configfiles is not None:
+            if isinstance(configfiles, (str, Path)):
+                configfiles = [configfiles]
+            for ii, cf in enumerate(configfiles):
+                cf = Path(cf)
+                if not cf.is_absolute():
+                    configfiles[ii] = Path(self.env.app.confdir) / cf
 
         config_args = {}
         if "config" in self.options:
@@ -195,19 +200,24 @@ class AutoDocDirective(SphinxDirective):
                     raise Exception("The smk:autodoc config option must be made up of key=value entries") from err
 
         config = {}
-        for configfile in configfiles:
-            snakemake.utils.update_config(config, snakemake.load_configfile(configfile))
+        if configfiles is not None:
+            for configfile in configfiles:
+                snakemake.utils.update_config(config, snakemake.load_configfile(configfile))
         snakemake.utils.update_config(config, self.env.config["smk_config"])
         snakemake.utils.update_config(config, config_args)
 
+        snakefile = self.arguments[0]
+        if not Path(snakefile).is_absolute():
+            snakefile = Path(self.env.app.srcdir) / Path(snakefile)
+
         workflow = snakemake.Workflow(
-            self.arguments[0],
+            snakefile,
             config_args=config_args,
             overwrite_configfiles=configfiles,
             overwrite_config=config,
             rerun_triggers=snakemake.RERUN_TRIGGERS,
         )
-        workflow.include(self.arguments[0], overwrite_default_target=True)
+        workflow.include(snakefile, overwrite_default_target=True)
         workflow.check()
 
         if len(self.arguments) > 1:
@@ -330,6 +340,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_config_value("smk_linkcode_resolve", None, "env")
     app.add_config_value("smk_linkcode_baseurl", "", "env")
+    app.add_config_value("smk_linkcode_basepath", "", "env")
     app.add_config_value("smk_linkcode_linesep", "#L", "env")
     app.add_config_value("smk_config", {}, "env")
     app.add_config_value("smk_configfile", None, "env")

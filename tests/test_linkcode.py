@@ -5,7 +5,6 @@ import pytest
 from bs4 import BeautifulSoup
 from sphinx.application import Sphinx
 
-SNAKEFILE_PATH = Path(__file__).absolute().parent / "workflow/Snakefile"
 RULE_PATTERN = re.compile(r"^\s*rule\s+(\S+)\s*:\s*$")
 
 
@@ -15,7 +14,9 @@ def _parse_rule_link(rule_name: str, soup: BeautifulSoup):
 
 @pytest.mark.sphinx('html', testroot='docs')
 def test_source_links(app: Sphinx):
-    SNAKEFILE_URL = "https://github.com/smutch/snakedoc/blob/master/snakedoc/tests/workflow/Snakefile"
+    SNAKEFILE_URL = "https://github.com/smutch/test/blob/master/workflow/Snakefile"
+    snakefile_path = Path(app.confdir) / "workflow/Snakefile"
+
     app.builder.build_all()
     index = app.outdir / "index.html"
     assert index.exists()
@@ -23,7 +24,7 @@ def test_source_links(app: Sphinx):
     with open(index, "r") as fp:
         soup = BeautifulSoup(fp, "html.parser")
 
-    snakefile = SNAKEFILE_PATH.read_text('utf-8').splitlines(keepends=False)
+    snakefile = snakefile_path.read_text('utf-8').splitlines(keepends=False)
     for rule_name in ("basic", "follows_basic", "also_follows_basic", "the_end"):
         url, lineno = _parse_rule_link(rule_name, soup)
         assert url == SNAKEFILE_URL

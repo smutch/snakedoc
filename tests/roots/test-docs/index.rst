@@ -47,8 +47,8 @@ Handwritten docs
 Autodoc
 -------
 
-.. smk:autodoc:: tests/workflow/Snakefile
-   :configfile: tests/workflow/config.yaml
+.. smk:autodoc:: workflow/Snakefile
+   :configfile: workflow/config.yaml
    :config: this=is
             a=test
             length=15
@@ -57,11 +57,11 @@ Autodoc
 
 ... And single rules
 
-.. smk:autodoc:: tests/workflow/rules/others.smk other
+.. smk:autodoc:: workflow/rules/others.smk other
 
 ... or a list of rules
 
-.. smk:autodoc:: tests/workflow/rules/others.smk other2 other3
+.. smk:autodoc:: workflow/rules/others.smk other2 other3
 
 Indices and tables
 ==================
