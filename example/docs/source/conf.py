@@ -34,6 +34,7 @@ release = '0.1'
 extensions = ["snakedoc"]
 
 smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/example"
+smk_linkcode_basepath = str(Path(__file__).parents[2])
 
 
 # Add any paths that contain templates here, relative to this directory.

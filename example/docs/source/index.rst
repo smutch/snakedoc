@@ -1,10 +1,10 @@
 Welcome to the Snakedocs example!
 =================================
 
-.. smk:autodoc:: ../workflow/Snakefile
-   :configfile: ../workflow/config.yaml
+.. smk:autodoc:: ../../workflow/Snakefile
+   :configfile: ../../workflow/config.yaml
 
-.. smk:autodoc:: ../workflow/rules/others.smk separate_file
+.. smk:autodoc:: ../../workflow/rules/others.smk separate_file
 
 
 Manually documented rules
