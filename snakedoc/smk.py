@@ -339,8 +339,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_domain(SmkDomain)
 
     app.add_config_value("smk_linkcode_resolve", None, "env")
-    app.add_config_value("smk_linkcode_baseurl", "", "env")
-    app.add_config_value("smk_linkcode_basepath", "", "env")
+    app.add_config_value("smk_linkcode_mapping", ("", ""), "env")
     app.add_config_value("smk_linkcode_linesep", "#L", "env")
     app.add_config_value("smk_config", {}, "env")
     app.add_config_value("smk_configfile", None, "env")

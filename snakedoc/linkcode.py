@@ -40,11 +40,10 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
     resolve_target = getattr(env.config, "smk_linkcode_resolve", None)
     if env.config.smk_linkcode_resolve is None:
         resolve_target = smk_linkcode_resolve
-    baseurl_target = getattr(env.config, "smk_linkcode_baseurl", "")
-    if len(baseurl_target) > 0 and baseurl_target[-1] != "/":
-        baseurl_target = f"{baseurl_target}/"
-    basepath = getattr(env.config, "smk_linkcode_basepath", "")
-    linesep_target = getattr(env.config, "smk_linkcode_linesep", "#L")
+    basepath, baseurl = getattr(env.config, "smk_linkcode_mapping", ("", ""))
+    if len(baseurl) > 0 and baseurl[-1] != "/":
+        baseurl = f"{baseurl}/"
+    linesep = getattr(env.config, "smk_linkcode_linesep", "#L")
 
     domain_keys = {
         "smk": ["source"],
@@ -76,9 +75,9 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
                 continue
 
             # Call user code to resolve the link
-            info["baseurl"] = baseurl_target
+            info["baseurl"] = baseurl
             info["basepath"] = basepath
-            info["linesep"] = linesep_target
+            info["linesep"] = linesep
             uri = resolve_target(domain, info)
             if not uri:
                 # no source
