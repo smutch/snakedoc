@@ -33,8 +33,7 @@ release = '0.1'
 # ones.
 extensions = ["snakedoc"]
 
-smk_linkcode_baseurl = "https://github.com/smutch/test/blob/master/"
-smk_linkcode_basepath = str(Path(__file__).absolute().parent)
+smk_linkcode_mapping = (str(Path(__file__).absolute().parent), "https://github.com/smutch/test/blob/master/")
 smk_config = {"conf1": "val1", "conf2": "val2", "length": 10}
 smk_configfile = "workflow/config.yaml"
 
