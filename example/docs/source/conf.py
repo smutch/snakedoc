@@ -33,9 +33,7 @@ release = '0.1'
 # ones.
 extensions = ["snakedoc"]
 
-smk_linkcode_baseurl = "https://github.com/smutch/snakedoc/blob/master/example"
-smk_linkcode_basepath = str(Path(__file__).parents[2])
-
+smk_linkcode_mapping = (str(Path(__file__).parents[2]), "https://github.com/smutch/snakedoc/blob/master/example")
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
