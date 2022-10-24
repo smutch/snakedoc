@@ -16,11 +16,11 @@ Snakedoc
 
 |
 
-`Snakemake`_ workflows can be completed beasts. They can quickly become complex
-and opaque to users. Having good documentation explaining what each rule is
-doing, what assumptions are being made, and what parts can be configured are
-important for reproducable, understandable, and reusable code. `Snakedoc`_ aims
-to help with this by:
+`Snakemake`_ workflows can be completed beasts and somewhat opaque to new
+users. Having good documentation explaining what each rule is doing, what
+assumptions are being made, and what parts can be configured are important for
+reproducable, understandable, and reusable workflows. `Snakedoc`_ aims to help
+with this by:
 
 1. Encouraging developers to write contextual and useful docstrings inline
    with their rules.
