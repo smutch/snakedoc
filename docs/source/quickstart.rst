@@ -12,10 +12,11 @@ Add docstrings to your Snakemake workflow
 
 .. highlight:: text
 
-The main feature of Snakedoc is to generate documentation for your Snakemake
-workflow. To do this, you need to add docstrings to your rules. The docstrings
-should be written in reStructuredText_ format, and should be placed in the
-docstring attribute of the rule. For example [[#f1]_]::
+The main feature of Snakedoc is the generation of documentation for your
+Snakemake workflow. To do this, you need to add docstrings to the rules in your
+Snakemake files. The docstrings should be written in reStructuredText_ format
+and placed in triple quotes at the start of each rule, in exactly the same way
+as you would document a Python function. For example [#f1]_::
 
     rule beast:
         """
@@ -52,16 +53,16 @@ docstring attribute of the rule. For example [[#f1]_]::
 
 If you are familiar with Python style rst-docstrings then you will feel right at home.
 
-As recommended in Python, the basic layout of a docstring comprises of a short,
-concise explanation of the purpose of the rule. This is then optionally
-followed by a longer explanation, perhaps referencing relevant papers,
-discussing potential issues and future improvements, etc.
+As recommended in normal Python code, the basic layout of a docstring comprises
+of a short, concise explanation of the purpose of the rule. This is then
+optionally followed by a longer explanation, perhaps referencing relevant
+papers, discussing potential issues and future improvements, etc.
 
 Next comes a list of fields with a brief sentence or two indicating the logical
 meaning and other useful information for each of the Snakemake directives and
 their entries. Below is a list of reccognised directives that can be documented
-using Snakedoc. Some can accept multiple, named values, as shown with the
-``:input:`` and ``:config:`` fields in the example above. Others do not:
+using Snakedoc. Some accept multiple, named values (c.f. the
+``:input:`` and ``:config:`` fields in the example above). Others do not:
 
 .. list-table:: Recognised Snakemake directives
    :header-rows: 1
@@ -104,10 +105,14 @@ using Snakedoc. Some can accept multiple, named values, as shown with the
      - ❎
 
 
-Finally, you may wish to include extra notes, caveats, etc. At the end of the docstring.
-
-Note that you can include any valid reStructuredText_ and it will be marked up
+Finally, you may wish to include extra notes, caveats, etc. at the end of the docstring.
+You can include any valid reStructuredText_ and it will be marked up
 accordingly (e.g. the ``..note::`` reStructuredText_ directives in the example above).
+
+For more basic examples, see the `example directory of the Snakedoc repo
+<https://github.com/smutch/snakedoc/tree/main/example>`_. For an example of a
+production pipeline fully documented with Snakedoc complete, check out the
+`McCoy phylodynamics workflow <https://github.com/mccoy-devs/mccoy>`_.
 
 
 Set up Sphinx and Snakedoc
