@@ -9,7 +9,7 @@ def test_smk_configfile(app: Sphinx):
     soup = build_and_blend(app, "index.html")
     rule = get_rule("follows_basic", soup)
 
-    assert "Config omega_m – mass density" in rule
+    assert "Config : omega_m – mass density" in rule
     assert "default: 0.27" in rule
     assert "galaxy.stellar_mass – the galaxy stellar mass" in rule
     assert "default: 9.1" in rule
@@ -29,7 +29,7 @@ def test_sphinx_configfile(app: Sphinx):
     soup = build_and_blend(app, "config1.html")
     rule = get_rule("also_follows_basic", soup)
 
-    assert "Config omega_m – mass density" in rule
+    assert "Config : omega_m – mass density" in rule
     assert "default: 0.27" in rule
     assert "galaxy.stellar_mass – the galaxy stellar mass" in rule
     assert "default: 9.1" in rule

@@ -19,12 +19,13 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
 "snakemake>=7.6.2",
-"Sphinx<5.0.0",
+"Sphinx==5.*",
 ]
 dynamic = ["version"]
 
@@ -63,7 +64,7 @@ scripts.regen-expected = "pytest --force-regen"
 scripts.docs = "sphinx-build docs/source docs/build/html"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310"]
+python = ["37", "38", "39", "310", "311"]
 
 [tool.hatch.envs.lint]
 detached = true  # we can't be detached as pylint needs to import snakedoc

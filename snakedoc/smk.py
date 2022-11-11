@@ -236,7 +236,7 @@ class AutoDocDirective(SphinxDirective):
             lines.extend([f".. smk:{rule_type}:: {rule.name}", f"   :source: {snakefile}:{lineno}", ""])
 
             if rule.docstring is not None:
-                docstring = indent(dedent(rule.docstring), "   ")
+                docstring = indent(dedent(f"    {rule.docstring}"), "   ")
                 lines.extend(docstring.splitlines())
                 lines.append("")
 

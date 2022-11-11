@@ -2,46 +2,48 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   >\n        <div class=\"bodywrapper\">\n          \n\n          <div class=\"body\"\
   \ role=\"main\">\n            \n  <section id=\"welcome-to-snakedocs-test-input-s-documentation\"\
   >\n<h1>Welcome to snakedocs test input’s documentation!<a class=\"headerlink\" href=\"\
-  #welcome-to-snakedocs-test-input-s-documentation\" title=\"Permalink to this headline\"\
+  #welcome-to-snakedocs-test-input-s-documentation\" title=\"Permalink to this heading\"\
   >¶</a></h1>\n<div class=\"toctree-wrapper compound\">\n</div>\n<section id=\"handwritten-docs\"\
   >\n<h2>Handwritten docs<a class=\"headerlink\" href=\"#handwritten-docs\" title=\"\
-  Permalink to this headline\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig\
+  Permalink to this heading\">¶</a></h2>\n<dl class=\"smk rule\">\n<dt class=\"sig\
   \ sig-object smk\" id=\"rule-handwritten\">\n<span class=\"pre\">Rule</span> <span\
   \ class=\"sig-name descname\"><span class=\"pre\">handwritten</span></span><a class=\"\
   headerlink\" href=\"#rule-handwritten\" title=\"Permalink to this definition\">¶</a></dt>\n\
   <dd><p>This is a handwritten docstring.</p>\n<dl class=\"field-list\">\n<dt class=\"\
-  field-odd\">Input</dt>\n<dd class=\"field-odd\"><p>a.txt</p>\n</dd>\n<dt class=\"\
-  field-even\">Output</dt>\n<dd class=\"field-even\"><p>b.txt</p>\n</dd>\n<dt class=\"\
-  field-odd\">Params</dt>\n<dd class=\"field-odd\"><ul class=\"simple\">\n<li><p><strong>c</strong>\
+  field-odd\">Input<span class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><p>a.txt</p>\n\
+  </dd>\n<dt class=\"field-even\">Output<span class=\"colon\">:</span></dt>\n<dd class=\"\
+  field-even\"><p>b.txt</p>\n</dd>\n<dt class=\"field-odd\">Params<span class=\"colon\"\
+  >:</span></dt>\n<dd class=\"field-odd\"><ul class=\"simple\">\n<li><p><strong>c</strong>\
   \ – set <code class=\"docutils literal notranslate\"><span class=\"pre\">c</span></code></p></li>\n\
   <li><p><strong>d</strong> – set <code class=\"docutils literal notranslate\"><span\
   \ class=\"pre\">d</span></code></p></li>\n</ul>\n</dd>\n<dt class=\"field-even\"\
-  >Conda</dt>\n<dd class=\"field-even\"><div class=\"highlight-yaml notranslate\"\
-  ><div class=\"highlight\"><pre><span></span><span class=\"nt\">channels</span><span\
-  \ class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span\
-  \ class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span class=\"l l-Scalar\
-  \ l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n<span class=\"nt\"\
-  >dependencies</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
+  >Conda<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><div class=\"\
+  highlight-yaml notranslate\"><div class=\"highlight\"><pre><span></span><span class=\"\
+  nt\">channels</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
   w\">  </span><span class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span\
-  \ class=\"nt\">pip</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span\
-  \ class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span class=\"w\"\
-  > </span><span class=\"l l-Scalar l-Scalar-Plain\">test1</span><span class=\"w\"\
-  ></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span\
-  \ class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span><span\
-  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n<dt class=\"field-odd\">Resources</dt>\n\
-  <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n<dt class=\"\
-  field-even\">Config</dt>\n<dd class=\"field-even\"><p><strong>handwritten.a</strong>\
-  \ – A dummy config parameter used in this rule</p>\n</dd>\n</dl>\n</dd></dl>\n\n\
-  <div class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"\
-  smk checkpoint\">\n<dt class=\"sig sig-object smk\" id=\"rule-hw_checkpoint\">\n\
-  <span class=\"pre\">Checkpoint</span> <span class=\"sig-name descname\"><span class=\"\
-  pre\">hw_checkpoint</span></span><a class=\"headerlink\" href=\"#rule-hw_checkpoint\"\
-  \ title=\"Permalink to this definition\">¶</a></dt>\n<dd><p>This is a handwritten\
-  \ docstring for a <em>checkpoint</em>.</p>\n<dl class=\"field-list simple\">\n<dt\
-  \ class=\"field-odd\">Input</dt>\n<dd class=\"field-odd\"><p>a.txt</p>\n</dd>\n\
-  <dt class=\"field-even\">Output</dt>\n<dd class=\"field-even\"><p>b.txt</p>\n</dd>\n\
-  </dl>\n</dd></dl>\n\n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"\
-  headerlink\" href=\"#autodoc\" title=\"Permalink to this headline\">¶</a></h2>\n\
+  \ class=\"l l-Scalar l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n\
+  <span class=\"nt\">dependencies</span><span class=\"p\">:</span><span class=\"w\"\
+  ></span>\n<span class=\"w\">  </span><span class=\"p p-Indicator\">-</span><span\
+  \ class=\"w\"> </span><span class=\"nt\">pip</span><span class=\"p\">:</span><span\
+  \ class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\"\
+  >-</span><span class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test1</span><span\
+  \ class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\"\
+  >-</span><span class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span><span\
+  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n<dt class=\"field-odd\">Resources<span\
+  \ class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><p><strong>mem_mb</strong>\
+  \ – 2</p>\n</dd>\n<dt class=\"field-even\">Config<span class=\"colon\">:</span></dt>\n\
+  <dd class=\"field-even\"><p><strong>handwritten.a</strong> – A dummy config parameter\
+  \ used in this rule</p>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n\
+  <div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk checkpoint\">\n<dt class=\"\
+  sig sig-object smk\" id=\"rule-hw_checkpoint\">\n<span class=\"pre\">Checkpoint</span>\
+  \ <span class=\"sig-name descname\"><span class=\"pre\">hw_checkpoint</span></span><a\
+  \ class=\"headerlink\" href=\"#rule-hw_checkpoint\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>This is a handwritten docstring for a <em>checkpoint</em>.</p>\n\
+  <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input<span class=\"colon\"\
+  >:</span></dt>\n<dd class=\"field-odd\"><p>a.txt</p>\n</dd>\n<dt class=\"field-even\"\
+  >Output<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><p>b.txt</p>\n\
+  </dd>\n</dl>\n</dd></dl>\n\n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a\
+  \ class=\"headerlink\" href=\"#autodoc\" title=\"Permalink to this heading\">¶</a></h2>\n\
   <dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-all\">\n<span\
   \ class=\"pre\">Rule</span> <span class=\"sig-name descname\"><span class=\"pre\"\
   >all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L3\"\
@@ -55,35 +57,37 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   viewcode-link\"><span class=\"pre\">[source]</span></span></a><a class=\"headerlink\"\
   \ href=\"#rule-basic\" title=\"Permalink to this definition\">¶</a></dt>\n<dd><p>Here\
   \ is some documentation.</p>\n<dl class=\"field-list\">\n<dt class=\"field-odd\"\
-  >Input</dt>\n<dd class=\"field-odd\"><p>A file</p>\n</dd>\n<dt class=\"field-even\"\
-  >Output</dt>\n<dd class=\"field-even\"><p>Another file</p>\n</dd>\n<dt class=\"\
-  field-odd\">Config</dt>\n<dd class=\"field-odd\"><p><strong>length</strong> – Used\
+  >Input<span class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><p>A file</p>\n\
+  </dd>\n<dt class=\"field-even\">Output<span class=\"colon\">:</span></dt>\n<dd class=\"\
+  field-even\"><p>Another file</p>\n</dd>\n<dt class=\"field-odd\">Config<span class=\"\
+  colon\">:</span></dt>\n<dd class=\"field-odd\"><p><strong>length</strong> – Used\
   \ to set params<p><em>default: </em><code class=\"docutils literal notranslate\"\
   ><span class=\"pre\">15</span></code></p>\n</p>\n</dd>\n<dt class=\"field-even\"\
-  >Params</dt>\n<dd class=\"field-even\"><ul class=\"simple\">\n<li><p><strong>a</strong>\
-  \ – Set to config <code class=\"docutils literal notranslate\"><span class=\"pre\"\
-  >length</span></code> value</p></li>\n<li><p><strong>b</strong> – Sets the value\
-  \ of <code class=\"docutils literal notranslate\"><span class=\"pre\">b</span></code></p></li>\n\
-  </ul>\n</dd>\n<dt class=\"field-odd\">Conda</dt>\n<dd class=\"field-odd\"><div class=\"\
-  highlight-yaml notranslate\"><div class=\"highlight\"><pre><span></span><span class=\"\
-  nt\">channels</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
+  >Params<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><ul class=\"\
+  simple\">\n<li><p><strong>a</strong> – Set to config <code class=\"docutils literal\
+  \ notranslate\"><span class=\"pre\">length</span></code> value</p></li>\n<li><p><strong>b</strong>\
+  \ – Sets the value of <code class=\"docutils literal notranslate\"><span class=\"\
+  pre\">b</span></code></p></li>\n</ul>\n</dd>\n<dt class=\"field-odd\">Conda<span\
+  \ class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><div class=\"highlight-yaml\
+  \ notranslate\"><div class=\"highlight\"><pre><span></span><span class=\"nt\">channels</span><span\
+  \ class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span\
+  \ class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span class=\"l l-Scalar\
+  \ l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n<span class=\"nt\"\
+  >dependencies</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
   w\">  </span><span class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span\
-  \ class=\"l l-Scalar l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n\
-  <span class=\"nt\">dependencies</span><span class=\"p\">:</span><span class=\"w\"\
-  ></span>\n<span class=\"w\">  </span><span class=\"p p-Indicator\">-</span><span\
-  \ class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">numpy</span><span\
-  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"\
-  line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\"\
-  >\n<dt class=\"sig sig-object smk\" id=\"rule-follows_basic\">\n<span class=\"pre\"\
-  >Rule</span> <span class=\"sig-name descname\"><span class=\"pre\">follows_basic</span></span><a\
-  \ class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L30\"\
+  \ class=\"l l-Scalar l-Scalar-Plain\">numpy</span><span class=\"w\"></span>\n</pre></div>\n\
+  </div>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"\
+  ><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\"\
+  \ id=\"rule-follows_basic\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name\
+  \ descname\"><span class=\"pre\">follows_basic</span></span><a class=\"reference\
+  \ external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L30\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n<dl class=\"field-list simple\"\
-  >\n<dt class=\"field-odd\">Config</dt>\n<dd class=\"field-odd\"><ul class=\"simple\"\
-  >\n<li><p><strong>omega_m</strong> – mass density<p><em>default: </em><code class=\"\
-  docutils literal notranslate\"><span class=\"pre\">0.27</span></code></p>\n</p></li>\n\
-  <li><p><strong>galaxy.stellar_mass</strong> – the galaxy stellar mass<p><em>default:\
+  >\n<dt class=\"field-odd\">Config<span class=\"colon\">:</span></dt>\n<dd class=\"\
+  field-odd\"><ul class=\"simple\">\n<li><p><strong>omega_m</strong> – mass density<p><em>default:\
+  \ </em><code class=\"docutils literal notranslate\"><span class=\"pre\">0.27</span></code></p>\n\
+  </p></li>\n<li><p><strong>galaxy.stellar_mass</strong> – the galaxy stellar mass<p><em>default:\
   \ </em><code class=\"docutils literal notranslate\"><span class=\"pre\">9.1</span></code></p>\n\
   </p></li>\n<li><p><strong>length</strong> – some random length<p><em>default: </em><code\
   \ class=\"docutils literal notranslate\"><span class=\"pre\">15</span></code></p>\n\
@@ -95,25 +99,25 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-also_follows_basic\" title=\"Permalink to this\
   \ definition\">¶</a></dt>\n<dd><p>Docs rhymes with fox…</p>\n<dl class=\"field-list\
-  \ simple\">\n<dt class=\"field-odd\">Config</dt>\n<dd class=\"field-odd\"><ul class=\"\
-  simple\">\n<li><p><strong>omega_m</strong> – mass density<p><em>default: </em><code\
-  \ class=\"docutils literal notranslate\"><span class=\"pre\">0.27</span></code></p>\n\
-  </p></li>\n<li><p><strong>galaxy.stellar_mass</strong> – the galaxy stellar mass<p><em>default:\
-  \ </em><code class=\"docutils literal notranslate\"><span class=\"pre\">9.1</span></code></p>\n\
-  </p></li>\n</ul>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"\
-  line\"><br /></div>\n</div>\n<dl class=\"smk checkpoint\">\n<dt class=\"sig sig-object\
-  \ smk\" id=\"rule-gen_random\">\n<span class=\"pre\">Checkpoint</span> <span class=\"\
-  sig-name descname\"><span class=\"pre\">gen_random</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L68\"\
+  \ simple\">\n<dt class=\"field-odd\">Config<span class=\"colon\">:</span></dt>\n\
+  <dd class=\"field-odd\"><ul class=\"simple\">\n<li><p><strong>omega_m</strong> –\
+  \ mass density<p><em>default: </em><code class=\"docutils literal notranslate\"\
+  ><span class=\"pre\">0.27</span></code></p>\n</p></li>\n<li><p><strong>galaxy.stellar_mass</strong>\
+  \ – the galaxy stellar mass<p><em>default: </em><code class=\"docutils literal notranslate\"\
+  ><span class=\"pre\">9.1</span></code></p>\n</p></li>\n</ul>\n</dd>\n</dl>\n</dd></dl>\n\
+  \n<div class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"\
+  smk checkpoint\">\n<dt class=\"sig sig-object smk\" id=\"rule-gen_random\">\n<span\
+  \ class=\"pre\">Checkpoint</span> <span class=\"sig-name descname\"><span class=\"\
+  pre\">gen_random</span></span><a class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L68\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-gen_random\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Generates a random number (between 1 and 3) of empty files.</p>\n\
-  <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Config</dt>\n<dd class=\"\
-  field-odd\"><p><strong>conf1</strong> – a config var<p><em>default: </em><code class=\"\
-  docutils literal notranslate\"><span class=\"pre\">val1</span></code></p>\n</p>\n\
-  </dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
-  \ /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
-  rule-the_end\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"\
+  <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Config<span class=\"colon\"\
+  >:</span></dt>\n<dd class=\"field-odd\"><p><strong>conf1</strong> – a config var<p><em>default:\
+  \ </em><code class=\"docutils literal notranslate\"><span class=\"pre\">val1</span></code></p>\n\
+  </p>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"\
+  ><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\"\
+  \ id=\"rule-the_end\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"\
   ><span class=\"pre\">the_end</span></span><a class=\"reference external\" href=\"\
   https://github.com/smutch/test/blob/master/workflow/Snakefile#L91\"><span class=\"\
   viewcode-link\"><span class=\"pre\">[source]</span></span></a><a class=\"headerlink\"\
@@ -127,27 +131,27 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-other\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>This rule lies within another snakemake file. Looks familiar\
-  \ though!</p>\n<dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input</dt>\n\
-  <dd class=\"field-odd\"><p>an input file</p>\n</dd>\n<dt class=\"field-even\">Output</dt>\n\
-  <dd class=\"field-even\"><p>an output file</p>\n</dd>\n</dl>\n</dd></dl>\n\n<div\
-  \ class=\"line-block\">\n<div class=\"line\"><br /></div>\n</div>\n<p>… or a list\
-  \ of rules</p>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"\
-  rule-other2\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"\
-  ><span class=\"pre\">other2</span></span><a class=\"reference external\" href=\"\
-  https://github.com/smutch/test/blob/master/workflow/rules/others.smk#L16\"><span\
-  \ class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a class=\"\
-  headerlink\" href=\"#rule-other2\" title=\"Permalink to this definition\">¶</a></dt>\n\
-  <dd><p>This is other2…</p>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"\
-  line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object\
-  \ smk\" id=\"rule-other3\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name\
-  \ descname\"><span class=\"pre\">other3</span></span><a class=\"reference external\"\
-  \ href=\"https://github.com/smutch/test/blob/master/workflow/rules/others.smk#L28\"\
+  \ though!</p>\n<dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input<span\
+  \ class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><p>an input file</p>\n\
+  </dd>\n<dt class=\"field-even\">Output<span class=\"colon\">:</span></dt>\n<dd class=\"\
+  field-even\"><p>an output file</p>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\"\
+  >\n<div class=\"line\"><br /></div>\n</div>\n<p>… or a list of rules</p>\n<dl class=\"\
+  smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-other2\">\n<span class=\"\
+  pre\">Rule</span> <span class=\"sig-name descname\"><span class=\"pre\">other2</span></span><a\
+  \ class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/rules/others.smk#L16\"\
+  ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
+  \ class=\"headerlink\" href=\"#rule-other2\" title=\"Permalink to this definition\"\
+  >¶</a></dt>\n<dd><p>This is other2…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
+  >\n<div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"\
+  sig sig-object smk\" id=\"rule-other3\">\n<span class=\"pre\">Rule</span> <span\
+  \ class=\"sig-name descname\"><span class=\"pre\">other3</span></span><a class=\"\
+  reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/rules/others.smk#L28\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-other3\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>This is other3…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
   >\n<div class=\"line\"><br /></div>\n</div>\n</section>\n</section>\n<section id=\"\
   indices-and-tables\">\n<h1>Indices and tables<a class=\"headerlink\" href=\"#indices-and-tables\"\
-  \ title=\"Permalink to this headline\">¶</a></h1>\n<ul class=\"simple\">\n<li><p><a\
+  \ title=\"Permalink to this heading\">¶</a></h1>\n<ul class=\"simple\">\n<li><p><a\
   \ class=\"reference internal\" href=\"genindex.html\"><span class=\"std std-ref\"\
   >Index</span></a></p></li>\n<li><p><a class=\"reference internal\" href=\"search.html\"\
   ><span class=\"std std-ref\">Search Page</span></a></p></li>\n</ul>\n</section>\n\
@@ -161,13 +165,13 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   >\n    <form class=\"search\" action=\"search.html\" method=\"get\">\n      <input\
   \ type=\"text\" name=\"q\" aria-labelledby=\"searchlabel\" autocomplete=\"off\"\
   \ autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"/>\n      <input\
-  \ type=\"submit\" value=\"Go\" />\n    </form>\n    </div>\n</div>\n<script>$('#searchbox').show(0);</script>\n\
-  \n\n\n\n\n\n\n\n        </div>\n      </div>\n      <div class=\"clearer\"></div>\n\
-  \    </div>\n    <div class=\"footer\">\n      &copy;2022, Simon Mutch.\n      \n\
-  \      |\n      Powered by <a href=\"http://sphinx-doc.org/\">Sphinx 4.5.0</a>\n\
-  \      &amp; <a href=\"https://github.com/bitprophet/alabaster\">Alabaster 0.7.12</a>\n\
-  \      \n      |\n      <a href=\"_sources/index.rst.txt\"\n          rel=\"nofollow\"\
-  >Page source</a>\n    </div>\n\n    \n\n    \n  </body>"
+  \ type=\"submit\" value=\"Go\" />\n    </form>\n    </div>\n</div>\n<script>document.getElementById('searchbox').style.display\
+  \ = \"block\"</script>\n\n\n\n\n\n\n\n\n        </div>\n      </div>\n      <div\
+  \ class=\"clearer\"></div>\n    </div>\n    <div class=\"footer\">\n      &copy;2022,\
+  \ Simon Mutch.\n      \n      |\n      Powered by <a href=\"http://sphinx-doc.org/\"\
+  >Sphinx 5.3.0</a>\n      &amp; <a href=\"https://github.com/bitprophet/alabaster\"\
+  >Alabaster 0.7.12</a>\n      \n      |\n      <a href=\"_sources/index.rst.txt\"\
+  \n          rel=\"nofollow\">Page source</a>\n    </div>\n\n    \n\n    \n  </body>"
 smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentwrapper\"\
   >\n        <div class=\"bodywrapper\">\n          \n\n          <div class=\"body\"\
   \ role=\"main\">\n            \n\n   <h1>Snakemake Rules</h1>\n\n   <div class=\"\
@@ -234,8 +238,9 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   \ method=\"get\">\n      <input type=\"text\" name=\"q\" aria-labelledby=\"searchlabel\"\
   \ autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"\
   false\"/>\n      <input type=\"submit\" value=\"Go\" />\n    </form>\n    </div>\n\
-  </div>\n<script>$('#searchbox').show(0);</script>\n\n\n\n\n\n\n\n\n        </div>\n\
-  \      </div>\n      <div class=\"clearer\"></div>\n    </div>\n    <div class=\"\
-  footer\">\n      &copy;2022, Simon Mutch.\n      \n      |\n      Powered by <a\
-  \ href=\"http://sphinx-doc.org/\">Sphinx 4.5.0</a>\n      &amp; <a href=\"https://github.com/bitprophet/alabaster\"\
-  >Alabaster 0.7.12</a>\n      \n    </div>\n\n    \n\n    \n  </body>"
+  </div>\n<script>document.getElementById('searchbox').style.display = \"block\"</script>\n\
+  \n\n\n\n\n\n\n\n        </div>\n      </div>\n      <div class=\"clearer\"></div>\n\
+  \    </div>\n    <div class=\"footer\">\n      &copy;2022, Simon Mutch.\n      \n\
+  \      |\n      Powered by <a href=\"http://sphinx-doc.org/\">Sphinx 5.3.0</a>\n\
+  \      &amp; <a href=\"https://github.com/bitprophet/alabaster\">Alabaster 0.7.12</a>\n\
+  \      \n    </div>\n\n    \n\n    \n  </body>"
