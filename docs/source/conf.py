@@ -49,17 +49,17 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "sphinx_immaterial"
+html_logo = "img/snakedoc-logo.svg"
+html_theme_options = {
+    "toc_title_is_page_title": True,
+    "site_url": "https://smutch.github.io/snakedoc/",
+    "repo_url": "https://github.com/smutch/snakedoc",
+    "repo_name": "Snakedoc",
+    "repo_type": "github",
+    "features": ["content.code.annotate", "navigation.instant", "toc.follow"],
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-
-html_theme_options = {
-    "site_url": "https://smutch.github.io/snakedoc/",
-    "repo_url": "https://github.com/smutch/snakedoc",
-    "repo_name": "snakedoc",
-    "repo_type": "github",
-    "toc_title_is_page_title": True,
-    "features": ["content.code.annotate", "navigation.instant", "toc.follow"],
-}

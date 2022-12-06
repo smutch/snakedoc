@@ -1,34 +1,40 @@
-:hero: A Sphinx extension for generating Snakemake workflow documentation.
+:hero: A Sphinx extension for Snakemake workflow documentation.
+
+.. toctree::
+   :hidden:
+
+   installation
+   guide
 
 Snakedoc
 ========
 
-
-Installation
-------------
-
-.. warning::
-   Not actually true yet!
-
-Snakedoc can be installed via `pip <https://pip.pypa.io/en/stable/>`_::
-
-    pip install -U snakedoc
-
-or `conda <https://docs.conda.io/en/latest/>`_::
-
-    conda install -c conda-forge snakedoc
-
-
-Motivation
-----------
-
-Large Snakemake workflows can quickly become complex and opaque to users (i.e. non-authors trying to use and modify the workflow). Snakedoc is an attempt to alleviate this issue by:
-
-1. Encouraging developers to write contextual and **useful** docstrings inline with their rules, in a well defined format.
-2. Providing a way to automatically scrape that information and present it in Sphinx documentation where it can be further augmented if needed.
+.. image:: img/snakedoc-logo.svg
+   :width: 30%
+   :align: center
+   :class: no-scaled-link
 
 |
 
-.. toctree::
-   :hidden:
-   :caption: Snakedoc
+`Snakemake`_ workflows can be complicated and difficult to follow, especially
+for new users. Having good documentation explaining what each rule is doing,
+what assumptions are being made, and what parts can be configured are important
+for understandable and reusable workflows. `Snakedoc`_ aims to help with this
+by:
+
+1. encouraging developers to write contextual and useful docstrings, inline
+   with their rules; and
+2. providing a way to automatically scrape those docstrings and present them in
+   Sphinx documentation where they can be further augmented as needed.
+
+
+Where to go from here
+---------------------
+
+* See the :doc:`installation` page how to install Snakedoc.
+* To get started, check out the :doc:`guide`.
+
+|
+
+.. _Snakemake: https://snakemake.github.io
+.. _Snakedoc: https://smutch.github.io/snakedoc/
