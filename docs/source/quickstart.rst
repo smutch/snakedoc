@@ -48,9 +48,6 @@ as you would document a Python function. For example [#f1]_::
             ...
         ...
 
-.. [#f1] Taken from the `McCoy Phylodynamics Workflow
-   <https://github.com/mccoy-devs/mccoy>`_.
-
 If you are familiar with Python style rst-docstrings then you will feel right at home.
 
 As recommended in normal Python code, the basic layout of a docstring comprises
@@ -68,46 +65,46 @@ using Snakedoc. Some accept multiple, named values (c.f. the
    :header-rows: 1
 
    * - Name
-     - Multiple values?
-   * - input
-     - ✅
-   * - output
-     - ✅
-   * - param
-     - ✅
-   * - resource
-     - ✅
-   * - config
-     - ✅
-   * - log
-     - ❎
-   * - notebook
-     - ❎
-   * - shell
-     - ❎
-   * - script
-     - ❎
-   * - run
-     - ❎
-   * - wildcard_constraints
-     - ❎
-   * - threads
-     - ❎
-   * - priority
-     - ❎
-   * - retries
-     - ❎
+     - # values
    * - benchmark
-     - ❎
-   * - group
-     - ❎
+     - single
+   * - config
+     - multiple
    * - default_target
-     - ❎
+     - single
+   * - group
+     - single
+   * - input
+     - multiple
+   * - log
+     - single
+   * - notebook
+     - single
+   * - output
+     - multiple
+   * - param
+     - multiple
+   * - priority
+     - single
+   * - resource
+     - multiple
+   * - retries
+     - single
+   * - run
+     - single
+   * - script
+     - single
+   * - shell
+     - single
+   * - threads
+     - single
+   * - wildcard_constraints
+     - single
 
 
 Finally, you may wish to include extra notes, caveats, etc. at the end of the docstring.
 You can include any valid reStructuredText_ and it will be marked up
-accordingly (e.g. the ``..note::`` reStructuredText_ directives in the example above).
+accordingly (e.g. the ``..note::`` reStructuredText_ directive in the example above).
 
 For more basic examples, see the `example directory of the Snakedoc repo
 <https://github.com/smutch/snakedoc/tree/main/example>`_. For an example of a
@@ -117,6 +114,23 @@ production pipeline fully documented with Snakedoc complete, check out the
 
 Set up Sphinx and Snakedoc
 --------------------------
+
+.. highlight:: python
+
+Begin by creating a standard Sphinx project using the `sphinx-quickstart <https://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html>`_ tool. This will create a Sphinx configuration file called ``conf.py`` [#f2]_. To enable Snakedoc, simply add ``"snakedoc"`` to the extensions list::
+
+    extensions = ["snakedoc"]
+
+A useful feature of Snakedoc is to provide a link to the source code of each rule in the documentation. Since the head of this link will depend on the public location of your source code (Github, Bitbucket, Gitlab, private hosting, etc.) you need to provide a mapping between the full path to the source code on your local machine and the public link. This is set using the ``smk_linkcode_mapping`` config parameter, a 2-element tuple telling Snakedoc to replace all instances of the first element with the second.
+
+For example, if your source code is located on your local machine in ``/home/username/workflow`` and your public Github repository is located at ``https://github.com/username/workflow``, then you could use something like the following::
+
+    smk_linkcode_mapping = ("/home/username/workflow", "https://github.com/username/workflow/blob/master")
+
+Since ``smk_linkcode_mapping`` is a Python tuple, you can use any valid Python code to make this work on any machine without hardcoding the path::
+
+    from pathlib import Path
+    smk_linkcode_mapping = (str(Path(__file__).parents[2]), "https://github.com/username/workflow/blob/master")
 
 
 Generate your docs
@@ -128,5 +142,10 @@ What next?
 
 * Check out some examples
 
+
+.. [#f1] Taken from the `McCoy Phylodynamics Workflow
+   <https://github.com/mccoy-devs/mccoy>`_.
+
+.. [#f2] https://www.sphinx-doc.org/en/master/usage/configuration.html#module-conf
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
