@@ -1,5 +1,5 @@
-Quickstart guide
-================
+Guide
+=====
 
 .. |install Snakedoc| replace:: **install Snakedoc**
 .. _install Snakedoc: installation.html
@@ -10,7 +10,7 @@ Quickstart guide
 Add docstrings to your Snakemake workflow
 -----------------------------------------
 
-.. highlight:: text
+.. highlight:: rst
 
 The main feature of Snakedoc is the generation of documentation for your
 Snakemake workflow. To do this, you need to add docstrings to the rules in your
@@ -42,10 +42,8 @@ as you would document a Python function. For example [#f1]_::
             please replace ``-beagle`` with ``-beagle_GPU`` in the ``beast.beast`` entry in your McCoy ``config.yaml`` file.
         """
 
-        input:
-            ...
-        output:
-            ...
+        input: ...
+        output: ...
         ...
 
 If you are familiar with Python style rst-docstrings then you will feel right at home.
@@ -109,7 +107,7 @@ accordingly (e.g. the ``..note::`` reStructuredText_ directive in the example ab
 For more basic examples, see the `example directory of the Snakedoc repo
 <https://github.com/smutch/snakedoc/tree/main/example>`_. For an example of a
 production pipeline fully documented with Snakedoc complete, check out the
-`McCoy phylodynamics workflow <https://github.com/mccoy-devs/mccoy>`_.
+`McCoy phylodynamics workflow`_.
 
 
 Set up Sphinx and Snakedoc
@@ -117,17 +115,30 @@ Set up Sphinx and Snakedoc
 
 .. highlight:: python
 
-Begin by creating a standard Sphinx project using the `sphinx-quickstart <https://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html>`_ tool. This will create a Sphinx configuration file called ``conf.py`` [#f2]_. To enable Snakedoc, simply add ``"snakedoc"`` to the extensions list::
+Begin by creating a standard Sphinx project using the `sphinx-quickstart
+<https://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html>`_ tool. This
+will create a Sphinx configuration file called ``conf.py`` [#f2]_. To enable
+Snakedoc, simply add ``"snakedoc"`` to the extensions list::
 
     extensions = ["snakedoc"]
 
-A useful feature of Snakedoc is to provide a link to the source code of each rule in the documentation. Since the head of this link will depend on the public location of your source code (Github, Bitbucket, Gitlab, private hosting, etc.) you need to provide a mapping between the full path to the source code on your local machine and the public link. This is set using the ``smk_linkcode_mapping`` config parameter, a 2-element tuple telling Snakedoc to replace all instances of the first element with the second.
+A useful feature of Snakedoc is to provide a link to the source code of each
+rule in the documentation. Since the head of this link will depend on the
+public location of your source code (Github, Bitbucket, Gitlab, private
+hosting, etc.) you need to provide a mapping between the full path to the
+source code on your local machine and the public link. This is set using the
+``smk_linkcode_mapping`` config parameter, a 2-element tuple telling Snakedoc
+to replace all instances of the first element with the second.
 
-For example, if your source code is located on your local machine in ``/home/username/workflow`` and your public Github repository is located at ``https://github.com/username/workflow``, then you could use something like the following::
+For example, if your source code is located on your local machine in
+``/home/username/workflow`` and your public Github repository is located at
+``https://github.com/username/workflow``, then you could use something like the
+following::
 
     smk_linkcode_mapping = ("/home/username/workflow", "https://github.com/username/workflow/blob/master")
 
-Since ``smk_linkcode_mapping`` is a Python tuple, you can use any valid Python code to make this work on any machine without hardcoding the path::
+Since ``smk_linkcode_mapping`` is a Python tuple, you can use any valid Python
+code to make this work on any machine without hardcoding the path::
 
     from pathlib import Path
     smk_linkcode_mapping = (str(Path(__file__).parents[2]), "https://github.com/username/workflow/blob/master")
@@ -136,11 +147,94 @@ Since ``smk_linkcode_mapping`` is a Python tuple, you can use any valid Python c
 Generate your docs
 ------------------
 
+From inline docstrings
+::::::::::::::::::::::
+
+.. highlight:: rst
+
+To add documentation generated from inline docstrings in a Snakemake file, use
+the ``smk:autodoc`` directive. For example::
+
+    .. smk:autodoc:: ../../workflow/Snakefile
+
+where the path is relative to the current Sphinx reStructuredText_ file.
+
+There are several additional arguments and options that can be passed to the
+``autodoc`` directive:
+
+* A list of rules to document. This allows for more freedom in how you generate
+  your documentation and allows you split up rules from the same Snakemake file
+  into different documentation pages. e.g.::
+
+    .. smk:autodoc:: ../../workflow/rules/others.smk ruleA ruleC
+
+* The path to a config file used to populate the Snakemake ``config``
+  dictionary. This information is used by Snakedoc to report the default values
+  of config parameters. e.g.::
+
+    .. smk::autodoc:: ../../workflow/Snakefile
+       :configfile: ../../workflow/config.yaml
+
+* Individual config parameters in the form of ``key = value`` entries. This can
+  be used instead of the ``configfile`` option or in addition to it, to
+  override the values of parameters. e.g.::
+
+    .. smk::autodoc:: ../../workflow/Snakefile
+       :config:
+           param_a = 1
+           param_b = 20
+
+
+Directly in your docs
+:::::::::::::::::::::
+
+In addition to pulling documentation from embedded docstrings, you can also
+manually document rules and checkpoints directly in your Sphinx
+reStructuredText_ files. For example::
+
+    .. smk:rule:: handwritten
+
+       This is a handwritten docstring.
+
+       :input: A super-dooper result file
+       :output: A swanky plot
+       :param γ: The gradient of the line
+       :config handwritten.length: A phony config parameter
+
+    .. smk:checkpoint:: handwritten_checkpoint
+
+       Checkpoints are supported too.
+
+       :input: Some data
+       :output: A directory with an undetermined number of files
+
+.. note::
+
+   See the `example directory`_ for more usage examples.
+
+
+Rules index
+:::::::::::
+
+Snakedoc also generates an index of your rules and checkpoints which can be linked to in your documentation using::
+
+    :ref:`smk-rule`
+
+
+Compile!
+::::::::
+
+The easiest way to compile your documentation and produce HTML files which can be served on Github pages or any other static hosting service, use the Makefile provided by Sphinx::
+
+    make html
+
 
 What next?
 ----------
 
-* Check out some examples
+* For more information on writing and compiling documentation with Sphinx, see their `help pages <https://www.sphinx-doc.org/en/master/>`_.
+* Have a look at the `example directory`_.
+* Look at some real life examples of workflows documented with Snakedoc. For example, the `McCoy phylodynamics workflow`_.
 
 
 .. [#f1] Taken from the `McCoy Phylodynamics Workflow
@@ -149,3 +243,7 @@ What next?
 .. [#f2] https://www.sphinx-doc.org/en/master/usage/configuration.html#module-conf
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
+
+.. _example directory: https://github.com/smutch/snakedoc/tree/main/example
+
+.. _McCoy phylodynamics workflow: https://github.com/mccoy-devs/mccoy
