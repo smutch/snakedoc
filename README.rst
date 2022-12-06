@@ -1,4 +1,4 @@
-.. image:: docs/source/img/snakedoc-logo.svg
+.. image:: https://smutch.github.io/snakedoc/_images/snakedoc-logo.svg
    :width: 30%
    :align: center
    :class: no-scaled-link
