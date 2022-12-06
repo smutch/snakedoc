@@ -1,13 +1,38 @@
-Snakedoc
-========
+.. image:: docs/source/img/snakedoc-logo.svg
+   :width: 30%
+   :align: center
+   :class: no-scaled-link
 
 A `Sphinx`_ extension for `Snakemake`_ workflows.
 
-**WIP!**
-
 |tests badge| |coverage badge| |pre-commit badge|
-
 |git3moji badge| |black badge| |isort badge|
+
+`Snakemake`_ workflows can be complicated and difficult to follow, especially
+for new users. Having good documentation explaining what each rule is doing,
+what assumptions are being made, and what parts can be configured are important
+for understandable and reusable workflows. `Snakedoc`_ aims to help with this
+by:
+
+1. encouraging developers to write contextual and useful docstrings, inline
+   with their rules; and
+2. providing a way to automatically scrape those docstrings and present them in
+   Sphinx documentation where they can be further augmented as needed.
+
+
+Where to go from here
+---------------------
+
+* See the `installation <https://smutch.github.io/snakedoc/installation.html>`_
+  page how to install Snakedoc.
+* To get started, check out the `guide
+  <https://smutch.github.io/snakedoc/guide.html>`_.
+
+
+
+.. _Sphinx: https://www.sphinx-doc.org/
+.. _Snakemake: https://snakemake.readthedocs.io/
+.. _Snakedoc: https://smutch.github.io/snakedoc/
 
 .. |tests badge| image:: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml/badge.svg
    :target: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml
@@ -32,19 +57,3 @@ A `Sphinx`_ extension for `Snakemake`_ workflows.
 .. |isort badge| image:: https://img.shields.io/badge/imports-isort-ef8336.svg
    :target: https://github.com/pycqa/isort
    :alt: Imports formatted with isort
-
-Take it for a spin
-------------------
-
-.. code-block:: shell
-
-   git clone git@github.com:smutch/snakedoc.git
-   cd snakedoc
-   hatch shell
-   cd example/docs
-   make html
-   open build/html/index.html
-
-
-.. _`Sphinx`: https://www.sphinx-doc.org/
-.. _`Snakemake`: https://snakemake.readthedocs.io/
