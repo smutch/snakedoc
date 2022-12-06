@@ -4,7 +4,7 @@
    :hidden:
 
    installation
-   quickstart
+   guide
 
 Snakedoc
 ========
@@ -32,7 +32,7 @@ Where to go from here
 ---------------------
 
 * See the :doc:`installation` page how to install Snakedoc.
-* To get started with the basics, check out the :doc:`quickstart`.
+* To get started, check out the :doc:`guide`.
 
 |
 
