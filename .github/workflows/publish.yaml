@@ -1,0 +1,30 @@
+name: publish
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Fetch all history for applying timestamps to every page
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Hatch
+        run: pip install --upgrade --pre hatch
+
+      - name: Build
+        run: hatch build
+
+      - name: Publish
+        env:
+          HATCH_INDEX_USER: '__token__'
+          HATCH_INDEX_AUTH: ${{ secrets.PYPI_TOKEN }}
+        run: hatch publish
