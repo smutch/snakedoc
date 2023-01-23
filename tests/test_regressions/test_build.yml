@@ -19,31 +19,30 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   \ class=\"pre\">d</span></code></p></li>\n</ul>\n</dd>\n<dt class=\"field-even\"\
   >Conda<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><div class=\"\
   highlight-yaml notranslate\"><div class=\"highlight\"><pre><span></span><span class=\"\
-  nt\">channels</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
-  w\">  </span><span class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span\
-  \ class=\"l l-Scalar l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n\
-  <span class=\"nt\">dependencies</span><span class=\"p\">:</span><span class=\"w\"\
-  ></span>\n<span class=\"w\">  </span><span class=\"p p-Indicator\">-</span><span\
-  \ class=\"w\"> </span><span class=\"nt\">pip</span><span class=\"p\">:</span><span\
-  \ class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\"\
-  >-</span><span class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test1</span><span\
-  \ class=\"w\"></span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\"\
-  >-</span><span class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span><span\
-  \ class=\"w\"></span>\n</pre></div>\n</div>\n</dd>\n<dt class=\"field-odd\">Resources<span\
-  \ class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><p><strong>mem_mb</strong>\
-  \ – 2</p>\n</dd>\n<dt class=\"field-even\">Config<span class=\"colon\">:</span></dt>\n\
-  <dd class=\"field-even\"><p><strong>handwritten.a</strong> – A dummy config parameter\
-  \ used in this rule</p>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n\
-  <div class=\"line\"><br /></div>\n</div>\n<dl class=\"smk checkpoint\">\n<dt class=\"\
-  sig sig-object smk\" id=\"rule-hw_checkpoint\">\n<span class=\"pre\">Checkpoint</span>\
-  \ <span class=\"sig-name descname\"><span class=\"pre\">hw_checkpoint</span></span><a\
-  \ class=\"headerlink\" href=\"#rule-hw_checkpoint\" title=\"Permalink to this definition\"\
-  >¶</a></dt>\n<dd><p>This is a handwritten docstring for a <em>checkpoint</em>.</p>\n\
-  <dl class=\"field-list simple\">\n<dt class=\"field-odd\">Input<span class=\"colon\"\
-  >:</span></dt>\n<dd class=\"field-odd\"><p>a.txt</p>\n</dd>\n<dt class=\"field-even\"\
-  >Output<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><p>b.txt</p>\n\
-  </dd>\n</dl>\n</dd></dl>\n\n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a\
-  \ class=\"headerlink\" href=\"#autodoc\" title=\"Permalink to this heading\">¶</a></h2>\n\
+  nt\">channels</span><span class=\"p\">:</span>\n<span class=\"w\">  </span><span\
+  \ class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span class=\"l l-Scalar\
+  \ l-Scalar-Plain\">conda-forge</span>\n<span class=\"nt\">dependencies</span><span\
+  \ class=\"p\">:</span>\n<span class=\"w\">  </span><span class=\"p p-Indicator\"\
+  >-</span><span class=\"w\"> </span><span class=\"nt\">pip</span><span class=\"p\"\
+  >:</span>\n<span class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span\
+  \ class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">test1</span>\n<span\
+  \ class=\"w\">    </span><span class=\"p p-Indicator\">-</span><span class=\"w\"\
+  > </span><span class=\"l l-Scalar l-Scalar-Plain\">test2</span>\n</pre></div>\n\
+  </div>\n</dd>\n<dt class=\"field-odd\">Resources<span class=\"colon\">:</span></dt>\n\
+  <dd class=\"field-odd\"><p><strong>mem_mb</strong> – 2</p>\n</dd>\n<dt class=\"\
+  field-even\">Config<span class=\"colon\">:</span></dt>\n<dd class=\"field-even\"\
+  ><p><strong>handwritten.a</strong> – A dummy config parameter used in this rule</p>\n\
+  </dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br\
+  \ /></div>\n</div>\n<dl class=\"smk checkpoint\">\n<dt class=\"sig sig-object smk\"\
+  \ id=\"rule-hw_checkpoint\">\n<span class=\"pre\">Checkpoint</span> <span class=\"\
+  sig-name descname\"><span class=\"pre\">hw_checkpoint</span></span><a class=\"headerlink\"\
+  \ href=\"#rule-hw_checkpoint\" title=\"Permalink to this definition\">¶</a></dt>\n\
+  <dd><p>This is a handwritten docstring for a <em>checkpoint</em>.</p>\n<dl class=\"\
+  field-list simple\">\n<dt class=\"field-odd\">Input<span class=\"colon\">:</span></dt>\n\
+  <dd class=\"field-odd\"><p>a.txt</p>\n</dd>\n<dt class=\"field-even\">Output<span\
+  \ class=\"colon\">:</span></dt>\n<dd class=\"field-even\"><p>b.txt</p>\n</dd>\n\
+  </dl>\n</dd></dl>\n\n</section>\n<section id=\"autodoc\">\n<h2>Autodoc<a class=\"\
+  headerlink\" href=\"#autodoc\" title=\"Permalink to this heading\">¶</a></h2>\n\
   <dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-all\">\n<span\
   \ class=\"pre\">Rule</span> <span class=\"sig-name descname\"><span class=\"pre\"\
   >all</span></span><a class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L3\"\
@@ -70,17 +69,15 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   pre\">b</span></code></p></li>\n</ul>\n</dd>\n<dt class=\"field-odd\">Conda<span\
   \ class=\"colon\">:</span></dt>\n<dd class=\"field-odd\"><div class=\"highlight-yaml\
   \ notranslate\"><div class=\"highlight\"><pre><span></span><span class=\"nt\">channels</span><span\
-  \ class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"w\">  </span><span\
-  \ class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span class=\"l l-Scalar\
-  \ l-Scalar-Plain\">conda-forge</span><span class=\"w\"></span>\n<span class=\"nt\"\
-  >dependencies</span><span class=\"p\">:</span><span class=\"w\"></span>\n<span class=\"\
+  \ class=\"p\">:</span>\n<span class=\"w\">  </span><span class=\"p p-Indicator\"\
+  >-</span><span class=\"w\"> </span><span class=\"l l-Scalar l-Scalar-Plain\">conda-forge</span>\n\
+  <span class=\"nt\">dependencies</span><span class=\"p\">:</span>\n<span class=\"\
   w\">  </span><span class=\"p p-Indicator\">-</span><span class=\"w\"> </span><span\
-  \ class=\"l l-Scalar l-Scalar-Plain\">numpy</span><span class=\"w\"></span>\n</pre></div>\n\
-  </div>\n</dd>\n</dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"\
-  ><br /></div>\n</div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\"\
-  \ id=\"rule-follows_basic\">\n<span class=\"pre\">Rule</span> <span class=\"sig-name\
-  \ descname\"><span class=\"pre\">follows_basic</span></span><a class=\"reference\
-  \ external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L30\"\
+  \ class=\"l l-Scalar l-Scalar-Plain\">numpy</span>\n</pre></div>\n</div>\n</dd>\n\
+  </dl>\n</dd></dl>\n\n<div class=\"line-block\">\n<div class=\"line\"><br /></div>\n\
+  </div>\n<dl class=\"smk rule\">\n<dt class=\"sig sig-object smk\" id=\"rule-follows_basic\"\
+  >\n<span class=\"pre\">Rule</span> <span class=\"sig-name descname\"><span class=\"\
+  pre\">follows_basic</span></span><a class=\"reference external\" href=\"https://github.com/smutch/test/blob/master/workflow/Snakefile#L30\"\
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-follows_basic\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>Docs rhymes with socks…</p>\n<dl class=\"field-list simple\"\
@@ -167,11 +164,7 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   \ autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"/>\n      <input\
   \ type=\"submit\" value=\"Go\" />\n    </form>\n    </div>\n</div>\n<script>document.getElementById('searchbox').style.display\
   \ = \"block\"</script>\n\n\n\n\n\n\n\n\n        </div>\n      </div>\n      <div\
-  \ class=\"clearer\"></div>\n    </div>\n    <div class=\"footer\">\n      &copy;2022,\
-  \ Simon Mutch.\n      \n      |\n      Powered by <a href=\"http://sphinx-doc.org/\"\
-  >Sphinx 5.3.0</a>\n      &amp; <a href=\"https://github.com/bitprophet/alabaster\"\
-  >Alabaster 0.7.12</a>\n      \n      |\n      <a href=\"_sources/index.rst.txt\"\
-  \n          rel=\"nofollow\">Page source</a>\n    </div>\n\n    \n\n    \n  </body>"
+  \ class=\"clearer\"></div>\n    </div>\n    <div class=\"footer\">"
 smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentwrapper\"\
   >\n        <div class=\"bodywrapper\">\n          \n\n          <div class=\"body\"\
   \ role=\"main\">\n            \n\n   <h1>Snakemake Rules</h1>\n\n   <div class=\"\
@@ -240,7 +233,4 @@ smk-rule: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"docume
   false\"/>\n      <input type=\"submit\" value=\"Go\" />\n    </form>\n    </div>\n\
   </div>\n<script>document.getElementById('searchbox').style.display = \"block\"</script>\n\
   \n\n\n\n\n\n\n\n        </div>\n      </div>\n      <div class=\"clearer\"></div>\n\
-  \    </div>\n    <div class=\"footer\">\n      &copy;2022, Simon Mutch.\n      \n\
-  \      |\n      Powered by <a href=\"http://sphinx-doc.org/\">Sphinx 5.3.0</a>\n\
-  \      &amp; <a href=\"https://github.com/bitprophet/alabaster\">Alabaster 0.7.12</a>\n\
-  \      \n    </div>\n\n    \n\n    \n  </body>"
+  \    </div>\n    <div class=\"footer\">"
