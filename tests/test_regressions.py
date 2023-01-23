@@ -3,7 +3,9 @@ import re
 import pytest
 from sphinx.application import Sphinx
 
-body_pattern = re.compile(r"<body>.*</body>", re.DOTALL)
+# Note that we stop checking the body from the footer onwards. This is because the footer contains the exact versions of
+# the Sphinx etc. which we don't care about and will break the testss with dependabot PRs etc.
+body_pattern = re.compile(r'<body>.*<div class="footer">', re.DOTALL)
 
 
 @pytest.mark.sphinx('html', testroot='docs')
