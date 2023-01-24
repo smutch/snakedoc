@@ -1,11 +1,11 @@
 from pathlib import Path
-from typing import Set
+from typing import Callable, Set
 
 import docutils
 from docutils import nodes
 from docutils.nodes import Node
 from sphinx import addnodes
-from sphinx.application import Sphinx
+from sphinx.application import BuildEnvironment, Sphinx
 from sphinx.errors import SphinxError
 from sphinx.locale import _
 
@@ -36,15 +36,27 @@ def smk_linkcode_resolve(domain, info):
     return f"{info['baseurl']}{filename}{info['linesep']+lineno if lineno else ''}"
 
 
-def doctree_read(app: Sphinx, doctree: Node) -> None:
-    env = app.builder.env
-
+def _set_resolve_target(env: BuildEnvironment) -> Callable:
     resolve_target = getattr(env.config, "smk_linkcode_resolve", None)
     if env.config.smk_linkcode_resolve is None:
         resolve_target = smk_linkcode_resolve
+    else:
+        resolve_target = env.config.smk_linkcode_resolve
+    return resolve_target
+
+
+def _set_basepath_baseurl(env: BuildEnvironment) -> (str, str):
     basepath, baseurl = getattr(env.config, "smk_linkcode_mapping", ("", ""))
     if len(baseurl) > 0 and baseurl[-1] != "/":
         baseurl = f"{baseurl}/"
+    return basepath, baseurl
+
+
+def doctree_read(app: Sphinx, doctree: Node) -> None:
+    env = app.builder.env
+
+    resolve_target = _set_resolve_target(env)
+    basepath, baseurl = _set_basepath_baseurl(env)
     linesep = getattr(env.config, "smk_linkcode_linesep", "#L")
 
     domain_keys = {
@@ -52,7 +64,7 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
     }
 
     # TODO: Remove monkeypatch when https://github.com/sphinx-doc/sphinx/pull/10597 is released in Sphinx v5.0.3
-    if docutils.__version_info__ < (0, 18):
+    if docutils.__version_info__ < (0, 18):  # pragma: no cover
 
         def findall(self, *args, **kwargs):
             return iter(self.traverse(*args, **kwargs))
@@ -73,7 +85,7 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
                 if not value:
                     value = ""
                 info[key] = value
-            if not info:
+            if not info:  # pragma: no cover
                 continue
 
             # Call user code to resolve the link
@@ -85,7 +97,7 @@ def doctree_read(app: Sphinx, doctree: Node) -> None:
                 # no source
                 continue
 
-            if uri in uris or not uri:
+            if uri in uris or not uri:  # pragma: no cover
                 # only one link per name, please
                 continue
             uris.add(uri)

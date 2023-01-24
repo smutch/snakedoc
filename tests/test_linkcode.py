@@ -35,6 +35,30 @@ def test_smk_linkcode_resolve():
 
 
 @pytest.mark.sphinx('html', testroot='docs')
+def test__set_resolve_target(app: Sphinx):
+    env = app.builder.env
+
+    def dummy(domain, info):
+        pass
+
+    assert linkcode._set_resolve_target(env) == linkcode.smk_linkcode_resolve
+    env.config["smk_linkcode_resolve"] = dummy
+    assert linkcode._set_resolve_target(env) == dummy
+
+
+@pytest.mark.sphinx('html', testroot='docs')
+def test__set_basepath_baseurl(app: Sphinx):
+    env = app.builder.env
+    basepath, baseurl = linkcode._set_basepath_baseurl(env)
+    assert baseurl == env.config.smk_linkcode_mapping[1]
+
+    with_slash = baseurl
+    env.config.smk_linkcode_mapping = (basepath, baseurl[:-1])
+    basepath, baseurl = linkcode._set_basepath_baseurl(env)
+    assert baseurl == with_slash
+
+
+@pytest.mark.sphinx('html', testroot='docs')
 def test_source_links(app: Sphinx):
     SNAKEFILE_URL = "https://github.com/smutch/test/blob/master/workflow/Snakefile"
     snakefile_path = Path(app.confdir) / "workflow/Snakefile"
