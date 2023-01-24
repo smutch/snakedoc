@@ -5,11 +5,33 @@ import pytest
 from bs4 import BeautifulSoup
 from sphinx.application import Sphinx
 
+from snakedoc import linkcode
+
 RULE_PATTERN = re.compile(r"^\s*rule\s+(\S+)\s*:\s*$")
 
 
 def _parse_rule_link(rule_name: str, soup: BeautifulSoup):
     return soup.find("dt", id=f"rule-{rule_name}").find("a", class_="reference external").get("href").split("#L")
+
+
+def test_smk_linkcode_resolve():
+    domain = None
+    info = {"source": "./snake.smk", "basepath": "./", "baseurl": "https://blaa/", "linesep": "-"}
+    assert linkcode.smk_linkcode_resolve(domain, info) == f"{info['baseurl']}snake.smk"
+
+    info["source"] += ":22"
+    assert linkcode.smk_linkcode_resolve(domain, info) == f"{info['baseurl']}snake.smk{info['linesep']}22"
+
+    info["source"] += ":55"
+    with pytest.raises(linkcode.SmkLinkcodeError):
+        linkcode.smk_linkcode_resolve(domain, info)
+
+    info["source"] = "/snake.smk"
+    with pytest.raises(linkcode.SmkLinkcodeError):
+        linkcode.smk_linkcode_resolve(domain, info)
+
+    info["source"] = ""
+    assert linkcode.smk_linkcode_resolve(domain, info) == ""
 
 
 @pytest.mark.sphinx('html', testroot='docs')

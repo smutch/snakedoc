@@ -24,10 +24,12 @@ def smk_linkcode_resolve(domain, info):
     elif len(parts) == 1:
         filename = parts[0]
         lineno = None
+    else:
+        raise SmkLinkcodeError(f"Failed to parse source: {info['source']}")
     try:
         filename = str(Path(filename).relative_to(info['basepath']))
     except ValueError as err:
-        raise ValueError(
+        raise SmkLinkcodeError(
             f"Rule lists {filename} as it's source, but this is not relative to {info['basepath']}"
         ) from err
 
