@@ -67,7 +67,7 @@ scripts.docs = "sphinx-build docs/source docs/build/html"
 python = ["37", "38", "39", "310", "311"]
 
 [tool.hatch.envs.lint]
-detached = true  # we can't be detached as pylint needs to import snakedoc
+detached = true
 dependencies = [
   "isort>=5.10.1",
   "black>=22.3.0",
@@ -92,6 +92,15 @@ report.exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
+]
+
+[tool.hatch.envs.codecov]
+extra-dependencies = [
+    "codecov"
+]
+scripts.report = [
+    "pytest --cov-config=pyproject.toml --cov=snakedoc",
+    "codecov"
 ]
 
 [tool.black]
