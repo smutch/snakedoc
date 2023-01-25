@@ -38,8 +38,8 @@ Where to go from here
    :target: https://github.com/smutch/snakedoc/actions/workflows/tests.yaml
    :alt: tests status
 
-.. |coverage badge| image:: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/smutch/bbe05fc2211ebcc2ce35d446223426e0/raw/coverage-badge.json
-   :target: https://github.com/smutch/snakedoc/actions/workflows/coverage.yaml
+.. |coverage badge| image:: https://codecov.io/gh/smutch/snakedoc/branch/main/graph/badge.svg?token=JJNMO2HMG6
+   :target: https://codecov.io/gh/smutch/snakedoc
    :alt: coverage statistic
 
 .. |pre-commit badge| image:: https://results.pre-commit.ci/badge/github/smutch/snakedoc/main.svg
