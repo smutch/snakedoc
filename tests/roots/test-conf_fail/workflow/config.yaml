@@ -1,0 +1,5 @@
+omega_m: 0.27
+galaxy:
+  stellar_mass: 9.1
+  sfr: 0.1
+  mvir: 12.0

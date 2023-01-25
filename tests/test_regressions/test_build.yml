@@ -146,17 +146,22 @@ index: "<body>\n  \n\n    <div class=\"document\">\n      <div class=\"documentw
   ><span class=\"viewcode-link\"><span class=\"pre\">[source]</span></span></a><a\
   \ class=\"headerlink\" href=\"#rule-other3\" title=\"Permalink to this definition\"\
   >¶</a></dt>\n<dd><p>This is other3…</p>\n</dd></dl>\n\n<div class=\"line-block\"\
-  >\n<div class=\"line\"><br /></div>\n</div>\n</section>\n</section>\n<section id=\"\
-  indices-and-tables\">\n<h1>Indices and tables<a class=\"headerlink\" href=\"#indices-and-tables\"\
-  \ title=\"Permalink to this heading\">¶</a></h1>\n<ul class=\"simple\">\n<li><p><a\
-  \ class=\"reference internal\" href=\"genindex.html\"><span class=\"std std-ref\"\
-  >Index</span></a></p></li>\n<li><p><a class=\"reference internal\" href=\"search.html\"\
-  ><span class=\"std std-ref\">Search Page</span></a></p></li>\n</ul>\n</section>\n\
-  \n\n          </div>\n          \n        </div>\n      </div>\n      <div class=\"\
-  sphinxsidebar\" role=\"navigation\" aria-label=\"main navigation\">\n        <div\
-  \ class=\"sphinxsidebarwrapper\">\n<h1 class=\"logo\"><a href=\"#\">snakedocs test\
-  \ input</a></h1>\n\n\n\n\n\n\n\n\n<h3>Navigation</h3>\n\n<div class=\"relations\"\
-  >\n<h3>Related Topics</h3>\n<ul>\n  <li><a href=\"#\">Documentation overview</a><ul>\n\
+  >\n<div class=\"line\"><br /></div>\n</div>\n<p>We can also link between rules.\
+  \ See <a class=\"reference internal\" href=\"#rule-other2\" title=\"rule-other2\"\
+  ><code class=\"xref smk smk-ref docutils literal notranslate\"><span class=\"pre\"\
+  >other2</span></code></a>.</p>\n<p>This is a deliberate <code class=\"xref smk smk-ref\
+  \ docutils literal notranslate\"><span class=\"pre\">failed</span> <span class=\"\
+  pre\">reference</span></code> for code coverage.</p>\n</section>\n</section>\n<section\
+  \ id=\"indices-and-tables\">\n<h1>Indices and tables<a class=\"headerlink\" href=\"\
+  #indices-and-tables\" title=\"Permalink to this heading\">¶</a></h1>\n<ul class=\"\
+  simple\">\n<li><p><a class=\"reference internal\" href=\"smk-rule.html\"><span class=\"\
+  std std-ref\">Snakemake Rules</span></a></p></li>\n<li><p><a class=\"reference internal\"\
+  \ href=\"search.html\"><span class=\"std std-ref\">Search Page</span></a></p></li>\n\
+  </ul>\n</section>\n\n\n          </div>\n          \n        </div>\n      </div>\n\
+  \      <div class=\"sphinxsidebar\" role=\"navigation\" aria-label=\"main navigation\"\
+  >\n        <div class=\"sphinxsidebarwrapper\">\n<h1 class=\"logo\"><a href=\"#\"\
+  >snakedocs test input</a></h1>\n\n\n\n\n\n\n\n\n<h3>Navigation</h3>\n\n<div class=\"\
+  relations\">\n<h3>Related Topics</h3>\n<ul>\n  <li><a href=\"#\">Documentation overview</a><ul>\n\
   \  </ul></li>\n</ul>\n</div>\n<div id=\"searchbox\" style=\"display: none\" role=\"\
   search\">\n  <h3 id=\"searchlabel\">Quick search</h3>\n    <div class=\"searchformwrapper\"\
   >\n    <form class=\"search\" action=\"search.html\" method=\"get\">\n      <input\

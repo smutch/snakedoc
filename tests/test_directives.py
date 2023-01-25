@@ -1,5 +1,9 @@
+from pathlib import Path
+
 import pytest
 from sphinx.application import Sphinx
+
+from snakedoc import smk
 
 from .conftest import build_and_blend, get_rule
 
@@ -46,6 +50,43 @@ def test_autodoc_single_file(app: Sphinx):
 
     assert "Input : an input file" in rule
     assert "Output : an output file" in rule
+
+
+@pytest.mark.sphinx('html', testroot='conf')
+def test_autodoc_config_overrides(app: Sphinx):
+    soup = build_and_blend(app)
+    rule = get_rule("dummy1", soup)
+
+    assert "Config : omega_m – The matter density" in rule
+    assert "default: 0.25" in rule
+
+
+@pytest.mark.sphinx('html', testroot='conf', confoverrides={"smk_configfile": None})
+def test_autodoc_config_fileopt(app: Sphinx):
+    soup = build_and_blend(app)
+    rule = get_rule("dummy1", soup)
+
+    assert "Config : omega_m – The matter density" in rule
+    assert "default: 0.25" in rule
+
+
+@pytest.mark.sphinx(
+    'html',
+    testroot='conf',
+    confoverrides={"smk_configfile": Path(__file__).absolute().parent / "roots/test-conf/workflow/config.yaml"},
+)
+def test_autodoc_config_absolute(app: Sphinx):
+    soup = build_and_blend(app)
+    rule = get_rule("dummy1", soup)
+
+    assert "Config : omega_m – The matter density" in rule
+    assert "default: 0.25" in rule
+
+
+@pytest.mark.sphinx('html', testroot='conf_fail')
+def test_autodoc_config_fail(app: Sphinx):
+    with pytest.raises(smk.SmkAutoDocError):
+        soup = build_and_blend(app)
 
 
 @pytest.mark.sphinx('html', testroot='docs')
