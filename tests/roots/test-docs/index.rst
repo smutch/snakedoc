@@ -63,8 +63,12 @@ Autodoc
 
 .. smk:autodoc:: workflow/rules/others.smk other2 other3
 
+We can also link between rules. See :smk:ref:`other2`.
+
+This is a deliberate :smk:ref:`failed reference` for code coverage.
+
 Indices and tables
 ==================
 
-* :ref:`genindex`
+* :ref:`smk-rule`
 * :ref:`search`

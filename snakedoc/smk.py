@@ -17,6 +17,7 @@ from sphinx.application import Sphinx
 from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index, ObjType
 from sphinx.environment import BuildEnvironment
+from sphinx.errors import SphinxError
 from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
@@ -85,7 +86,7 @@ class RuleDirective(ObjectDescription):
         GroupedField("output", label="Output", names=("output", "out"), can_collapse=True),
         GroupedField("param", label="Params", names=("param", "parameter"), can_collapse=True),
         GroupedField("resource", label="Resources", names=("resource",), can_collapse=True),
-        GroupedField("config", label="Config", names=("config", "conf"), can_collapse=True),
+        ConfigField("config", label="Config", names=("config", "conf"), can_collapse=True),
         Field("conda", label="Conda", names=("conda",)),
         Field("log", label="Log", names=("log",), has_arg=False),
         Field("notebook", label="Notebook", names=("notebook"), has_arg=False),
@@ -170,6 +171,10 @@ class RuleIndex(Index):
         return content, True
 
 
+class SmkAutoDocError(SphinxError):
+    category = "autodoc error"
+
+
 class AutoDocDirective(SphinxDirective):
     has_content = False
     required_arguments = 1
@@ -183,7 +188,7 @@ class AutoDocDirective(SphinxDirective):
     def _extract_rules(self):
         configfiles = self.options.get("configfile", self.env.config["smk_configfile"])
         if configfiles is not None:
-            if isinstance(configfiles, (str, Path)):
+            if isinstance(configfiles, (str, Path)):  # pragma: no cover
                 configfiles = [configfiles]
             for ii, cf in enumerate(configfiles):
                 cf = Path(cf)
@@ -197,7 +202,7 @@ class AutoDocDirective(SphinxDirective):
                     k, v = map(str.strip, line.split("=", 1))
                     config_args[k] = v
                 except ValueError as err:
-                    raise Exception("The smk:autodoc config option must be made up of key=value entries") from err
+                    raise SmkAutoDocError("The smk:autodoc config option must be made up of key=value entries") from err
 
         config = {}
         if configfiles is not None:
@@ -207,8 +212,7 @@ class AutoDocDirective(SphinxDirective):
         snakemake.utils.update_config(config, config_args)
 
         snakefile = self.arguments[0]
-        if not Path(snakefile).is_absolute():
-            snakefile = Path(self.env.app.srcdir) / Path(snakefile)
+        snakefile = Path(self.env.app.srcdir) / Path(snakefile)
 
         workflow = snakemake.Workflow(
             snakefile,
@@ -306,8 +310,8 @@ class SmkDomain(Domain):
         "rules": [],  # object list
     }
 
-    def get_full_qualified_name(self, node):
-        return "{}.{}".format("rule", node.arguments[0])
+    # def get_full_qualified_name(self, node):
+    #     return "{}.{}".format("rule", node.arguments[0])
 
     def get_objects(self):
         for obj in self.data["rules"]:
