@@ -14,39 +14,84 @@ Add docstrings to your Snakemake workflow
 
 The main feature of Snakedoc is the generation of documentation for your
 Snakemake workflow. To do this, you need to add docstrings to the rules in your
-Snakemake files. The docstrings should be written in reStructuredText_ format
-and placed in triple quotes at the start of each rule, in exactly the same way
-as you would document a Python function. For example [#f1]_::
+Snakemake files. The docstrings should be written in either reStructuredText_
+or `google docstrings`_ format and placed in triple quotes at the start of each
+rule, in exactly the same way as you would document a Python function. For
+example [#f1]_:
 
-    rule beast:
-        """
-        Run Beast2, either restarting from a state file or from scratch.
+.. md-tab-set::
+    :class: custom-tab-set-style
+    :name: example_rule
 
-        :input alignment:         the aligned fasta file output from :smk:ref:`align`
-        :input template:          the Beast 2 input XML file, templated with `feast <https://github.com/tgvaughan/feast>`_.
-                                  If ``inherit`` is set in the config then the output of the :smk:ref:`onlinebeast` rule is used,
-                                  otherwise the output of the :smk:ref:`dynamicbeast` rule is used.
+    .. md-tab-item:: reStructuredText
 
-        :output:                  the tree log, trace log, and statefile from Beast2
+        .. code-block::
 
-        :config inherit:          are we inheriting from a previous run?
-        :config beast.dynamic:    the dynamic variables used to populate the feast template.
-        :config beast.beast:      Beast2 command line arguments to pass (beyond the params, statefile and input)
-        :config beast.threads:    the number of cores to run with (both locally or when submitting to a cluster)
-        :config beast.resources:  the resources to request when submitting to a cluster
+            rule beast:
+                """
+                Run Beast2, either restarting from a state file or from scratch.
 
-        :envmodules:              environment variables to load for the Spartan HPC system
+                :input alignment:         the aligned fasta file output from :smk:ref:`align`
+                :input template:          the Beast 2 input XML file, templated with `feast <https://github.com/tgvaughan/feast>`_.
+                                          If ``inherit`` is set in the config then the output of the :smk:ref:`onlinebeast` rule is used,
+                                          otherwise the output of the :smk:ref:`dynamicbeast` rule is used.
 
-        ..note::
-            GPU acceleration is **not** requested by default. If you are running on a machine with a compatible GPU then
-            please replace ``-beagle`` with ``-beagle_GPU`` in the ``beast.beast`` entry in your McCoy ``config.yaml`` file.
-        """
+                :output:                  the tree log, trace log, and statefile from Beast2
 
-        input: ...
-        output: ...
-        ...
+                :config inherit:          are we inheriting from a previous run?
+                :config beast.dynamic:    the dynamic variables used to populate the feast template.
+                :config beast.beast:      Beast2 command line arguments to pass (beyond the params, statefile and input)
+                :config beast.threads:    the number of cores to run with (both locally or when submitting to a cluster)
+                :config beast.resources:  the resources to request when submitting to a cluster
 
-If you are familiar with Python style rst-docstrings then you will feel right at home.
+                :envmodules:              environment variables to load for the Spartan HPC system
+
+                ..note::
+                    GPU acceleration is **not** requested by default. If you are running on a machine with a compatible GPU then
+                    please replace ``-beagle`` with ``-beagle_GPU`` in the ``beast.beast`` entry in your McCoy ``config.yaml`` file.
+                """
+
+                input: ...
+                output: ...
+                ...
+
+    .. md-tab-item:: Google style
+
+        .. code-block:: markdown
+
+            rule beast:
+                """
+                Run Beast2, either restarting from a state file or from scratch.
+
+                Input:
+                    alignment:  the aligned fasta file output from :smk:ref:`align`
+                    template:   the Beast 2 input XML file, templated with `feast <https://github.com/tgvaughan/feast>`_.
+                                If ``inherit`` is set in the config then the output of the :smk:ref:`onlinebeast` rule is used,
+                                otherwise the output of the :smk:ref:`dynamicbeast` rule is used.
+
+                Output:
+                    : the tree log, trace log, and statefile from Beast2
+
+                Config:
+                    inherit:          are we inheriting from a previous run?
+                    beast.dynamic:    the dynamic variables used to populate the feast template.
+                    beast.beast:      Beast2 command line arguments to pass (beyond the params, statefile and input)
+                    beast.threads:    the number of cores to run with (both locally or when submitting to a cluster)
+                    beast.resources:  the resources to request when submitting to a cluster
+
+                envmodules:
+                    environment variables to load for the Spartan HPC system
+
+                Note:
+                    GPU acceleration is **not** requested by default. If you are running on a machine with a compatible GPU then
+                    please replace ``-beagle`` with ``-beagle_GPU`` in the ``beast.beast`` entry in your McCoy ``config.yaml`` file.
+                """
+
+                input: ...
+                output: ...
+                ...
+
+If you are familiar with Python docstrings then you will feel right at home.
 
 As recommended in normal Python code, the basic layout of a docstring comprises
 of a short, concise explanation of the purpose of the rule. This is then
@@ -243,6 +288,8 @@ What next?
 .. [#f2] https://www.sphinx-doc.org/en/master/usage/configuration.html#module-conf
 
 .. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
+
+.. _google docstrings: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 
 .. _example directory: https://github.com/smutch/snakedoc/tree/main/example
 
