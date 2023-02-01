@@ -60,7 +60,7 @@ rule follows_basic:
 
 rule basic_google_style:
     """
-    This is a basic Snakemake rule with Google Style docstrings.
+    This is a basic Snakemake rule with Google style docstrings.
 
     Note:
         Note that we are using the documentation here to provide extra context

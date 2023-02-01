@@ -95,3 +95,33 @@ rule the_end:
         "output4.txt"
     shell:
         "echo {input} > {output}"
+
+rule basic_google_style:
+    """
+    This is a basic Snakemake rule with Google style docstrings.
+
+    Input:
+        : A file
+
+    output:
+        : Another file
+
+    Config:
+        length: Used to set params
+
+    Params:
+        a: Set to config ``length`` value
+        b: Sets the value of ``b``
+    """
+
+    input:
+        "input.txt"
+    output:
+        report("output.txt")
+    conda:
+        "envs/test1.yaml"
+    params:
+        a=config["length"],
+        b=3
+    shell:
+        "cat {input} > {output} && echo {params.a} >> {output}"
