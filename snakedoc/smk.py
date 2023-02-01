@@ -197,7 +197,7 @@ class SmkAutoDocError(SphinxError):
 
 
 def _parse_custom_params_style_section(self, section: str) -> List[str]:
-    if self._config.napoleon_use_param and section.lower() == 'config':
+    if self._config.napoleon_use_param and section.lower() in ('config', 'conf'):
         # Allow to declare multiple parameters at once (ex: x, y: int)
         fields = self._consume_fields(multiple=True)
         return self._format_docutils_params(fields, field_role=section.lower())
