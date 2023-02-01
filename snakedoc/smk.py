@@ -18,6 +18,8 @@ from sphinx.directives import ObjectDescription, SphinxDirective
 from sphinx.domains import Domain, Index, ObjType
 from sphinx.environment import BuildEnvironment
 from sphinx.errors import SphinxError
+from sphinx.ext.napoleon import Config
+from sphinx.ext.napoleon.docstring import GoogleDocstring
 from sphinx.roles import XRefRole
 from sphinx.util.docfields import Field, GroupedField
 from sphinx.util.docutils import switch_source_input
@@ -82,26 +84,45 @@ class RuleDirective(ObjectDescription):
     rule_type = RuleType.RULE
 
     doc_field_types = [
-        GroupedField("input", label="Input", names=("input", "in"), can_collapse=True),
-        GroupedField("output", label="Output", names=("output", "out"), can_collapse=True),
-        GroupedField("param", label="Params", names=("param", "parameter"), can_collapse=True),
-        GroupedField("resource", label="Resources", names=("resource",), can_collapse=True),
-        ConfigField("config", label="Config", names=("config", "conf"), can_collapse=True),
-        Field("conda", label="Conda", names=("conda",)),
-        Field("log", label="Log", names=("log",), has_arg=False),
-        Field("notebook", label="Notebook", names=("notebook"), has_arg=False),
-        Field("shell", label="Shell", names=("shell"), has_arg=False),
+        GroupedField("input", label="Input", names=("input", "Input", "in", "inputs", "Inputs"), can_collapse=True),
+        GroupedField("output", label="Output", names=("output", "out", "outputs", "Outputs"), can_collapse=True),
+        GroupedField(
+            "param",
+            label="Params",
+            names=("param", "Param", "parameter", "Parameter", "params", "Params", "parameters", "Parameters"),
+            can_collapse=True,
+        ),
+        GroupedField(
+            "resource", label="Resources", names=("resource", "resources", "Resource", "Resources"), can_collapse=True
+        ),
+        ConfigField(
+            "config", label="Config", names=("config", "Config", "configs", "Configs", "conf"), can_collapse=True
+        ),
+        Field("conda", label="Conda", names=("conda", "Conda")),
+        Field("log", label="Log", names=("log", "Log"), has_arg=False),
+        Field("notebook", label="Notebook", names=("notebook", "Notebook"), has_arg=False),
+        Field("shell", label="Shell", names=("shell", "Shell"), has_arg=False),
         Field(
-            "script", label="Script", names=("script"), has_arg=False
+            "script", label="Script", names=("script", "Script"), has_arg=False
         ),  # TODO: link to script on github automatically?
-        Field("run", label="Run", names=("run"), has_arg=False),
-        Field("wildcard_constraints", label="Wildcard constraints", names=("wildcard_constraints"), has_arg=False),
-        Field("threads", label="Threads", names=("threads"), has_arg=False),
-        Field("priority", label="Priority", names=("priority"), has_arg=False),
-        Field("retires", label="Retires", names=("retires"), has_arg=False),
-        Field("benchmark", label="Benchmark", names=("benchmark", "bench"), has_arg=False),
-        Field("group", label="Group", names=("group", "grp"), has_arg=False),
-        Field("default_target", label="Default target", names=("default_target"), has_arg=False),
+        Field("run", label="Run", names=("run", "Run"), has_arg=False),
+        Field(
+            "wildcard_constraints",
+            label="Wildcard constraints",
+            names=("wildcard_constraints", "Wildcard_Constraints", "wildcard constraints", "Wildcard Constraints"),
+            has_arg=False,
+        ),
+        Field("threads", label="Threads", names=("threads", "Threads"), has_arg=False),
+        Field("priority", label="Priority", names=("priority", "Priority"), has_arg=False),
+        Field("retires", label="Retires", names=("retires", "Retries"), has_arg=False),
+        Field("benchmark", label="Benchmark", names=("benchmark", "Benchmark", "bench"), has_arg=False),
+        Field("group", label="Group", names=("group", "Group", "grp"), has_arg=False),
+        Field(
+            "default_target",
+            label="Default target",
+            names=("default_target", "Default_Target", "default target", "Default Target"),
+            has_arg=False,
+        ),
     ]
 
     def transform_content(self, contentnode: addnodes.desc_content) -> None:
@@ -175,6 +196,16 @@ class SmkAutoDocError(SphinxError):
     category = "autodoc error"
 
 
+def _parse_custom_params_style_section(self, section: str) -> List[str]:
+    if self._config.napoleon_use_param and section.lower() == 'config':
+        # Allow to declare multiple parameters at once (ex: x, y: int)
+        fields = self._consume_fields(multiple=True)
+        return self._format_docutils_params(fields, field_role=section.lower())
+    else:
+        fields = self._consume_fields()
+        return self._format_fields(section.lower(), fields)
+
+
 class AutoDocDirective(SphinxDirective):
     has_content = False
     required_arguments = 1
@@ -231,7 +262,7 @@ class AutoDocDirective(SphinxDirective):
 
         return workflow._rules
 
-    def _gen_docs(viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
+    def _gen_docs(self, viewlist: ViewList, rules: Mapping[str, snakemake.rules.Rule]):
         for rule in rules.values():
             lines = []
             lineno = rule.workflow.linemaps[rule.snakefile][rule.lineno]
@@ -240,16 +271,26 @@ class AutoDocDirective(SphinxDirective):
             lines.extend([f".. smk:{rule_type}:: {rule.name}", f"   :source: {snakefile}:{lineno}", ""])
 
             if rule.docstring is not None:
-                docstring = indent(dedent(f"    {rule.docstring}"), "   ")
+                config = Config(
+                    napoleon_use_param=True,
+                    napoleon_custom_sections=[
+                        (name, "params_style")
+                        for field in RuleDirective.doc_field_types
+                        if isinstance(field, (GroupedField, ConfigField))
+                        for name in field.names
+                    ],
+                )
+                GoogleDocstring._parse_custom_params_style_section = _parse_custom_params_style_section
+                docstring = indent(str(GoogleDocstring(dedent(f"    {rule.docstring}"), config=config)), "   ")
                 lines.extend(docstring.splitlines())
                 lines.append("")
 
             if rule.conda_env:
                 lines.extend(
                     [
-                        "   :conda:",
+                        "   :Conda:",
                         "     .. code-block:: yaml",
-                        "",
+                        "   ",
                     ]
                 )
                 fname = rule.conda_env if isinstance(rule.conda_env, str) else rule.conda_env.file
@@ -283,7 +324,7 @@ class AutoDocDirective(SphinxDirective):
         result = ViewList()
 
         rules = self._extract_rules()
-        AutoDocDirective._gen_docs(result, rules)
+        AutoDocDirective._gen_docs(self, result, rules)
 
         # Parse the extracted reST
         with switch_source_input(self.state, result):
