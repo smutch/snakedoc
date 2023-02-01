@@ -5,6 +5,7 @@
 
    installation
    guide
+   FAQ
 
 Snakedoc
 ========
