@@ -338,7 +338,6 @@ class AutoDocDirective(SphinxDirective):
 
 
 class SmkDomain(Domain):
-
     name = "smk"
     label = "Snakemake"
     roles = {"ref": XRefRole()}
