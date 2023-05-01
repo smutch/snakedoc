@@ -23,7 +23,7 @@ classifiers = [
 ]
 dependencies = [
 "snakemake>=7.6.2",
-"Sphinx>=5,<7",
+"Sphinx>=5,<8",
 ]
 dynamic = ["version"]
 
