@@ -127,7 +127,7 @@ class RuleDirective(ObjectDescription):
 
     def transform_content(self, contentnode: addnodes.desc_content) -> None:
         if hasattr(self.env, "_workflow"):
-            for node in contentnode.traverse():
+            for node in contentnode.findall():
                 if node.tagname == 'field' and node[0][0].astext().lower().startswith("conf"):
                     key = node[0][0].split(" ")[1]
                     value = reduce(dict.get, key.split("."), self.env._workflow.config)

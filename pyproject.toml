@@ -19,11 +19,12 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
 "snakemake>=7.6.2",
-"Sphinx>=5,<7",
+"Sphinx>=5,<8",
 ]
 dynamic = ["version"]
 
@@ -64,7 +65,7 @@ scripts.regen-expected = "pytest --force-regen"
 scripts.docs = "sphinx-build docs/source docs/build/html"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["38", "39", "310", "311"]
+python = ["38", "39", "310", "311", "312"]
 
 [tool.hatch.envs.lint]
 detached = true
