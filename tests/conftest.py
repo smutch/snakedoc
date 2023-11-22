@@ -1,6 +1,8 @@
+import sys
 from pathlib import Path
 
 import pytest
+import sphinx
 from bs4 import BeautifulSoup
 from sphinx.application import Sphinx
 
@@ -12,7 +14,9 @@ collect_ignore = ['roots']
 
 @pytest.fixture(scope='session')
 def rootdir():
-    return Path(__file__).parent.absolute() / 'roots'
+    if sphinx.version_info[0] < 7 or sys.version_info < (3, 9):
+        return sphinx.testing.path.path(__file__).parent.abspath() / 'roots'
+    return (Path(__file__).parent / 'roots').resolve()
 
 
 def build_and_blend(app: Sphinx, file: str = "index.html") -> str:

@@ -1,6 +1,8 @@
 import re
+import sys
 
 import pytest
+import sphinx
 from sphinx.application import Sphinx
 
 # Note that we stop checking the body from the footer onwards. This is because the footer contains the exact versions of
@@ -8,6 +10,9 @@ from sphinx.application import Sphinx
 body_pattern = re.compile(r'<body>.*<div class="footer">', re.DOTALL)
 
 
+@pytest.mark.skipif(
+    sphinx.version_info[0] < 7 or sys.version_info < (3, 9), reason="regression test is Sphinx version dependent (>=7)"
+)
 @pytest.mark.sphinx('html', testroot='docs')
 def test_build(data_regression, app: Sphinx):
     app.builder.build_all()
