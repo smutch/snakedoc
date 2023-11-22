@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 import pytest
@@ -13,7 +14,7 @@ collect_ignore = ['roots']
 
 @pytest.fixture(scope='session')
 def rootdir():
-    if sphinx.version_info[0] < 7:
+    if sphinx.version_info[0] < 7 or sys.version_info < (3, 9):
         return sphinx.testing.path.path(__file__).parent.abspath() / 'roots'
     return (Path(__file__).parent / 'roots').resolve()
 
