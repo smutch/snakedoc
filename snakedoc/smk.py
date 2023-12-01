@@ -149,7 +149,8 @@ class RuleDirective(ObjectDescription):
                     node[1][0] += default
 
     def handle_signature(self, sig, signode):
-        signode.insert(1, addnodes.desc_type(text=f"{self.rule_type.value.capitalize()} "))
+        signode.insert(1, addnodes.desc_type(text=f"{self.rule_type.value.capitalize()}"))
+        signode += addnodes.desc_sig_space()
         signode += addnodes.desc_name(text=sig, source=self.options.get("source", ""))
         return sig
 
